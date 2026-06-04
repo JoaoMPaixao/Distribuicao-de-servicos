@@ -1,9 +1,18 @@
 package com.example.backend.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name= "departamento")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Departamento {
 
     @Id
@@ -14,28 +23,6 @@ public class Departamento {
 
     private String coordenador;
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCoordenador() {
-        return coordenador;
-    }
-
-    public void setCoordenador(String coordenador) {
-        this.coordenador = coordenador;
-    }
 
 }
