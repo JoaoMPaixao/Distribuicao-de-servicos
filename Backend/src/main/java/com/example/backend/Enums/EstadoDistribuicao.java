@@ -4,4 +4,7 @@ public enum EstadoDistribuicao {
 
     ABERTO,
     FECHADO,
+    APROVADO,
+    RECUSADO,
+    FINAL,
 }

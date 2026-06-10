@@ -22,6 +22,8 @@ public class Distribuicao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String nome;
+
     private String ano_letivo;
 
     private String versao;
@@ -29,7 +31,7 @@ public class Distribuicao {
     private String descricao;
 
     @Enumerated(EnumType.STRING)
-    private EstadoDistribuicao estado;
+    private EstadoDistribuicao estado = EstadoDistribuicao.ABERTO;
 
     private Date data_criacao;
 
