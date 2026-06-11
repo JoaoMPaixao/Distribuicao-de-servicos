@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name= "distribuicao")
@@ -33,9 +34,9 @@ public class Distribuicao {
     @Enumerated(EnumType.STRING)
     private EstadoDistribuicao estado = EstadoDistribuicao.ABERTO;
 
-    private Date data_criacao;
+    private LocalDate data_criacao;
 
-    private Date data_fechar;
+    private LocalDate data_fechar;
 
     @ManyToOne
     @JoinColumn(name = "departamento_id")

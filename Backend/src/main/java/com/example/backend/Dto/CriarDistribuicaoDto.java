@@ -6,7 +6,7 @@ public record CriarDistribuicaoDto(
         String versao,
         String descricao,
         String ano_letivo,
-        Integer depertamento_id,
+        Integer departamento_id,
         Integer utilizador_id
 
 

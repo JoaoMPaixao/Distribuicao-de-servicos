@@ -1,6 +1,7 @@
 package com.example.backend.Dto;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 public record ListarDistribuicaoDto(
 
@@ -9,7 +10,7 @@ public record ListarDistribuicaoDto(
         String versao,
         String descricao,
         String ano_letivo,
-        Date data_criacao,
+        LocalDate data_criacao,
         String estado
 
 ) {
