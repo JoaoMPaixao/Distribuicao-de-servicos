@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/departamento/{id}")
+@RequestMapping("api/v1/departamento/{id}")
 public class DistribuicaoController {
 
 
