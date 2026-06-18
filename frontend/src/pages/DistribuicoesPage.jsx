@@ -23,7 +23,7 @@ export const DistribuicoesPage =() => {
     useEffect(() => {
        // if (!user) return
         const carregar = async () => {
-            const response = await getDistribuicoes(user.departamento_id)
+            const response = await getDistribuicoes()
 
             if (response.success) {
                 setDistribuicoes(response.data)
@@ -35,11 +35,11 @@ export const DistribuicoesPage =() => {
     }, [user])
 
     const handleCriar = async (dados) => {
-        const response = await criarDistribuicao(user.departamento_id, user.id, dados)
+        const response = await criarDistribuicao(dados)
 
         if (response.success) {
             setModalAberto(false)
-            const atualizado = await getDistribuicoes(user.departamento_id)
+            const atualizado = await getDistribuicoes()
             if (atualizado.success) setDistribuicoes(atualizado.data)
         } else {
             setErroModal(response.message)

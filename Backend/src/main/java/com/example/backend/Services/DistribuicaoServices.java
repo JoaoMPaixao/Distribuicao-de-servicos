@@ -46,13 +46,13 @@ public class DistribuicaoServices {
     }
 
     @Transactional
-    public void CriarDistribuicao(CriarDistribuicaoDto dto){
+    public void CriarDistribuicao(CriarDistribuicaoDto dto, Integer departamento_id, Integer utilizador_id) {
 
 
-        Departamento departamento = departamentoRepository.findById(dto.departamento_id())
+        Departamento departamento = departamentoRepository.findById(departamento_id)
                 .orElseThrow(() -> new RuntimeException("Departamento não encontrado"));
 
-        Utilizador utilizador = utilizadorRepository.findById(dto.utilizador_id())
+        Utilizador utilizador = utilizadorRepository.findById(utilizador_id)
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
 
 

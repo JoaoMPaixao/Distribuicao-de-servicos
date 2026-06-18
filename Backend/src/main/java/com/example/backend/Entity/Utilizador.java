@@ -27,7 +27,7 @@ public class Utilizador {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private EstadoUtilizador estadoUtilizador;
+    private EstadoUtilizador estado;
 
     @ManyToOne
     @JoinColumn(name = "cargo_id")
