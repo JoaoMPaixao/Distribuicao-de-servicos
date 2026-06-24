@@ -7,4 +7,5 @@ public enum EstadoDistribuicao {
     APROVADO,
     RECUSADO,
     FINAL,
+    INATIVO
 }

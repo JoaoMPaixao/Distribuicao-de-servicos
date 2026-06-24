@@ -96,7 +96,9 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(Map.of(
                 "id", user.getId(),
                 "email", user.getUsername(),
-                "roles", user.getAuthorities()
+                "nome", user.getNome(),
+                "departamento", user.getDepartamentoNome(),
+                "role", user.getAuthorities()
                         .stream()
                         .map(a -> a.getAuthority())
                         .toList()

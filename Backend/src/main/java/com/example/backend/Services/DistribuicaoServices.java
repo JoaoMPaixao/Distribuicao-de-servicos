@@ -9,10 +9,12 @@ import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Repository.DepartamentoRepository;
 import com.example.backend.Repository.DistribuicaoRepository;
 import com.example.backend.Repository.UtilizadorRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -31,7 +33,8 @@ public class DistribuicaoServices {
 
     public List<ListarDistribuicaoDto> getDistribuicoesByDepartamentoId(Integer departamento_id) {
 
-        return distribuicaoRepository.findByDepartamento_Id(departamento_id)
+
+        return distribuicaoRepository.findByDepartamento_IdAndEstadoNot(departamento_id, EstadoDistribuicao.INATIVO)
                 .stream()
                 .map(distribuicao -> new ListarDistribuicaoDto(
                         distribuicao.getId(),
@@ -72,6 +75,17 @@ public class DistribuicaoServices {
 
         distribuicaoRepository.save(distribuicao);
 
+    }
+
+    @Transactional
+    public void DesativarDistribuicao(Integer distribuicao_id, Integer utilizador_id) {
+
+        Distribuicao distribuicao = distribuicaoRepository.findById(distribuicao_id).orElseThrow(() -> new EntityNotFoundException("Distribuicao não encontrada"));
+
+        if(distribuicao.getUtilizador().getId().equals(utilizador_id)) {
+
+            distribuicao.setEstado(EstadoDistribuicao.INATIVO);
+        }
     }
 
 }

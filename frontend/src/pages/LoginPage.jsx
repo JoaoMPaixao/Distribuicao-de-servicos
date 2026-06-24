@@ -1,11 +1,11 @@
-// pages/LoginPage.jsx
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { login, logout } from '../api/loginApi'
+import {login, me} from '../api/loginApi'
 import { UserContext } from '../UserContext'
+import '../styles/estilos.css'
 
 function LoginPage() {
-    const { user } = useContext(UserContext)
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
@@ -44,13 +44,20 @@ function LoginPage() {
         setCarregando(false)
 
         if (response.success) {
+            try {
+                const userData = await me();
+                setUser(userData);
+            } catch (e) {
+                setUser(null);
+            }
             navigate('/distribuicoes')
-        } else {
+        }else {
             setErroGeral('Credenciais inválidas. Por favor verifique o seu e-mail e palavra-passe.')
         }
     }
 
     return (
+
         <div className="right-panel">
             <div className="login-card">
 
@@ -59,7 +66,7 @@ function LoginPage() {
                     <p>Introduza as suas credenciais para aceder à plataforma.</p>
                 </div>
 
-                {/* Erro geral (credenciais inválidas) */}
+
                 {erroGeral && (
                     <div className="alert error">
                         <span>{erroGeral}</span>
@@ -133,6 +140,7 @@ function LoginPage() {
 
             </div>
         </div>
+
     )
 }
 

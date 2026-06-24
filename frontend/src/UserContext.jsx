@@ -9,16 +9,12 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                // Só chama se não estivermos na página de login
-                if (window.location.pathname !== "/") {
-                    const userData = await me();
-                    setUser(userData);
-                }
+                const userData = await me();
+                setUser(userData);
             } catch (e) {
-                setUser(null); // não autenticado
+                setUser(null);
             }
         };
-
         fetchUser();
     }, []);
 

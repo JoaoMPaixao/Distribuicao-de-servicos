@@ -18,10 +18,13 @@ public class CustomUserDetails implements UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
     private final Integer departamentoId;
     private final String nome;
+    private final String departamentoNome;
+
 
     public CustomUserDetails(Utilizador utilizador) {
         this.id = utilizador.getId();
         this.nome = utilizador.getNome();
+        this.departamentoNome = utilizador.getDepartamento() != null ? utilizador.getDepartamento().getNome() : null;
         this.email = utilizador.getEmail();
         this.password = utilizador.getPassword();
         this.departamentoId = utilizador.getDepartamento() != null ? utilizador.getDepartamento().getId() : null;
@@ -42,6 +45,8 @@ public class CustomUserDetails implements UserDetails {
     public String getNome() {
         return nome;
     }
+
+    public String getDepartamentoNome() {return  departamentoNome;}
 
     public Integer getDepartamentoId() {
         return departamentoId;

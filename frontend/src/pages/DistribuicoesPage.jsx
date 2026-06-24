@@ -4,7 +4,7 @@ import PageHeader from '../components/PageHeader'
 import FilterBar from '../components/FilterBar'
 import TabelaDistribuicoes from '../components/TabelaDistribuicoes.jsx'
 import ModalDistribuicao from '../components/ModalDistribuicao.jsx'
-import { getDistribuicoes, criarDistribuicao } from '../api/distribuicoesApi'
+import {getDistribuicoes, criarDistribuicao, desativarDistribuicao} from '../api/distribuicoesApi'
 import {UserContext} from "../UserContext.jsx";
 
 export const DistribuicoesPage =() => {
@@ -46,6 +46,17 @@ export const DistribuicoesPage =() => {
         }
     }
 
+    const handleDesativar = async (id) =>{
+
+        const response = await desativarDistribuicao(id)
+        if(response.success){
+            const atualizado = await getDistribuicoes()
+            if (atualizado.success) setDistribuicoes(atualizado.data)
+        }
+
+
+    }
+
     //atualiza a pagina sem dar reset para os filtros
     useEffect(() => {
         setPagina(1)
@@ -71,12 +82,13 @@ export const DistribuicoesPage =() => {
     if (erroModal) return <p>ErroModal: {erroModal}</p>
 
     return (
-        <SideBar_TopBar titulo="Departamento de tecnologias">
+        <SideBar_TopBar >
             <PageHeader titulo="Distribuições de Serviço" subtitulo="Lista de todas as distribuições de serviço criadas" onCriar={()  =>  setModalAberto(true)} />
             <FilterBar pesquisa={pesquisa} setPesquisa={setPesquisa} anoLetivo={anoLetivo} setAnoLetivo={setAnoLetivo} estado={estado} setEstado={setEstado} onLimpar={() => { setPesquisa(''); setAnoLetivo(''); setEstado('') }} />
             <TabelaDistribuicoes
                 distribuicoes={distribuicoesPagina}
                 porPagina={porPagina}
+                onDesativar={handleDesativar}
                 onMudarPorPagina={setPorPagina}
                 paginacao={{ inicio: (pagina - 1) * porPagina + 1, fim: Math.min(pagina * porPagina, distribuicoesFiltradas.length), total: distribuicoesFiltradas.length, atual: pagina, totalPaginas, onMudar: setPagina }}
             />

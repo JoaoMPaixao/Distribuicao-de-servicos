@@ -19,3 +19,12 @@ export const criarDistribuicao = async (dados) => {
         return {success: false, status: error.response?.status, message: error.response?.data?.message}
     }
 }
+
+export const desativarDistribuicao = async (id) => {
+    try {
+        await instance.put(`/v1/distribuicoes/${id}/desativar`)
+        return { success: true }
+    } catch (error) {
+        return { success: false }
+    }
+}

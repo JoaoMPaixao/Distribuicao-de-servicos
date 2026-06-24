@@ -1,3 +1,6 @@
+import {useState} from "react";
+import ModalConfirmacao from "./ModalConfirmacao.jsx";
+
 const badgeClasses = {
     FINAL: 'badge-final',
     ABERTO: 'badge-aberto',
@@ -6,7 +9,8 @@ const badgeClasses = {
     RECUSADO: 'badge-recusado',
 }
 
-function ListarDistribuicoesCard({ distribuicao, onVer, onComparar, onClonar }) {
+function ListarDistribuicoesCard({ distribuicao, onVer, onComparar, onClonar, onDesativar }) {
+    const [confirmarDesativar, setConfirmarDesativar] = useState(false)
 
     return (
         <tr>
@@ -39,11 +43,20 @@ function ListarDistribuicoesCard({ distribuicao, onVer, onComparar, onClonar }) 
                 <button className="icon-btn" title="Clonar" onClick={() => onClonar(distribuicao.id)}>
                     <i className="bi bi-copy icon-icon"></i>
                 </button>
-                <button className="icon-btn" title="Mais ações">
-                    <i className="bi bi-three-dots-vertical icon-icon"></i>
+                <button className="icon-btn" title="Desativar" onClick={() => setConfirmarDesativar(true)}>
+                    <i className="bi bi-trash icon-icon"></i>
                 </button>
+                {confirmarDesativar && (
+                    <ModalConfirmacao
+                        mensagem={`Tem a certeza que deseja desativar "${distribuicao.nome}"?`}
+                        onConfirmar={() => { onDesativar(distribuicao.id); setConfirmarDesativar(false) }}
+                        onCancelar={() => setConfirmarDesativar(false)}
+                    />
+                )}
             </td>
+
         </tr>
+
     )
 }
 

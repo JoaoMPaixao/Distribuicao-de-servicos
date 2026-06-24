@@ -45,6 +45,10 @@ public class JwtTokenUtil implements Serializable {
         return getClaimFromToken(token, claims -> claims.get("nome", String.class));
     }
 
+    public String getDepartamentoNomeFromToken(String token) {
+        return getClaimFromToken(token, claims -> claims.get("departamentoNome", String.class));
+    }
+
     //retrieve expiration date from jwt token
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
