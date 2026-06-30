@@ -20,7 +20,7 @@ public class UC_Distribuicao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Float horas_atribuidas;
+    private Integer horas_atribuidas;
 
     @Enumerated(EnumType.STRING)
     private EstadoUcDistribuicao estado;
@@ -37,6 +37,6 @@ public class UC_Distribuicao {
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "uc_tipo_aula_id", nullable = true)
-    private UC_Tipo_Aula uc_tipo_aula;
+    private UC_Tipo_Aula ucTipoAula;
 
 }

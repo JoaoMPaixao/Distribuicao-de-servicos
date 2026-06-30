@@ -1,4 +1,4 @@
-package com.example.backend.Dto;
+package com.example.backend.Dto.Atribuicoes;
 
 public record TipoDocenteDto(
 

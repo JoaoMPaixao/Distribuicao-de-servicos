@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface DocenteRepository extends JpaRepository<Docente,Integer> {
 
-    List<Docente> findByDepartamento_IdAndEstadoNot(Integer departamento_id, EstadoDocente estado);
+    List<Docente> findByEstadoNot( EstadoDocente estado);
 
 }

@@ -22,8 +22,8 @@ public class UC_Tipo_Aula {
     private Float horas;
 
     @ManyToOne
-    @JoinColumn(name = "uc_tipo_aula_id")
-    private UC_Tipo_Aula uc_tipo_aula;
+    @JoinColumn(name = "tipo_aula_id")
+    private Tipo_Aula tipo_aula;
 
     @ManyToOne
     @JoinColumn(name = "uc_id")

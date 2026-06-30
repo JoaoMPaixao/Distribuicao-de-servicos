@@ -1,7 +1,7 @@
 package com.example.backend.Controllers;
 
-import com.example.backend.Dto.CriarDistribuicaoDto;
-import com.example.backend.Dto.ListarDistribuicaoDto;
+import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
+import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.DistribuicaoServices;
 import org.springframework.beans.factory.annotation.Autowired;

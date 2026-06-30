@@ -1,7 +1,7 @@
 package com.example.backend.Services;
 
-import com.example.backend.Dto.CriarDistribuicaoDto;
-import com.example.backend.Dto.ListarDistribuicaoDto;
+import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
+import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
 import com.example.backend.Entity.Departamento;
 import com.example.backend.Entity.Distribuicao;
 import com.example.backend.Entity.Utilizador;
@@ -14,8 +14,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 

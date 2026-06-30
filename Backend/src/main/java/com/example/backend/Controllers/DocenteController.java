@@ -1,8 +1,6 @@
 package com.example.backend.Controllers;
 
-import com.example.backend.Dto.ListarDistribuicaoDto;
-import com.example.backend.Dto.ListarDocentesDto;
-import com.example.backend.Repository.DocenteRepository;
+import com.example.backend.Dto.Atribuicoes.ListarDocentesDistribuicoesDto;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.DocenteServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +21,10 @@ public class DocenteController {
     private DocenteServices docenteServices;
 
     @GetMapping("/distribuicoes/{id}/docentes")
-    public ResponseEntity<List<ListarDocentesDto>> getDocentesByDistribuicao(@PathVariable Integer id, Authentication authentication) {
+    public ResponseEntity<List<ListarDocentesDistribuicoesDto>> getDocentesByDistribuicao(@PathVariable Integer id, Authentication authentication) {
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
         Integer departamentoId = user.getDepartamentoId();
 
-        return ResponseEntity.ok(docenteServices.getDocenteByDistribuicao(id, departamentoId));
+        return ResponseEntity.ok(docenteServices.getDocenteByDepartamento(id, departamentoId));
     }
 }
