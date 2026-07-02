@@ -22,12 +22,6 @@ public class CursoController {
     @Autowired
     private CursoServices cursoServices;
 
-    @GetMapping("/distribuicoes/{id}/ucs")
-    public ResponseEntity<List<ListarCursoDistribuicoesDto>> getUcsByDistribuicao(@PathVariable Integer id, Authentication authentication) {
-        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-        Integer departamentoId = user.getDepartamentoId();
 
-        return ResponseEntity.ok(cursoServices.getUcByDepartamento(id, departamentoId));
-    }
 
 }

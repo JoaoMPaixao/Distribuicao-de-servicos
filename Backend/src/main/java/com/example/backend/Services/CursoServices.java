@@ -41,7 +41,7 @@ public class CursoServices {
             // Lançar uma exceção clara ou retornar uma lista vazia
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Distribuição não pertence ao departamento indicado.");
         }
-
+        //adicionar logica para que quando o uc_tipo_aula_id na UcDistribuicao seja null, é porque temos uma juncao e entao temos de ir buscar à tabela ucJuncao
         return cursoRepository.findByDepartamento_IdAndEstadoNot(departamento_id, EstadoCurso.INATIVO)
                 .stream()
                 .map(curso -> new ListarCursoDistribuicoesDto(
