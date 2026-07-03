@@ -1,5 +1,6 @@
 package com.example.backend.Services;
 
+import com.example.backend.Dto.Atribuicoes.AlterarUcDistribuicaoDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcDistribuicoesDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcJuncaoDto;
 import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
@@ -7,6 +8,8 @@ import com.example.backend.Entity.*;
 import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Enums.EstadoUcDistribuicao;
 import com.example.backend.Repository.*;
+import com.example.backend.Utils.UtilsServices;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,13 +36,15 @@ public class UcDistribuicaoServices {
     @Autowired
     private UcJuncaoRepository ucJuncaoRepository;
 
+    @Autowired
+    private UtilsServices utilsServices;
+
 
     @Transactional
     public void CriarUcDistribuicao(CriarUcDistribuicoesDto dto, Integer distribuicao_id, Integer departamento_id) {
 
         // Verificar se existe a distribuição, docente e uc_tipo_aula
-        Distribuicao distribuicao = distribuicaoRepository.findById(distribuicao_id)
-                .orElseThrow(() -> new RuntimeException("Distribuição não encontrado"));
+        Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
 
         Docente docente = null;
         if(dto.docenteId() != null){
@@ -54,13 +59,7 @@ public class UcDistribuicaoServices {
                     .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
         }
 
-        // Validar se a distribuição pertence de facto a esse departamento, departamento esse que vem do utilizador
-        boolean isValida = distribuicaoRepository.existsByIdAndDepartamentoId(distribuicao_id, departamento_id);
 
-        if (!isValida) {
-            // Lançar uma exceção clara ou retornar uma lista vazia
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Distribuição não pertence ao departamento indicado.");
-        }
 
         UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
         ucDistribuicao.setTurno(dto.turno());
@@ -78,23 +77,15 @@ public class UcDistribuicaoServices {
     @Transactional
     public void CriarUcJuncao(CriarUcJuncaoDto dto, Integer distribuicao_id, Integer departamento_id){
 
-        // Verificar se existe a distribuição e uc_tipo_aula
-        Distribuicao distribuicao = distribuicaoRepository.findById(distribuicao_id)
-                .orElseThrow(() -> new RuntimeException("Distribuição não encontrado"));
-
         UC_Tipo_Aula ucTipoAula = ucTipoAulaRepository.findById(dto.Uc_tipo_aula_id())
                 .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
 
         UC_Distribuicao ucDistribuicao = ucDistribuicaoRepository.findById(dto.UcDistribuicao_id())
                 .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
 
-        // Validar se a distribuição pertence de facto a esse departamento, departamento esse que vem do utilizador
-        boolean isValida = distribuicaoRepository.existsByIdAndDepartamentoId(distribuicao_id, departamento_id);
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento
+        utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
 
-        if (!isValida) {
-            // Lançar uma exceção clara ou retornar uma lista vazia
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Distribuição não pertence ao departamento indicado.");
-        }
         System.out.println(dto.Uc_tipo_aula_id());
         System.out.println(dto.UcDistribuicao_id());
         UC_Juncao ucJuncao = new UC_Juncao();
@@ -108,18 +99,37 @@ public class UcDistribuicaoServices {
     @Transactional
     public void DeleteUcDistribuicao(Integer distribuicao_id, Integer ucDistribuicao_id, Integer departamento_id) {
 
-        Distribuicao distribuicao = distribuicaoRepository.findById(distribuicao_id)
-                .orElseThrow(() -> new RuntimeException("Distribuição não encontrada"));
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento
+        utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
 
-        // Validar se a distribuição pertence de facto a esse departamento, departamento esse que vem do utilizador
-        boolean isValida = distribuicaoRepository.existsByIdAndDepartamentoId(distribuicao_id, departamento_id);
-
-        if (!isValida) {
-            // Lançar uma exceção clara ou retornar uma lista vazia
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Distribuição não pertence ao departamento indicado.");
+        // valida se a ucDistribuicao existe antes de tentar apagar
+        if (!ucDistribuicaoRepository.existsById(ucDistribuicao_id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Atribuição não encontrada");
         }
+
+
         System.out.println(ucDistribuicao_id);
         ucDistribuicaoRepository.deleteById(ucDistribuicao_id);
+
+    }
+
+    @Transactional
+    public void AlterarUcDistribuicao(AlterarUcDistribuicaoDto dto, Integer distribuicao_id, Integer ucDistribuicao_id, Integer departamento_id) {
+
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento
+        utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
+
+        UC_Distribuicao uc_distribuicao = ucDistribuicaoRepository.findById(distribuicao_id)
+                .orElseThrow(() -> new EntityNotFoundException("UC Distribuicao não encontrada"));
+
+        Docente docente = null;
+        if(dto.docenteID() != null){
+            docente = docenteRepository.findById(dto.docenteID())
+                    .orElseThrow(() -> new RuntimeException("Docente não encontrado"));
+        }
+
+        uc_distribuicao.setDocente(docente);
+        uc_distribuicao.setHoras_atribuidas(dto.horasAtribuidas());
 
     }
 }

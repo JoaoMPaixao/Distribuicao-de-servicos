@@ -1,5 +1,6 @@
 package com.example.backend.Controllers;
 
+import com.example.backend.Dto.Atribuicoes.AlterarUcDistribuicaoDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcDistribuicoesDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcJuncaoDto;
 import com.example.backend.Dto.Atribuicoes.ListarCursoDistribuicoesDto;
@@ -70,6 +71,15 @@ public class UcDistribuicaoController {
             ucDistribuicaoServices.DeleteUcDistribuicao(id, UcDistribuicao_id, departamentoId);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
+        }
+
+        @PutMapping("/alterar/{UcDistribuicao_id}")
+        public ResponseEntity<Void> alterarUcDistribuicao(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id, @RequestBody AlterarUcDistribuicaoDto dto, Authentication authentication) {
+
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+            Integer departamentoId = user.getDepartamentoId();
+            ucDistribuicaoServices.AlterarUcDistribuicao(dto, id, UcDistribuicao_id, departamentoId );
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
 
 

@@ -7,6 +7,7 @@ import com.example.backend.Dto.Atribuicoes.ListarUcDto;
 import com.example.backend.Enums.EstadoCurso;
 import com.example.backend.Enums.EstadoUc;
 import com.example.backend.Repository.*;
+import com.example.backend.Utils.UtilsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -32,15 +33,14 @@ public class CursoServices {
     @Autowired
     private UcDistribuicaoRepository ucDistribuicaoRepository;
 
+    @Autowired
+    private UtilsServices utilsServices;
+
     public List<ListarCursoDistribuicoesDto> getUcByDepartamento(Integer distribuicao_id, Integer departamento_id){
 
-        // Validar se a distribuição pertence de facto a esse departamento
-        boolean isValida = distribuicaoRepository.existsByIdAndDepartamentoId(distribuicao_id, departamento_id);
+        //verificar se a distribuicao e utilizador têm o mesmo departamento
+       utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
 
-        if (!isValida) {
-            // Lançar uma exceção clara ou retornar uma lista vazia
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Distribuição não pertence ao departamento indicado.");
-        }
         //adicionar logica para que quando o uc_tipo_aula_id na UcDistribuicao seja null, é porque temos uma juncao e entao temos de ir buscar à tabela ucJuncao
         return cursoRepository.findByDepartamento_IdAndEstadoNot(departamento_id, EstadoCurso.INATIVO)
                 .stream()
