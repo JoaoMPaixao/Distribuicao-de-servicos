@@ -21,10 +21,10 @@ public class UC_Juncao {
 
     @ManyToOne
     @JoinColumn(name = "uc_tipo_aula_id")
-    private UC_Tipo_Aula uc_tipo_aula;
+    private UC_Tipo_Aula ucTipoAula;
 
     @ManyToOne
     @JoinColumn(name = "uc_distribuicao_id")
-    private UC_Distribuicao uc_distribuicao;
+    private UC_Distribuicao ucDistribuicao;
 
 }

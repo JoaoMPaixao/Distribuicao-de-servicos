@@ -86,11 +86,10 @@ public class UcDistribuicaoServices {
         //verifica se a distribuicao e o utilizador têm o mesmo departamento
         utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
 
-        System.out.println(dto.Uc_tipo_aula_id());
-        System.out.println(dto.UcDistribuicao_id());
+
         UC_Juncao ucJuncao = new UC_Juncao();
-        ucJuncao.setUc_distribuicao(ucDistribuicao);
-        ucJuncao.setUc_tipo_aula(ucTipoAula);
+        ucJuncao.setUcDistribuicao(ucDistribuicao);
+        ucJuncao.setUcTipoAula(ucTipoAula);
 
         ucJuncaoRepository.save(ucJuncao);
 

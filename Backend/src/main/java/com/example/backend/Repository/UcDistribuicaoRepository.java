@@ -12,6 +12,6 @@ public interface UcDistribuicaoRepository extends JpaRepository<UC_Distribuicao,
 
     List<UC_Distribuicao> findByUcTipoAula_Id(Integer Uc_tipo_aula_id);
 
-
+    List<UC_Distribuicao> findByDistribuicao_Id(Integer distribuicao_id);
 
 }

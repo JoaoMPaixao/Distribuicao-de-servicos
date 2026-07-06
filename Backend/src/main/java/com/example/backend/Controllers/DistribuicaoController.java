@@ -51,8 +51,23 @@ public class DistribuicaoController {
         try {
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
 
+            Integer departamentoId = user.getDepartamentoId();
+            distribuicaoServices.DesativarDistribuicao(id, departamentoId);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping("/{id}/clonar")
+    public ResponseEntity<Void> ClonarDistribuicao(@PathVariable Integer id, Authentication authentication) {
+
+
+        try {
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+            Integer departamentoId = user.getDepartamentoId();
             Integer utilizadorID = user.getId();
-            distribuicaoServices.DesativarDistribuicao(id, utilizadorID);
+            distribuicaoServices.ClonarDistribuicao(id, departamentoId,  utilizadorID);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();

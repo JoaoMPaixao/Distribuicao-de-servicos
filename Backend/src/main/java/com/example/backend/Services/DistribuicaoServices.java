@@ -2,19 +2,17 @@ package com.example.backend.Services;
 
 import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
 import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
-import com.example.backend.Entity.Departamento;
-import com.example.backend.Entity.Distribuicao;
-import com.example.backend.Entity.Utilizador;
+import com.example.backend.Entity.*;
 import com.example.backend.Enums.EstadoDistribuicao;
-import com.example.backend.Repository.DepartamentoRepository;
-import com.example.backend.Repository.DistribuicaoRepository;
-import com.example.backend.Repository.UtilizadorRepository;
+import com.example.backend.Repository.*;
+import com.example.backend.Utils.UtilsServices;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +26,15 @@ public class DistribuicaoServices {
 
     @Autowired
     private UtilizadorRepository utilizadorRepository;
+
+    @Autowired
+    private UcDistribuicaoRepository ucDistribuicaoRepository;
+
+    @Autowired
+    private UcJuncaoRepository  ucJuncaoRepository;
+
+    @Autowired
+    private UtilsServices utilsServices;
 
     public List<ListarDistribuicaoDto> getDistribuicoesByDepartamentoId(Integer departamento_id) {
 
@@ -76,14 +83,84 @@ public class DistribuicaoServices {
     }
 
     @Transactional
-    public void DesativarDistribuicao(Integer distribuicao_id, Integer utilizador_id) {
+    public void DesativarDistribuicao(Integer distribuicao_id, Integer departamento_id) {
 
-        Distribuicao distribuicao = distribuicaoRepository.findById(distribuicao_id).orElseThrow(() -> new EntityNotFoundException("Distribuicao não encontrada"));
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento
+        Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
 
-        if(distribuicao.getUtilizador().getId().equals(utilizador_id)) {
+        distribuicao.setEstado(EstadoDistribuicao.INATIVO);
 
-            distribuicao.setEstado(EstadoDistribuicao.INATIVO);
+    }
+
+    @Transactional
+    public void ClonarDistribuicao(Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
+
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento
+        Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
+
+        Utilizador utilizador = utilizadorRepository.findById(utilizador_id)
+                .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
+
+        Distribuicao distribuicaoClone = new Distribuicao();
+        distribuicaoClone.setNome(distribuicao.getNome() + " (Clone)");
+        distribuicaoClone.setVersao(distribuicao.getVersao());
+        distribuicaoClone.setDescricao(distribuicao.getDescricao());
+        distribuicaoClone.setAno_letivo(distribuicao.getAno_letivo());
+
+        distribuicaoClone.setDepartamento(distribuicao.getDepartamento());
+        distribuicaoClone.setUtilizador(utilizador);
+
+
+        distribuicaoClone.setData_criacao(LocalDate.now());
+        distribuicaoClone.setEstado(EstadoDistribuicao.ABERTO);
+
+        distribuicaoRepository.save(distribuicaoClone);
+
+        List<UC_Distribuicao> ucDistribuicoes = ucDistribuicaoRepository.findByDistribuicao_Id(distribuicao_id);
+
+        //array para guardar todas as atribuicoes clonadas para depois dar saveall
+        List<UC_Distribuicao> clones = new ArrayList<>();
+
+        //array para guardar todas as atribuicoes clonadas para depois dar saveall
+        List<UC_Juncao> Juncaoclones = new ArrayList<>();
+
+        for(UC_Distribuicao ucDistribuicao : ucDistribuicoes){
+
+            UC_Distribuicao ucDistribuicaoClone = new UC_Distribuicao();
+
+            ucDistribuicaoClone.setDistribuicao(distribuicaoClone);
+            ucDistribuicaoClone.setHoras_atribuidas(ucDistribuicao.getHoras_atribuidas());
+            ucDistribuicaoClone.setEstado(ucDistribuicao.getEstado());
+            ucDistribuicaoClone.setTurno(ucDistribuicao.getTurno());
+            ucDistribuicaoClone.setDocente(ucDistribuicao.getDocente());
+
+            List<UC_Juncao> ucJuncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao.getId());
+
+            if(ucDistribuicao.getUcTipoAula() != null){
+                ucDistribuicaoClone.setUcTipoAula(ucDistribuicao.getUcTipoAula());
+            }
+            else{
+
+                for(UC_Juncao ucJuncao : ucJuncoes){
+
+                    UC_Juncao ucJuncaoClone = new UC_Juncao();
+
+                    ucJuncaoClone.setUcDistribuicao(ucDistribuicaoClone);
+                    ucJuncaoClone.setUcTipoAula(ucJuncao.getUcTipoAula());
+
+                    Juncaoclones.add(ucJuncaoClone);
+
+                }
+
+            }
+
+            clones.add(ucDistribuicaoClone);
         }
+
+        ucDistribuicaoRepository.saveAll(clones);
+
+        ucJuncaoRepository.saveAll(Juncaoclones);
+
     }
 
 }
