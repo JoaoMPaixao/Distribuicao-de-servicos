@@ -2,7 +2,7 @@ import ListarDistribuicoesCard from './ListarDistribuicoesCard.jsx'
 import Pagination from './Pagination'
 
 
-function DistribuicoesTable({ distribuicoes, paginacao, porPagina, onMudarPorPagina, onVer, onComparar, onClonar, onDesativar }) {
+function DistribuicoesTable({ distribuicoes, paginacao, porPagina, onMudarPorPagina, onVer, onComparar, onClonar, onDesativar, onAlterarEstado }) {
 
     return (
         <div className="table-card">
@@ -27,6 +27,7 @@ function DistribuicoesTable({ distribuicoes, paginacao, porPagina, onMudarPorPag
                             onComparar={onComparar}
                             onClonar={onClonar}
                             onDesativar={onDesativar}
+                            onAlterarEstado={onAlterarEstado}
                         />
                     ))}
                     </tbody>

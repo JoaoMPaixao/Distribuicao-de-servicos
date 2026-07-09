@@ -1,5 +1,6 @@
 package com.example.backend.Services;
 
+import com.example.backend.Dto.Distribuicoes.AlterarEstadoDistribuicaoDto;
 import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
 import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
 import com.example.backend.Entity.*;
@@ -77,6 +78,8 @@ public class DistribuicaoServices {
         distribuicao.setData_criacao(LocalDate.now());
         distribuicao.setEstado(EstadoDistribuicao.ABERTO);
 
+        Log_Auditoria log_auditoria = new Log_Auditoria();
+
 
         distribuicaoRepository.save(distribuicao);
 
@@ -85,7 +88,7 @@ public class DistribuicaoServices {
     @Transactional
     public void DesativarDistribuicao(Integer distribuicao_id, Integer departamento_id) {
 
-        //verifica se a distribuicao e o utilizador têm o mesmo departamento
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento e retorna a distribuicao
         Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
 
         distribuicao.setEstado(EstadoDistribuicao.INATIVO);
@@ -93,9 +96,19 @@ public class DistribuicaoServices {
     }
 
     @Transactional
+    public void AlterarEstadoDistribuicao(AlterarEstadoDistribuicaoDto dto, Integer distribuicao_id, Integer departamento_id) {
+
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento e retorna a distribuicao
+        Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
+        System.out.println(dto);
+        distribuicao.setEstado(dto.estado());
+
+    }
+
+    @Transactional
     public void ClonarDistribuicao(Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
-        //verifica se a distribuicao e o utilizador têm o mesmo departamento
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento e retorna a distribuicao
         Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
 
         Utilizador utilizador = utilizadorRepository.findById(utilizador_id)
@@ -136,6 +149,7 @@ public class DistribuicaoServices {
 
             List<UC_Juncao> ucJuncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao.getId());
 
+            //se uc tipo aula na ucDistribuicao nao for null significa que nao temos juncao
             if(ucDistribuicao.getUcTipoAula() != null){
                 ucDistribuicaoClone.setUcTipoAula(ucDistribuicao.getUcTipoAula());
             }
@@ -156,11 +170,10 @@ public class DistribuicaoServices {
 
             clones.add(ucDistribuicaoClone);
         }
-
         ucDistribuicaoRepository.saveAll(clones);
-
         ucJuncaoRepository.saveAll(Juncaoclones);
-
     }
 
 }
+
+

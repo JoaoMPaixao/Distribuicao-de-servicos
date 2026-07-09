@@ -1,5 +1,6 @@
 package com.example.backend.Controllers;
 
+import com.example.backend.Dto.Distribuicoes.AlterarEstadoDistribuicaoDto;
 import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
 import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
 import com.example.backend.Security.CustomUserDetails;
@@ -45,7 +46,7 @@ public class DistribuicaoController {
 
     }
 
-    @PutMapping("/{id}/desativar")
+    @PatchMapping("/{id}/desativar")
     public ResponseEntity<Void> DesativarDistribuicao(@PathVariable Integer id, Authentication authentication) {
 
         try {
@@ -57,6 +58,20 @@ public class DistribuicaoController {
         }catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @PatchMapping("/{id}/alterar")
+    public ResponseEntity<Void> AlterarEstadoDistribuicao(@PathVariable Integer id, @RequestBody AlterarEstadoDistribuicaoDto dto, Authentication authentication) {
+
+        try {
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+            Integer departamentoId = user.getDepartamentoId();
+            distribuicaoServices.AlterarEstadoDistribuicao(dto, id, departamentoId);
+            return  ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 
     @PostMapping("/{id}/clonar")

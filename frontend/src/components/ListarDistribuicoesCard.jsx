@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import ModalConfirmacao from "./ModalConfirmacao.jsx";
 
 const badgeClasses = {
@@ -9,7 +9,9 @@ const badgeClasses = {
     RECUSADO: 'badge-recusado',
 }
 
-function ListarDistribuicoesCard({ distribuicao, onVer, onComparar, onClonar, onDesativar }) {
+const estados = ['ABERTO', 'FECHADO', 'APROVADO', 'RECUSADO', 'FINAL']
+
+function ListarDistribuicoesCard({ distribuicao, onVer, onComparar, onClonar, onDesativar, onAlterarEstado }) {
     const [confirmarDesativar, setConfirmarDesativar] = useState(false)
 
     return (
@@ -19,20 +21,24 @@ function ListarDistribuicoesCard({ distribuicao, onVer, onComparar, onClonar, on
                 <span className="version-tag">{distribuicao.versao}</span>
             </td>
             <td>
-        <span className="cell-description" title={distribuicao.descricao}>
-          {distribuicao.descricao}
-        </span>
+                <span className="cell-description" title={distribuicao.descricao}>
+                    {distribuicao.descricao}
+                </span>
             </td>
             <td>{distribuicao.ano_letivo}</td>
             <td>
-        <span className={`badge ${badgeClasses[distribuicao.estado] ?? ''}`}>
-          {distribuicao.estado}
-        </span>
+                <select
+                    value={distribuicao.estado}
+                    onChange={(e) => onAlterarEstado(distribuicao.id, e.target.value)}
+                    className={`badge ${badgeClasses[distribuicao.estado] ?? ''}`}
+                    style={{ border: 'none', cursor: 'pointer', appearance: 'none' }}
+                >
+                    {estados.map((e) => (
+                        <option key={e} value={e} className={`badge ${badgeClasses[e] ?? ''}`}>{e}</option>
+                    ))}
+                </select>
             </td>
-            <td className="date-cell">
-                {distribuicao.data_criacao}
-
-            </td>
+            <td className="date-cell">{distribuicao.data_criacao}</td>
             <td className="actions-cell">
                 <button className="icon-btn" title="Ver/Editar" onClick={() => onVer(distribuicao.id)}>
                     <i className="bi bi-eye icon-icon"></i>
@@ -54,9 +60,7 @@ function ListarDistribuicoesCard({ distribuicao, onVer, onComparar, onClonar, on
                     />
                 )}
             </td>
-
         </tr>
-
     )
 }
 

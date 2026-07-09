@@ -4,11 +4,17 @@ import PageHeader from '../components/PageHeader'
 import FilterBar from '../components/FilterBar'
 import TabelaDistribuicoes from '../components/TabelaDistribuicoes.jsx'
 import ModalDistribuicao from '../components/ModalDistribuicao.jsx'
-import {getDistribuicoes, criarDistribuicao, desativarDistribuicao} from '../api/distribuicoesApi'
+import {
+    getDistribuicoes,
+    criarDistribuicao,
+    desativarDistribuicao,
+    clonarDistribuicao,
+    alterarEstadoDistribuicao
+} from '../api/distribuicoesApi'
 import {UserContext} from "../UserContext.jsx";
 
-export const DistribuicoesPage =() => {
-    const { user } = useContext(UserContext)
+export const DistribuicoesPage = () => {
+    const {user} = useContext(UserContext)
     const [distribuicoes, setDistribuicoes] = useState([])
     const [pesquisa, setPesquisa] = useState('')
     const [anoLetivo, setAnoLetivo] = useState('')
@@ -21,7 +27,7 @@ export const DistribuicoesPage =() => {
 
 
     useEffect(() => {
-       // if (!user) return
+        // if (!user) return
         const carregar = async () => {
             const response = await getDistribuicoes()
 
@@ -46,14 +52,37 @@ export const DistribuicoesPage =() => {
         }
     }
 
-    const handleDesativar = async (id) =>{
+    const handleDesativar = async (id) => {
 
         const response = await desativarDistribuicao(id)
-        if(response.success){
+        if (response.success) {
             const atualizado = await getDistribuicoes()
             if (atualizado.success) setDistribuicoes(atualizado.data)
         }
 
+
+    }
+
+    const handleAlterarEstado = async (id, estado) => {
+
+        const dados = { estado: estado }
+
+        const response = await alterarEstadoDistribuicao(id, dados)
+        if (response.success) {
+            const atualizado = await getDistribuicoes()
+            if (atualizado.success) setDistribuicoes(atualizado.data)
+        } else {
+            alert(`Erro ao alterar: ${response.message || 'Erro desconhecido'}`)
+        }
+    }
+
+    const handleClonar = async (id) => {
+
+        const response = await clonarDistribuicao(id)
+        if (response.success) {
+            const atualizado = await getDistribuicoes()
+            if (atualizado.success) setDistribuicoes(atualizado.data)
+        }
 
     }
 
@@ -82,17 +111,32 @@ export const DistribuicoesPage =() => {
     if (erroModal) return <p>ErroModal: {erroModal}</p>
 
     return (
-        <SideBar_TopBar >
-            <PageHeader titulo="Distribuições de Serviço" subtitulo="Lista de todas as distribuições de serviço criadas" onCriar={()  =>  setModalAberto(true)} />
-            <FilterBar pesquisa={pesquisa} setPesquisa={setPesquisa} anoLetivo={anoLetivo} setAnoLetivo={setAnoLetivo} estado={estado} setEstado={setEstado} onLimpar={() => { setPesquisa(''); setAnoLetivo(''); setEstado('') }} />
+        <SideBar_TopBar>
+            <PageHeader titulo="Distribuições de Serviço" subtitulo="Lista de todas as distribuições de serviço criadas"
+                        onCriar={() => setModalAberto(true)}/>
+            <FilterBar pesquisa={pesquisa} setPesquisa={setPesquisa} anoLetivo={anoLetivo} setAnoLetivo={setAnoLetivo}
+                       estado={estado} setEstado={setEstado} onLimpar={() => {
+                setPesquisa('');
+                setAnoLetivo('');
+                setEstado('')
+            }}/>
             <TabelaDistribuicoes
                 distribuicoes={distribuicoesPagina}
                 porPagina={porPagina}
-                onDesativar={handleDesativar}
+                onClonar={handleClonar}
                 onMudarPorPagina={setPorPagina}
-                paginacao={{ inicio: (pagina - 1) * porPagina + 1, fim: Math.min(pagina * porPagina, distribuicoesFiltradas.length), total: distribuicoesFiltradas.length, atual: pagina, totalPaginas, onMudar: setPagina }}
+                paginacao={{
+                    inicio: (pagina - 1) * porPagina + 1,
+                    fim: Math.min(pagina * porPagina, distribuicoesFiltradas.length),
+                    total: distribuicoesFiltradas.length,
+                    atual: pagina,
+                    totalPaginas,
+                    onMudar: setPagina
+                }}
+                onDesativar={handleDesativar}
+                onAlterarEstado={handleAlterarEstado}
             />
-            {modalAberto && <ModalDistribuicao onClose={() => setModalAberto(false)} onSubmit={handleCriar} />}
+            {modalAberto && <ModalDistribuicao onClose={() => setModalAberto(false)} onSubmit={handleCriar}/>}
 
         </SideBar_TopBar>
     )
