@@ -41,7 +41,8 @@ public class UcDistribuicaoController {
             try{
                 CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
                 Integer departamentoId = user.getDepartamentoId();
-                ucDistribuicaoServices.CriarUcDistribuicao(dto, id, departamentoId);
+                Integer utilizadorID = user.getId();
+                ucDistribuicaoServices.CriarUcDistribuicao(dto, id, departamentoId, utilizadorID);
                 return ResponseEntity.status(HttpStatus.CREATED).build();
             }catch(NumberFormatException e) {
                 return ResponseEntity.badRequest().build();
@@ -54,7 +55,8 @@ public class UcDistribuicaoController {
             try{
                 CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
                 Integer departamentoId = user.getDepartamentoId();
-                ucDistribuicaoServices.CriarUcJuncao(dto, id, departamentoId);
+                Integer utilizadorID = user.getId();
+                ucDistribuicaoServices.CriarUcJuncao(dto, id, departamentoId, utilizadorID);
                 return ResponseEntity.status(HttpStatus.CREATED).build();
             }catch(NumberFormatException e) {
                 return ResponseEntity.badRequest().build();
@@ -68,7 +70,8 @@ public class UcDistribuicaoController {
 
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
             Integer departamentoId = user.getDepartamentoId();
-            ucDistribuicaoServices.DeleteUcDistribuicao(id, UcDistribuicao_id, departamentoId);
+            Integer utilizadorID = user.getId();
+            ucDistribuicaoServices.DeleteUcDistribuicao(id, UcDistribuicao_id, departamentoId, utilizadorID);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
         }
@@ -78,7 +81,8 @@ public class UcDistribuicaoController {
 
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
             Integer departamentoId = user.getDepartamentoId();
-            ucDistribuicaoServices.AlterarUcDistribuicao(dto, id, UcDistribuicao_id, departamentoId );
+            Integer utilizadorID = user.getId();
+            ucDistribuicaoServices.AlterarUcDistribuicao(dto, id, UcDistribuicao_id, departamentoId, utilizadorID );
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }
 

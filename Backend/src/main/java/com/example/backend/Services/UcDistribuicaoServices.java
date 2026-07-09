@@ -11,6 +11,8 @@ import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ import java.time.LocalDate;
 
 @Service
 public class UcDistribuicaoServices {
+
+    //  logger definido no logback-spring.xml
+    private static final Logger auditLogger = LoggerFactory.getLogger("auditoria");
 
     @Autowired
     private UcDistribuicaoRepository ucDistribuicaoRepository;
@@ -41,7 +46,7 @@ public class UcDistribuicaoServices {
 
 
     @Transactional
-    public void CriarUcDistribuicao(CriarUcDistribuicoesDto dto, Integer distribuicao_id, Integer departamento_id) {
+    public void CriarUcDistribuicao(CriarUcDistribuicoesDto dto, Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
         // Verificar se existe a distribuição, docente e uc_tipo_aula
         Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
@@ -72,10 +77,16 @@ public class UcDistribuicaoServices {
 
         ucDistribuicaoRepository.save(ucDistribuicao);
 
+        // LOG DE AUDITORIA: Criação
+        auditLogger.info("Utilizador ID: {} CRIOU UC_Distribuicao ID: {} (Turno: {}, Horas: {}) na Distribuição ID: {} (Departamento ID: {}). Docente ID: {}, UCTipoAula ID: {}.",
+                utilizador_id, ucDistribuicao.getId(), dto.turno(), dto.horasAtribuidas(), distribuicao_id, departamento_id,
+                dto.docenteId() != null ? dto.docenteId() : "N/A",
+                dto.Uc_tipo_aula_id() != null ? dto.Uc_tipo_aula_id() : "N/A");
+
     }
 
     @Transactional
-    public void CriarUcJuncao(CriarUcJuncaoDto dto, Integer distribuicao_id, Integer departamento_id){
+    public void CriarUcJuncao(CriarUcJuncaoDto dto, Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
         UC_Tipo_Aula ucTipoAula = ucTipoAulaRepository.findById(dto.Uc_tipo_aula_id())
                 .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
@@ -93,10 +104,14 @@ public class UcDistribuicaoServices {
 
         ucJuncaoRepository.save(ucJuncao);
 
+        // LOG DE AUDITORIA: Junção
+        auditLogger.info("Utilizador ID: {} CRIOU UC_Juncao ID: {} ligando UC_Distribuicao ID: {} à UC_Tipo_Aula ID: {} na Distribuição ID: {} (Departamento ID: {}).",
+                utilizador_id, ucJuncao.getId(), dto.UcDistribuicao_id(), dto.Uc_tipo_aula_id(), distribuicao_id, departamento_id);
+
     }
 
     @Transactional
-    public void DeleteUcDistribuicao(Integer distribuicao_id, Integer ucDistribuicao_id, Integer departamento_id) {
+    public void DeleteUcDistribuicao(Integer distribuicao_id, Integer ucDistribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
         //verifica se a distribuicao e o utilizador têm o mesmo departamento
         utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
@@ -110,15 +125,19 @@ public class UcDistribuicaoServices {
         System.out.println(ucDistribuicao_id);
         ucDistribuicaoRepository.deleteById(ucDistribuicao_id);
 
+        // LOG DE AUDITORIA: Remoção
+        auditLogger.info("Utilizador ID: {} APAGOU UC_Distribuicao ID: {} da Distribuição ID: {} (Departamento ID: {}).",
+                utilizador_id, ucDistribuicao_id, distribuicao_id, departamento_id);
+
     }
 
     @Transactional
-    public void AlterarUcDistribuicao(AlterarUcDistribuicaoDto dto, Integer distribuicao_id, Integer ucDistribuicao_id, Integer departamento_id) {
+    public void AlterarUcDistribuicao(AlterarUcDistribuicaoDto dto, Integer distribuicao_id, Integer ucDistribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
         //verifica se a distribuicao e o utilizador têm o mesmo departamento
         utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
 
-        UC_Distribuicao uc_distribuicao = ucDistribuicaoRepository.findById(distribuicao_id)
+        UC_Distribuicao uc_distribuicao = ucDistribuicaoRepository.findById(ucDistribuicao_id)
                 .orElseThrow(() -> new EntityNotFoundException("UC Distribuicao não encontrada"));
 
         Docente docente = null;
@@ -127,8 +146,14 @@ public class UcDistribuicaoServices {
                     .orElseThrow(() -> new RuntimeException("Docente não encontrado"));
         }
 
+
         uc_distribuicao.setDocente(docente);
         uc_distribuicao.setHoras_atribuidas(dto.horasAtribuidas());
+
+        // LOG DE AUDITORIA: Alteração
+        auditLogger.info("Utilizador ID: {} ALTEROU UC_Distribuicao ID: {} na Distribuição ID: {} (Departamento ID: {}). Docente: -> {}. Horas: -> {}.",
+                utilizador_id, ucDistribuicao_id, distribuicao_id, departamento_id,
+                 (dto.docenteID() != null ? dto.docenteID() : "N/A"), dto.horasAtribuidas());
 
     }
 }

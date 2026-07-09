@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Inclui as configurações padrão do Spring para a consola -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <!-- Configuração para o ficheiro de auditoria -->
+    <appender name="AUDIT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/auditoria.txt</file>
+        <encoder>
+            <!-- Formato: DATA [TIPO] MENSAGEM -->
+            <pattern>%d{yyyy-MM-dd Hmm:ss} [%thread] - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Cria um novo ficheiro por dia e compacta os antigos -->
+            <fileNamePattern>logs/archived/auditoria-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- Guarda o histórico por 30 dias -->
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logger específico para auditoria -->
+    <logger name="auditoria" level="INFO" additivity="false">
+        <appender-ref ref="AUDIT_FILE" />
+    </logger>
+
+    <!-- Logger padrão para o resto da aplicação -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

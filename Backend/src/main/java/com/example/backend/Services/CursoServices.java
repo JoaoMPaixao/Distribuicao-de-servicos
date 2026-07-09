@@ -4,7 +4,10 @@ import com.example.backend.Dto.Atribuicoes.ListarCursoDistribuicoesDto;
 import com.example.backend.Dto.Atribuicoes.ListarTipo_Uc_DistribuicoesDto;
 import com.example.backend.Dto.Atribuicoes.ListarUcDistribuicoesDto;
 import com.example.backend.Dto.Atribuicoes.ListarUcDto;
+import com.example.backend.Dto.Cursos.ListarCursosDto;
+import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
 import com.example.backend.Enums.EstadoCurso;
+import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Enums.EstadoUc;
 import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
@@ -82,6 +85,22 @@ public class CursoServices {
                                 ))
                                 .toList()
 
+                ))
+                .toList();
+
+    }
+
+
+    public List<ListarCursosDto> getCursos (){
+
+        return cursoRepository.findAll()
+                .stream()
+                .map(curso -> new ListarCursosDto(
+                        curso.getId(),
+                        curso.getNome(),
+                        curso.getEstado(),
+                        curso.getCodigo_uc(),
+                        curso.getDepartamento().getId()
                 ))
                 .toList();
 

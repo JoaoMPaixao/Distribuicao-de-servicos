@@ -22,33 +22,6 @@ public class DocenteServices {
     @Autowired
     private DistribuicaoRepository distribuicaoRepository;
 
-    public List<ListarDocentesDistribuicoesDto> getDocenteByDepartamento(Integer distribuicao_id, Integer departamento_id){
 
-        // Validar se a distribuição pertence de facto a esse departamento
-        boolean isValida = distribuicaoRepository.existsByIdAndDepartamentoId(distribuicao_id, departamento_id);
-
-        if (!isValida) {
-            // Lançar uma exceção clara ou retornar uma lista vazia
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Distribuição não pertence ao departamento indicado.");
-        }
-
-        return docenteRepository.findByEstadoNot( EstadoDocente.INATIVO)
-                .stream()
-                .map(docente -> new ListarDocentesDistribuicoesDto(
-                        docente.getId(),
-                        docente.getNome(),
-                        new CargaHorariaDocenteDto(
-                                docente.getTipo_docente().getId(),
-                                docente.getTipo_docente().getCarga_horaria_max()
-                        ),
-                        new DepartamentoDocenteDto(
-                                docente.getDepartamento().getId(),
-                                docente.getDepartamento().getNome()
-                        )
-
-                ))
-                .toList();
-
-    }
 
 }

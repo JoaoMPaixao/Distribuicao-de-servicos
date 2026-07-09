@@ -1,0 +1,5 @@
+2026-07-09 18652:59 [http-nio-8080-exec-9] - Utilizador ID: 2 CRIOU a Distribuição ID: 30 ('teste logs') no Departamento ID: 1.
+2026-07-09 18653:20 [http-nio-8080-exec-3] - Utilizador ID: 2 APAGOU a Distribuição ID: 30 no Departamento ID: 1.
+2026-07-09 18653:24 [http-nio-8080-exec-5] - Utilizador ID: 2 ALTEROU o Estado da Distribuição ID: 25 de ABERTO para APROVADO no Departamento ID: 1.
+2026-07-09 18653:31 [http-nio-8080-exec-7] - Utilizador ID: 2 CLONOU a Distribuição ID: 25 para a nova Distribuição ID: 31.
+2026-07-09 18653:45 [http-nio-8080-exec-2] - Utilizador ID: 2 CLONOU a Distribuição ID: 25 para a nova Distribuição ID: 32.

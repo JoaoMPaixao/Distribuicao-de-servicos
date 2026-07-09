@@ -9,6 +9,8 @@ import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ import java.util.List;
 
 @Service
 public class DistribuicaoServices {
+
+    // Logger a apontar para o ficheiro estabelecido no xml
+    private static final Logger auditLogger = LoggerFactory.getLogger("auditoria");
 
     @Autowired
     private DistribuicaoRepository distribuicaoRepository;
@@ -78,30 +83,39 @@ public class DistribuicaoServices {
         distribuicao.setData_criacao(LocalDate.now());
         distribuicao.setEstado(EstadoDistribuicao.ABERTO);
 
-        Log_Auditoria log_auditoria = new Log_Auditoria();
-
-
         distribuicaoRepository.save(distribuicao);
+
+        // LOG DE AUDITORIA: Criação
+        auditLogger.info("Utilizador ID: {} CRIOU a Distribuição ID: {} ('{}') no Departamento ID: {}.",
+                utilizador_id, distribuicao.getId(), distribuicao.getNome(), departamento_id);
 
     }
 
     @Transactional
-    public void DesativarDistribuicao(Integer distribuicao_id, Integer departamento_id) {
+    public void DesativarDistribuicao(Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
         //verifica se a distribuicao e o utilizador têm o mesmo departamento e retorna a distribuicao
         Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
 
         distribuicao.setEstado(EstadoDistribuicao.INATIVO);
 
+        // LOG DE AUDITORIA: Desativação
+        auditLogger.info("Utilizador ID: {} APAGOU a Distribuição ID: {} no Departamento ID: {}.",
+                utilizador_id, distribuicao_id, departamento_id);
+
     }
 
     @Transactional
-    public void AlterarEstadoDistribuicao(AlterarEstadoDistribuicaoDto dto, Integer distribuicao_id, Integer departamento_id) {
+    public void AlterarEstadoDistribuicao(AlterarEstadoDistribuicaoDto dto, Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
         //verifica se a distribuicao e o utilizador têm o mesmo departamento e retorna a distribuicao
         Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
-        System.out.println(dto);
+        EstadoDistribuicao estadoAnterior = distribuicao.getEstado();
         distribuicao.setEstado(dto.estado());
+
+        // LOG DE AUDITORIA: Alteração de Estado
+        auditLogger.info("Utilizador ID: {} ALTEROU o Estado da Distribuição ID: {} de {} para {} no Departamento ID: {}.",
+                utilizador_id, distribuicao_id, estadoAnterior, dto.estado(), departamento_id);
 
     }
 
@@ -172,6 +186,11 @@ public class DistribuicaoServices {
         }
         ucDistribuicaoRepository.saveAll(clones);
         ucJuncaoRepository.saveAll(Juncaoclones);
+
+        // LOG DE AUDITORIA: Clonagem
+        auditLogger.info("Utilizador ID: {} CLONOU a Distribuição ID: {} para a nova Distribuição ID: {}.",
+                utilizador_id, distribuicao_id, distribuicaoClone.getId());
+
     }
 
 }

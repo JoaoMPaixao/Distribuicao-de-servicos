@@ -53,7 +53,8 @@ public class DistribuicaoController {
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
 
             Integer departamentoId = user.getDepartamentoId();
-            distribuicaoServices.DesativarDistribuicao(id, departamentoId);
+            Integer utilizadorID = user.getId();
+            distribuicaoServices.DesativarDistribuicao(id, departamentoId,  utilizadorID);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
@@ -66,7 +67,8 @@ public class DistribuicaoController {
         try {
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
             Integer departamentoId = user.getDepartamentoId();
-            distribuicaoServices.AlterarEstadoDistribuicao(dto, id, departamentoId);
+            Integer utilizadorID = user.getId();
+            distribuicaoServices.AlterarEstadoDistribuicao(dto, id, departamentoId, utilizadorID);
             return  ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
