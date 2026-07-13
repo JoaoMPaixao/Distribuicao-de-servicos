@@ -1,6 +1,6 @@
 import '../styles/estilos.css'
 
-function PageHeader({ titulo, subtitulo, onCriar }) {
+function PageHeader({ titulo, subtitulo, onCriar, texto }) {
     return (
         <div className="page-header">
             <div>
@@ -9,7 +9,7 @@ function PageHeader({ titulo, subtitulo, onCriar }) {
             </div>
             <button className="btn-primary" onClick={onCriar}>
                 <i className="bi bi-plus btn-icon"></i>
-                Criar Distribuição
+                {texto}
             </button>
         </div>
     )

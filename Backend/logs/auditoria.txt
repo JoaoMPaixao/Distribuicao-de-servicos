@@ -1,5 +1,11 @@
-2026-07-09 18652:59 [http-nio-8080-exec-9] - Utilizador ID: 2 CRIOU a Distribuição ID: 30 ('teste logs') no Departamento ID: 1.
-2026-07-09 18653:20 [http-nio-8080-exec-3] - Utilizador ID: 2 APAGOU a Distribuição ID: 30 no Departamento ID: 1.
-2026-07-09 18653:24 [http-nio-8080-exec-5] - Utilizador ID: 2 ALTEROU o Estado da Distribuição ID: 25 de ABERTO para APROVADO no Departamento ID: 1.
-2026-07-09 18653:31 [http-nio-8080-exec-7] - Utilizador ID: 2 CLONOU a Distribuição ID: 25 para a nova Distribuição ID: 31.
-2026-07-09 18653:45 [http-nio-8080-exec-2] - Utilizador ID: 2 CLONOU a Distribuição ID: 25 para a nova Distribuição ID: 32.
+2026-07-13 1308:19 [http-nio-8080-exec-8] - Utilizador ID: 2 CRIOU o Curso ID: 2 ('Fisioterapia') no Departamento ID: 2.
+2026-07-13 1325:19 [http-nio-8080-exec-3] - Utilizador ID: 2 ALTEROU o Curso ID: 2 para nome Fisiotera ; para codigo_uc 1273 ; para estado ATIVO no Departamento ID: 2.
+2026-07-13 1325:41 [http-nio-8080-exec-4] - Utilizador ID: 2 ALTEROU o Curso ID: 2 para nome Fisioterapia ; para codigo_uc 1273 ; para estado ATIVO no Departamento ID: 2.
+2026-07-13 1331:58 [http-nio-8080-exec-8] - Utilizador ID: 2 CRIOU a Uc ID: 3 ('Engenharia software') no Departamento ID: 1.
+2026-07-13 1332:25 [http-nio-8080-exec-9] - Utilizador ID: 3 ALTEROU a Uc ID: 2 para nome Engenharia software ; para codigo_uc 1590 ; para estado ATIVO no Departamento ID: 1.
+2026-07-13 1333:52 [http-nio-8080-exec-2] - Utilizador ID: 2 ALTEROU a Uc ID: 3 para nome Engenharia software ; para codigo_uc 1590 ; para estado ATIVO no Departamento ID: 1.
+2026-07-13 1850:25 [http-nio-8080-exec-9] - Utilizador ID: 2 CRIOU o Curso ID: 3 ('dasds') no Departamento ID: 2.
+2026-07-13 2101:10 [http-nio-8080-exec-3] - Utilizador ID: 2 CRIOU o Curso ID: 4 ('teste') no Departamento ID: 2.
+2026-07-13 2101:22 [http-nio-8080-exec-9] - Utilizador ID: 2 CRIOU o Curso ID: 5 ('jghj') no Departamento ID: 1.
+2026-07-13 2111:47 [http-nio-8080-exec-2] - Utilizador ID: 2 CRIOU o Curso ID: 6 ('das') no Departamento ID: 1.
+2026-07-13 2112:12 [http-nio-8080-exec-6] - Utilizador ID: 2 CRIOU o Curso ID: 7 ('gdfg') no Departamento ID: 2.

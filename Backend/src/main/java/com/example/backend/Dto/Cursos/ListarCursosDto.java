@@ -8,7 +8,7 @@ public record ListarCursosDto(
         String nome,
         EstadoCurso estado,
         String codigo_uc,
-        Integer departamento_id
+        String departamento_nome
 
 
 ) {

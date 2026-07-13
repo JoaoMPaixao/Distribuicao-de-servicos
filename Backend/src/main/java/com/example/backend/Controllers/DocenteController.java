@@ -20,11 +20,5 @@ public class DocenteController {
     @Autowired
     private DocenteServices docenteServices;
 
-    @GetMapping("/distribuicoes/{id}/docentes")
-    public ResponseEntity<List<ListarDocentesDistribuicoesDto>> getDocentesByDistribuicao(@PathVariable Integer id, Authentication authentication) {
-        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-        Integer departamentoId = user.getDepartamentoId();
 
-        return ResponseEntity.ok(docenteServices.getDocenteByDepartamento(id, departamentoId));
-    }
 }

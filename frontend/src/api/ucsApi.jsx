@@ -1,0 +1,32 @@
+import { instance } from './config.jsx'
+
+export const getUcs = async (id) => {
+
+    try{
+        const {data} = await instance.get(`v1/ucs`)
+        return { success: true, data}
+    }catch (error){
+        return {success: false, status: error.response?.status, message: error.response?.data?.message}
+    }
+
+}
+
+export const criarUc = async (dados) => {
+    try {
+
+        const {data} = await instance.post(`v1/ucs`,dados);
+
+        return {success: true, data}
+    } catch (error) {
+        return {success: false, status: error.response?.status, message: error.response?.data?.message}
+    }
+}
+
+export const alterarUcs = async (id, dados) => {
+    try {
+        const {data} = await instance.put(`/v1/ucs/${id}`, dados)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+}

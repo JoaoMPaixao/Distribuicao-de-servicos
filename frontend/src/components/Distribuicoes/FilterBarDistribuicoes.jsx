@@ -1,4 +1,4 @@
-function FilterBar({ pesquisa, setPesquisa, anoLetivo, setAnoLetivo, estado, setEstado, onLimpar }) {
+function FilterBarDistribuicoes({ pesquisa, setPesquisa, anoLetivo, setAnoLetivo, estado, setEstado, onLimpar }) {
     return (
         <div className="filter-bar">
             <div className="search-wrap">
@@ -42,4 +42,4 @@ function FilterBar({ pesquisa, setPesquisa, anoLetivo, setAnoLetivo, estado, set
     )
 }
 
-export default FilterBar
+export default FilterBarDistribuicoes

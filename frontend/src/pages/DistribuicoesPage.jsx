@@ -1,9 +1,9 @@
 import {useState, useEffect, useContext} from 'react'
 import SideBar_TopBar from '../layouts/SideBar_TopBar.jsx'
 import PageHeader from '../components/PageHeader'
-import FilterBar from '../components/FilterBar'
-import TabelaDistribuicoes from '../components/TabelaDistribuicoes.jsx'
-import ModalDistribuicao from '../components/ModalDistribuicao.jsx'
+import FilterBarDistribuicoes from '../components/Distribuicoes/FilterBarDistribuicoes.jsx'
+import TabelaDistribuicoes from '../components/Distribuicoes/TabelaDistribuicoes.jsx'
+import ModalDistribuicao from '../components/Distribuicoes/ModalDistribuicao.jsx'
 import {
     getDistribuicoes,
     criarDistribuicao,
@@ -33,8 +33,10 @@ export const DistribuicoesPage = () => {
 
             if (response.success) {
                 setDistribuicoes(response.data)
+
             } else {
                 setErro(response.message)
+
             }
         }
         carregar()
@@ -113,9 +115,9 @@ export const DistribuicoesPage = () => {
     return (
         <SideBar_TopBar>
             <PageHeader titulo="Distribuições de Serviço" subtitulo="Lista de todas as distribuições de serviço criadas"
-                        onCriar={() => setModalAberto(true)}/>
-            <FilterBar pesquisa={pesquisa} setPesquisa={setPesquisa} anoLetivo={anoLetivo} setAnoLetivo={setAnoLetivo}
-                       estado={estado} setEstado={setEstado} onLimpar={() => {
+                        onCriar={() => setModalAberto(true)} texto="Criar Distribuicão"/>
+            <FilterBarDistribuicoes pesquisa={pesquisa} setPesquisa={setPesquisa} anoLetivo={anoLetivo} setAnoLetivo={setAnoLetivo}
+                                    estado={estado} setEstado={setEstado} onLimpar={() => {
                 setPesquisa('');
                 setAnoLetivo('');
                 setEstado('')

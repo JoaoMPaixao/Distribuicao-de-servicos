@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalConfirmacao from "./ModalConfirmacao.jsx";
+import ModalConfirmacao from "../ModalConfirmacao.jsx";
 
 const badgeClasses = {
     FINAL: 'badge-final',

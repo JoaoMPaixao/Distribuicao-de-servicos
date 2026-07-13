@@ -1,5 +1,5 @@
 import ListarDistribuicoesCard from './ListarDistribuicoesCard.jsx'
-import Pagination from './Pagination'
+import Pagination from '../Pagination.jsx'
 
 
 function DistribuicoesTable({ distribuicoes, paginacao, porPagina, onMudarPorPagina, onVer, onComparar, onClonar, onDesativar, onAlterarEstado }) {

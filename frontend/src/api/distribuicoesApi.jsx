@@ -2,7 +2,7 @@ import { instance } from './config.jsx'
 
 export const getDistribuicoes = async () => {
     try {
-        const {data} = await instance.get(`v1/distribuicoes`)
+       const {data} = await instance.get(`v1/distribuicoes`)
         return {success: true, data}
     } catch (error) {
         return {success: false, status: error.response?.status, message: error.response?.data?.message}
@@ -42,9 +42,8 @@ export const clonarDistribuicao = async (id) => {
 
     try{
         await instance.post(`/v1/distribuicoes/${id}/clonar`)
-        return { sucess: true}
+        return { success: true}
     }catch (error){
-        return {sucess: false, status: error.response?.status, message: error.response?.data?.message}
+        return {success: false, status: error.response?.status, message: error.response?.data?.message}
     }
 }
-
