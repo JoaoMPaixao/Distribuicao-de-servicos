@@ -1,26 +1,32 @@
 import {useState, useEffect, useContext} from 'react'
 import SideBar_TopBar from '../layouts/SideBar_TopBar.jsx'
 import PageHeader from '../components/PageHeader'
-import FilterBarDistribuicoes from '../components/Distribuicoes/FilterBarDistribuicoes.jsx'
+
 import {
     getCursos,
     criarCurso,
     alterarCursos
 } from '../api/cursosApi.jsx'
 import {UserContext} from "../UserContext.jsx";
-import ModalCursos from "../components/Cursos/ModalCriarCursos.jsx";
+
 import TabelaCursos from "../components/Cursos/TabelaCursos.jsx";
 import FilterBarCursos from "../components/Cursos/FilterBarCursos.jsx";
+import {getDepartamentos} from "../api/departamentosApi.jsx";
+import ModalCursos from "../components/Cursos/ModalCursos.jsx";
+
 
 export const CursosPage = () => {
     const {user} = useContext(UserContext)
     const [cursos, setCursos] = useState([])
+    const [departamentos, setDepartamentos] = useState([])
     const [pesquisa, setPesquisa] = useState('')
+    const [departamentoFiltro, setDepartamentoFiltro] = useState("")
     const [pagina, setPagina] = useState(1)
     const [porPagina, setPorPagina] = useState(5)
     const [erro, setErro] = useState(null)
     const [modalAberto, setModalAberto] = useState(false)
     const [erroModal, setErroModal] = useState(null)
+    const [cursoSelecionado, setCursoSelecionado] = useState(null)
 
 
     useEffect(() => {
@@ -38,20 +44,36 @@ export const CursosPage = () => {
         carregar()
     }, [user])
 
-    const handleCriar = async (dados) => {
-        const response = await criarCurso(dados)
+    useEffect(() => {
+        // if (!user) return
+        const carregar = async () => {
+            const response = await getDepartamentos()
 
-        if (response.success) {
-            setModalAberto(false)
-            const atualizado = await getCursos()
-            if (atualizado.success) setCursos(atualizado.data)
-        } else {
-            setErroModal(response.message)
+            if (response.success) {
+                setDepartamentos(response.data)
+
+            } else {
+                setErro(response.message)
+            }
         }
+        carregar()
+    }, [user])
+
+    const abrirCriar = () => {
+        setCursoSelecionado(null)
+        setModalAberto(true)
     }
 
-    const handleAlterar = async (dados) => {
-        const response = await alterarCursos(dados)
+    const abrirEditar = (curso) => {
+        setCursoSelecionado(curso)
+        setModalAberto(true)
+    }
+
+    const handleSubmit = async (idOuDados, dadosSeEdicao) => {
+
+        const response = cursoSelecionado
+            ? await alterarCursos(idOuDados, dadosSeEdicao)
+            : await criarCurso(idOuDados)
 
         if (response.success) {
             setModalAberto(false)
@@ -70,7 +92,8 @@ export const CursosPage = () => {
 
     const cursosFiltrados = cursos.filter((d) => {
         const matchPesquisa = d.nome.toLowerCase().includes(pesquisa.toLowerCase())
-        return matchPesquisa
+        const matchDepartamento = !departamentoFiltro || String(d.departamento_id) === departamentoFiltro
+        return matchPesquisa && matchDepartamento
     })
 
 
@@ -87,8 +110,8 @@ export const CursosPage = () => {
     return (
         <SideBar_TopBar>
             <PageHeader titulo="Gestão de cursos" subtitulo="Lista de todos os cursos"
-                        onCriar={() => setModalAberto(true)} texto="Criar Curso"/>
-            <FilterBarCursos pesquisa={pesquisa} setPesquisa={setPesquisa} />
+                        onCriar={abrirCriar} texto="Criar Curso"/>
+            <FilterBarCursos pesquisa={pesquisa} setPesquisa={setPesquisa} departamentoFiltro = {departamentoFiltro} setDepartamentoFiltro={setDepartamentoFiltro} departamentos={departamentos}/>
             <TabelaCursos
                cursos={cursosPagina}
                 porPagina={porPagina}
@@ -101,10 +124,9 @@ export const CursosPage = () => {
                     totalPaginas,
                     onMudar: setPagina
                 }}
-                onAlterar={handleAlterar}
+               onAlterar={abrirEditar}
             />
-            {modalAberto && <ModalCursos onClose={() => setModalAberto(false)} onSubmit={handleCriar}/>}
-
+            {modalAberto && <ModalCursos curso = {cursoSelecionado} onClose={() => setModalAberto(false)} onSubmit={handleSubmit} departamentos={departamentos}/>}
         </SideBar_TopBar>
     )
 }

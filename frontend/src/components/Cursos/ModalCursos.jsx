@@ -1,11 +1,14 @@
 import { useState } from 'react'
 
-function ModalCurso({ onClose, onSubmit }) {
-    const [nome, setNome] = useState('')
-    const [codigo_uc, setCodigo_Uc] = useState('')
-    const [estado, setEstado] = useState('ATIVO')
-    const [departamento_id, setDepartamento] = useState('')
+function ModalCurso({ curso = null, onClose, onSubmit, departamentos }) {
+    const [nome, setNome] = useState(curso?.nome || '')
+    const [codigo_uc, setCodigo_Uc] = useState(curso?.codigo_uc || '')
+    const [estado, setEstado] = useState(curso?.estado || '')
+    const [departamento_id, setDepartamento] = useState(curso?.departamento_id || '')
     const [erros, setErros] = useState({})
+
+    //verifica se o curso é null, caso seja null significa que devemos criar, caso nao seja recebemos um curso ao qual deve ser editado
+    const isEdicao = curso !== null
 
     const handleOverlayClick = (e) => {
         if (e.target === e.currentTarget) onClose()
@@ -23,8 +26,13 @@ function ModalCurso({ onClose, onSubmit }) {
             return
         }
 
-        onSubmit({ nome, codigo_uc, estado, departamento_id })
+        if (isEdicao) {
+            onSubmit(curso.id, { nome, codigo_uc, estado, departamento_id })
+        } else {
+            onSubmit({ nome, codigo_uc, estado, departamento_id })
+        }
     }
+
 
     return (
         <div className="modal-overlay "  onClick={handleOverlayClick}>
@@ -36,8 +44,14 @@ function ModalCurso({ onClose, onSubmit }) {
                             <i className="bi bi-plus modal-btn-confirm_icon"></i>
                         </div>
                         <div>
-                            <h2 className="modal-title">Novo Curso</h2>
-                            <p className="modal-subtitle">Preencha os dados para criar um novo Curso.</p>
+                            <h2 className="modal-title">
+                                {isEdicao ? 'Editar Curso' : 'Criar Curso'}
+                            </h2>
+                            <p className="modal-subtitle">
+                                {isEdicao
+                                    ? 'Altere os dados necessários para atualizar o curso.'
+                                    : 'Preencha os dados para criar um novo curso.'}
+                            </p>
                         </div>
                     </div>
                     <button className="modal-close" onClick={onClose} title="Fechar">
@@ -82,6 +96,7 @@ function ModalCurso({ onClose, onSubmit }) {
                         <label className="modal-label" htmlFor="mEstado">Estado <span className="required">*</span></label>
                         <div className="modal-input-wrap">
                             <select className="modal-input modal-select" id="mEstado" value={estado} onChange={(e) => setEstado(e.target.value)}>
+                                <option value="" disabled hidden>Selecione um estado...</option>
                                 <option value="ATIVO">ATIVO</option>
                                 <option value="INATIVO">INATIVO</option>
                             </select>
@@ -94,8 +109,13 @@ function ModalCurso({ onClose, onSubmit }) {
                         <div className="modal-input-wrap">
                             <select className="modal-input modal-select" id="mDepartamento" value={departamento_id} onChange={(e) => setDepartamento(e.target.value)}>
                                 <option value="" disabled hidden>Selecione um departamento...</option>
-                                <option value="1">Tecnologia</option>
-                                <option value="2">Medicina</option>
+                                {departamentos.map((d) => (
+
+                                    <option key = {d.id} value = {d.id}>
+                                        {d.nome}
+                                    </option>
+
+                                    ))}
                             </select>
                         </div>
                         {erros.departamento_id && <span className="modal-error">{erros.departamento_id}</span>}
@@ -107,7 +127,7 @@ function ModalCurso({ onClose, onSubmit }) {
                     <button className="modal-btn-cancel" onClick={onClose}>Cancelar</button>
                     <button className="modal-btn-confirm" onClick={handleSubmit}>
                         <i className="bi bi-plus modal-btn-confirm_icon"></i>
-                        Criar Curso
+                        {isEdicao ? 'Salvar alterações' : 'Criar curso'}
                     </button>
                 </div>
 

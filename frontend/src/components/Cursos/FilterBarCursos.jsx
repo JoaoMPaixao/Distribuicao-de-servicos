@@ -1,4 +1,4 @@
-function FilterBarCursos({ pesquisa, setPesquisa }) {
+function FilterBarCursos({ pesquisa, setPesquisa, departamentoFiltro, setDepartamentoFiltro, departamentos }) {
     return (
         <div className="filter-bar">
             <div className="search-wrap">
@@ -11,7 +11,20 @@ function FilterBarCursos({ pesquisa, setPesquisa }) {
                     onChange={(e) => setPesquisa(e.target.value)}
                 />
             </div>
+
+            <div className="select-wrap">
+                <label>Departamento</label>
+                <select value={departamentoFiltro} onChange={(e) => setDepartamentoFiltro(e.target.value)}>
+                    <option value="">Todos os Departamentos</option>
+                    {departamentos.map(d => (
+                        <option key={d.id} value={d.id}>{d.nome}</option>
+                    ))}
+                </select>
+            </div>
+
         </div>
+
+
     )
 }
 

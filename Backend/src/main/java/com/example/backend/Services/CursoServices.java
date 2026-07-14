@@ -113,6 +113,7 @@ public class CursoServices {
                         curso.getNome(),
                         curso.getEstado(),
                         curso.getCodigo_uc(),
+                        curso.getDepartamento().getId(),
                         curso.getDepartamento().getNome()
                 ))
                 .toList();
@@ -128,7 +129,7 @@ public class CursoServices {
         Curso curso = new Curso();
         curso.setNome(dto.nome());
         curso.setCodigo_uc(dto.codigo_uc());
-        curso.setEstado(EstadoCurso.ATIVO);
+        curso.setEstado(dto.estado());
         curso.setDepartamento(departamento);
 
         cursoRepository.save(curso);

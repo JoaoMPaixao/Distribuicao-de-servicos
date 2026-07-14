@@ -10,7 +10,7 @@ const badgeClasses = {
 function ListarCursosCard({ curso,  onAlterar }) {
     const [confirmarDesativar, setConfirmarDesativar] = useState(false)
 
-    console.log(curso)
+
     return (
         <tr>
             <td className="cell-name">
@@ -26,7 +26,7 @@ function ListarCursosCard({ curso,  onAlterar }) {
             </td>
             <td className="cell-name">{curso.departamento_nome}</td>
             <td className="actions-cell">
-                <button className="icon-btn" title="Ver/Editar" onClick={() => onAlterar(curso.id)}>
+                <button className="icon-btn" title="Editar" onClick={() => onAlterar(curso)}>
                     <i className="bi bi-eye icon-icon"></i>
                 </button>
             </td>
