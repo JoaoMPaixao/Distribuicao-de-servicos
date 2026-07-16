@@ -7,7 +7,6 @@ import com.example.backend.Entity.*;
 import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

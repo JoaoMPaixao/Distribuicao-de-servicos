@@ -1,11 +1,8 @@
 package com.example.backend.Controllers;
 
-
-import com.example.backend.Dto.Atribuicoes.ListarCursoDistribuicoesDto;
 import com.example.backend.Dto.Cursos.AlterarCursosDto;
 import com.example.backend.Dto.Cursos.CriarCursosDto;
 import com.example.backend.Dto.Cursos.ListarCursosDto;
-import com.example.backend.Entity.Curso;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.CursoServices;
 import org.springframework.beans.factory.annotation.Autowired;

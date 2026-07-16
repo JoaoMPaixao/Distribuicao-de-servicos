@@ -1,10 +1,7 @@
-2026-07-14 1410:26 [http-nio-8080-exec-6] - Utilizador ID: 2 ALTEROU o Curso ID: 3 para nome Enfermagem ; para codigo_uc 4124 ; para estado ATIVO no Departamento ID: 2.
-2026-07-14 1410:40 [http-nio-8080-exec-9] - Utilizador ID: 2 ALTEROU o Curso ID: 3 para nome Enfermagem ; para codigo_uc 4124 ; para estado INATIVO no Departamento ID: 2.
-2026-07-14 1420:20 [http-nio-8080-exec-5] - Utilizador ID: 2 CRIOU o Curso ID: 8 ('das') no Departamento ID: 1.
-2026-07-14 1420:39 [http-nio-8080-exec-7] - Utilizador ID: 2 CRIOU o Curso ID: 9 ('teste') no Departamento ID: 2.
-2026-07-14 1420:46 [http-nio-8080-exec-10] - Utilizador ID: 2 CRIOU o Curso ID: 10 ('teste') no Departamento ID: 1.
-2026-07-14 1423:31 [http-nio-8080-exec-3] - Utilizador ID: 2 CRIOU o Curso ID: 12 ('teste') no Departamento ID: 1.
-2026-07-14 1423:31 [http-nio-8080-exec-2] - Utilizador ID: 2 CRIOU o Curso ID: 11 ('teste') no Departamento ID: 1.
-2026-07-14 1423:47 [http-nio-8080-exec-7] - Utilizador ID: 2 CRIOU o Curso ID: 13 ('teste') no Departamento ID: 1.
-2026-07-14 1423:53 [http-nio-8080-exec-10] - Utilizador ID: 2 CRIOU o Curso ID: 14 ('gdf') no Departamento ID: 1.
-2026-07-14 1425:17 [http-nio-8080-exec-6] - Utilizador ID: 2 CRIOU o Curso ID: 15 ('das') no Departamento ID: 1.
+2026-07-16 11:33:22 [http-nio-8080-exec-8] - Utilizador ID: 2 CRIOU a Uc ID: 4 ('teste1') no Departamento ID: 3.
+2026-07-16 11:37:22 [http-nio-8080-exec-3] - Utilizador ID: 2 ALTEROU a Uc ID: 2 para nome Informatica Industrial ; para codigo_uc 1530 ; para estado ATIVO no Departamento ID: 1.
+2026-07-16 13:23:14 [http-nio-8080-exec-8] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 1 para horas 35.0 ; para TipoAula ID: 1 ; para Uc ID: 1.
+2026-07-16 13:35:43 [http-nio-8080-exec-1] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 1 para horas 35.0 ; para TipoAula ID: 2 ; para Uc ID: 1.
+2026-07-16 13:35:56 [http-nio-8080-exec-2] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 1 para horas 35.0 ; para TipoAula ID: 1 ; para Uc ID: 1.
+2026-07-16 13:36:05 [http-nio-8080-exec-1] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 3 para horas 50.0 ; para TipoAula ID: 1 ; para Uc ID: 1.
+2026-07-16 13:36:18 [http-nio-8080-exec-5] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 4 no Uc ID: 4.

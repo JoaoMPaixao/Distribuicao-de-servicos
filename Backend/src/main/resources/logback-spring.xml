@@ -9,7 +9,7 @@
         <file>logs/auditoria.txt</file>
         <encoder>
             <!-- Formato: DATA [TIPO] MENSAGEM -->
-            <pattern>%d{yyyy-MM-dd Hmm:ss} [%thread] - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd H:mm:ss} [%thread] - %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- Cria um novo ficheiro por dia e compacta os antigos -->

@@ -7,11 +7,9 @@ import com.example.backend.Dto.Atribuicoes.ListarUcDto;
 import com.example.backend.Dto.Cursos.AlterarCursosDto;
 import com.example.backend.Dto.Cursos.CriarCursosDto;
 import com.example.backend.Dto.Cursos.ListarCursosDto;
-import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
 import com.example.backend.Entity.Curso;
 import com.example.backend.Entity.Departamento;
 import com.example.backend.Enums.EstadoCurso;
-import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Enums.EstadoUc;
 import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
@@ -19,9 +17,8 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.List;
 

@@ -3,9 +3,7 @@ package com.example.backend.Services;
 import com.example.backend.Dto.Atribuicoes.AlterarUcDistribuicaoDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcDistribuicoesDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcJuncaoDto;
-import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
 import com.example.backend.Entity.*;
-import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Enums.EstadoUcDistribuicao;
 import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
@@ -18,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
+
 
 @Service
 public class UcDistribuicaoServices {

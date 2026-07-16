@@ -1,6 +1,5 @@
 package com.example.backend.Services;
 
-import com.example.backend.Dto.Cursos.ListarCursosDto;
 import com.example.backend.Dto.Ucs.AlterarUcsDto;
 import com.example.backend.Dto.Ucs.CriarUcsDto;
 import com.example.backend.Dto.Ucs.ListarUcsDto;
@@ -10,7 +9,6 @@ import com.example.backend.Entity.UC;
 import com.example.backend.Enums.EstadoUc;
 import com.example.backend.Repository.CursoRepository;
 import com.example.backend.Repository.DepartamentoRepository;
-import com.example.backend.Repository.DistribuicaoRepository;
 import com.example.backend.Repository.UcRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +33,9 @@ public class UcServices {
     @Autowired
     private CursoRepository cursoRepository;
 
+    @Autowired
+    private UcTipoAulaServices ucTipoAulaServices;
+
     public List<ListarUcsDto> getUcs (){
 
         return ucRepository.findAll()
@@ -49,7 +50,10 @@ public class UcServices {
                         uc.getHoras(),
                         uc.getEstado(),
                         uc.getDepartamento().getId(),
-                        uc.getCurso().getId()
+                        uc.getDepartamento().getNome(),
+                        uc.getCurso().getId(),
+                        uc.getCurso().getNome(),
+                        ucTipoAulaServices.getUcTipoAulas()
 
                 ))
                 .toList();

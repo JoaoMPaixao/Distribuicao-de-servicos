@@ -8,7 +8,7 @@ const badgeClasses = {
 }
 
 function ListarCursosCard({ curso,  onAlterar }) {
-    const [confirmarDesativar, setConfirmarDesativar] = useState(false)
+
 
 
     return (
@@ -30,6 +30,7 @@ function ListarCursosCard({ curso,  onAlterar }) {
                     <i className="bi bi-eye icon-icon"></i>
                 </button>
             </td>
+
         </tr>
     )
 }

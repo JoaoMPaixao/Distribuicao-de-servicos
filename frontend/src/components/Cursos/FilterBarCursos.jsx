@@ -6,7 +6,7 @@ function FilterBarCursos({ pesquisa, setPesquisa, departamentoFiltro, setDeparta
                 <input
                     className="search-input"
                     type="text"
-                    placeholder="Pesquisar distribuições…"
+                    placeholder="Pesquisar cursos…"
                     value={pesquisa}
                     onChange={(e) => setPesquisa(e.target.value)}
                 />
