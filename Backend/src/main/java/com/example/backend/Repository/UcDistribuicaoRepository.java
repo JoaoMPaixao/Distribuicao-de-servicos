@@ -7,6 +7,7 @@ import com.example.backend.Enums.EstadoUcDistribuicao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UcDistribuicaoRepository extends JpaRepository<UC_Distribuicao,Integer> {
 

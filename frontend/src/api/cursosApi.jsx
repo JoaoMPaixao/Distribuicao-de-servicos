@@ -31,3 +31,14 @@ export const alterarCursos = async (id, dados) => {
     }
 }
 
+export const apagarCurso = async (id) => {
+
+    try {
+        const {data} = await instance.delete(`/v1/cursos/${id}/apagar`)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+
+}
+

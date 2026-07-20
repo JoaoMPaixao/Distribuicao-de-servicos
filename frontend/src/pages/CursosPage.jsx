@@ -5,7 +5,7 @@ import PageHeader from '../components/PageHeader'
 import {
     getCursos,
     criarCurso,
-    alterarCursos
+    alterarCursos, apagarCurso
 } from '../api/cursosApi.jsx'
 import {UserContext} from "../UserContext.jsx";
 
@@ -84,6 +84,20 @@ export const CursosPage = () => {
         }
     }
 
+    const handleApagar = async (id) =>{
+
+        const response = await apagarCurso(id)
+
+        if(response.success){
+
+            const atualizado = await getCursos()
+            if (atualizado.success) setCursos(atualizado.data)
+        } else {
+            setErroModal(response.message)
+    }
+
+    }
+
     //atualiza a pagina sem dar reset para os filtros
     useEffect(() => {
         setPagina(1)
@@ -125,6 +139,7 @@ export const CursosPage = () => {
                     onMudar: setPagina
                 }}
                onAlterar={abrirEditar}
+               onApagar={handleApagar}
             />
             {modalAberto && <ModalCursos curso = {cursoSelecionado} onClose={() => setModalAberto(false)} onSubmit={handleSubmit} departamentos={departamentos}/>}
         </SideBar_TopBar>

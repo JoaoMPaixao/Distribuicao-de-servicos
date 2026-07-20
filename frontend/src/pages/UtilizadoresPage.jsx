@@ -5,7 +5,7 @@ import PageHeader from '../components/PageHeader'
 import {
     getUtilizadores,
     criarUtilizadores,
-    alterarUtilizadores
+    alterarUtilizadores, apagarUtilizador
 } from '../api/utilizadoresApi.jsx'
 import {UserContext} from "../UserContext.jsx";
 
@@ -14,6 +14,7 @@ import FilterBarUtilizadores from "../components/Utilizadores/FilterBarUtilizado
 import {getDepartamentos} from "../api/departamentosApi.jsx";
 import {getCargos} from "../api/cargosApi.jsx";
 import ModalUtilizadores from "../components/Utilizadores/ModalUtilizadores.jsx";
+import {apagarCurso, getCursos} from "../api/cursosApi.jsx";
 
 
 export const UtilizadoresPage = () => {
@@ -102,6 +103,20 @@ export const UtilizadoresPage = () => {
         }
     }
 
+    const handleApagar = async (id) =>{
+
+        const response = await apagarUtilizador(id)
+
+        if(response.success){
+
+            const atualizado = await getUtilizadores()
+            if (atualizado.success) setUtilizadores(atualizado.data)
+        } else {
+            setErroModal(response.message)
+        }
+
+    }
+
     //atualiza a pagina sem dar reset para os filtros
     useEffect(() => {
         setPagina(1)
@@ -144,6 +159,7 @@ export const UtilizadoresPage = () => {
                     onMudar: setPagina
                 }}
                 onAlterar={abrirEditar}
+                onApagar={handleApagar}
             />
             {modalAberto && <ModalUtilizadores utilizador = {utilizadorSelecionado} onClose={() => setModalAberto(false)} onSubmit={handleSubmit} departamentos={departamentos} cargos={cargos}/>}
         </SideBar_TopBar>

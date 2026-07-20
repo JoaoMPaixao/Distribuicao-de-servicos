@@ -5,7 +5,9 @@ import com.example.backend.Dto.Utilizadores.CriarUtilizadoresDto;
 import com.example.backend.Dto.Utilizadores.ListarUtilizadoresDto;
 import com.example.backend.Entity.Cargo;
 import com.example.backend.Entity.Departamento;
+import com.example.backend.Entity.Distribuicao;
 import com.example.backend.Entity.Utilizador;
+import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Repository.CargoRepository;
 import com.example.backend.Repository.DepartamentoRepository;
 import com.example.backend.Repository.UtilizadorRepository;
@@ -109,4 +111,19 @@ public class UtilizadorServices {
                 utilizadorAuth_id, utilizador_id, utilizador.getNome(), dto.email(), dto.estado(), dto.cargo_id(), dto.departamento_id());
 
     }
+
+    @Transactional
+    public void DeleteUtilizador(Integer utilizador_id, Integer utilizadorAuth_id) {
+
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento e retorna a distribuicao
+        Utilizador utilizador = utilizadorRepository.findById(utilizador_id).orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
+
+        utilizadorRepository.delete(utilizador);
+
+        // LOG DE AUDITORIA: Delete
+        auditLogger.info("Utilizador ID: {} APAGOU o Utilizador ID: {}.",
+                utilizadorAuth_id, utilizador_id);
+
+    }
+
 }

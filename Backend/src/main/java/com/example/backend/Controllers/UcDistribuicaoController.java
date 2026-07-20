@@ -3,7 +3,7 @@ package com.example.backend.Controllers;
 import com.example.backend.Dto.Atribuicoes.AlterarUcDistribuicaoDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcDistribuicoesDto;
 import com.example.backend.Dto.Atribuicoes.CriarUcJuncaoDto;
-import com.example.backend.Dto.Atribuicoes.ListarCursoDistribuicoesDto;
+import com.example.backend.Dto.Atribuicoes.ListarUcDistribuicoesDto;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.CursoServices;
 import com.example.backend.Services.UcDistribuicaoServices;
@@ -28,21 +28,19 @@ public class UcDistribuicaoController {
 
 
         @GetMapping()
-        public ResponseEntity<List<ListarCursoDistribuicoesDto>> getUcsByDistribuicao(@PathVariable Integer id, Authentication authentication) {
-            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-            Integer departamentoId = user.getDepartamentoId();
+        public ResponseEntity<List<ListarUcDistribuicoesDto>> getUcsByDistribuicao() {
 
-            return ResponseEntity.ok(cursoServices.getUcByDepartamento(id, departamentoId));
+            return ResponseEntity.ok(ucDistribuicaoServices.getUcDistribuicoes());
         }
 
-        @PostMapping()
-        public ResponseEntity<Void> CriarUcDistribuicao(@PathVariable Integer id, @RequestBody CriarUcDistribuicoesDto dto, Authentication authentication) {
+        @PostMapping("/atribuicao/{udid}")
+        public ResponseEntity<Void> CriarUcDistribuicaoTurno(@PathVariable Integer id, @PathVariable Integer udid, Authentication authentication) {
 
             try{
                 CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
                 Integer departamentoId = user.getDepartamentoId();
                 Integer utilizadorID = user.getId();
-                ucDistribuicaoServices.CriarUcDistribuicao(dto, id, departamentoId, utilizadorID);
+                ucDistribuicaoServices.CriarUcDistribuicao(udid, id, departamentoId, utilizadorID);
                 return ResponseEntity.status(HttpStatus.CREATED).build();
             }catch(NumberFormatException e) {
                 return ResponseEntity.badRequest().build();

@@ -4,12 +4,13 @@ import PageHeader from '../components/PageHeader'
 import {
     getDepartamentos,
     criarDepartamento,
-    alterarDepartamentos
+    alterarDepartamentos, apagarDepartamento
 } from '../api/departamentosApi.jsx'
 import {UserContext} from "../UserContext.jsx";
 import TabelaDepartamentos from "../components/Departamentos/TabelaDepartamentos.jsx";
 import FilterBarDepartamentos from "../components/Departamentos/FilterBarDepartamentos.jsx";
 import ModalDepartamentos from "../components/Departamentos/ModalDepartamentos.jsx";
+import {apagarCurso, getCursos} from "../api/cursosApi.jsx";
 
 
 export const DepartamentosPage = () => {
@@ -64,6 +65,20 @@ export const DepartamentosPage = () => {
         }
     }
 
+    const handleApagar = async (id) =>{
+
+        const response = await apagarDepartamento(id)
+
+        if(response.success){
+
+            const atualizado = await getDepartamentos()
+            if (atualizado.success) setDepartamentos(atualizado.data)
+        } else {
+            setErroModal(response.message)
+        }
+
+    }
+
     //atualiza a pagina sem dar reset para os filtros
     useEffect(() => {
         setPagina(1)
@@ -104,6 +119,7 @@ export const DepartamentosPage = () => {
                     onMudar: setPagina
                 }}
                 onAlterar={abrirEditar}
+                onApagar={handleApagar}
             />
             {modalAberto && <ModalDepartamentos departamento= {departamentoSelecionado} onClose={() => setModalAberto(false)} onSubmit={handleSubmit}/>}
         </SideBar_TopBar>

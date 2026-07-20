@@ -14,7 +14,7 @@ function ModalConfirmacao({ mensagem, onConfirmar, onCancelar }) {
                             Cancelar
                         </button>
                         <button className="btn-confirmacao-perigo" onClick={onConfirmar}>
-                            <i className="bi bi-trash"></i> Desativar
+                            <i className="bi bi-trash"></i> Apagar
                         </button>
                     </div>
                 </div>

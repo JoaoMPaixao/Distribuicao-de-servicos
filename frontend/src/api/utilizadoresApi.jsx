@@ -30,3 +30,14 @@ export const alterarUtilizadores = async (id, dados) => {
         return { success: false, status: error.response?.status, message: error.response?.data?.message }
     }
 }
+
+export const apagarUtilizador = async (id) => {
+
+    try {
+        const {data} = await instance.delete(`/v1/utilizadores/${id}/apagar`)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+
+}

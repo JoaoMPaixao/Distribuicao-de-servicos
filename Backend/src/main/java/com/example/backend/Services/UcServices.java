@@ -6,10 +6,12 @@ import com.example.backend.Dto.Ucs.ListarUcsDto;
 import com.example.backend.Entity.Curso;
 import com.example.backend.Entity.Departamento;
 import com.example.backend.Entity.UC;
+import com.example.backend.Entity.Utilizador;
 import com.example.backend.Enums.EstadoUc;
 import com.example.backend.Repository.CursoRepository;
 import com.example.backend.Repository.DepartamentoRepository;
 import com.example.backend.Repository.UcRepository;
+import com.example.backend.Repository.UcTipoAulaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class UcServices {
 
     @Autowired
     private CursoRepository cursoRepository;
+
+    @Autowired
+    private UcTipoAulaRepository  ucTipoAulaRepository;
 
     @Autowired
     private UcTipoAulaServices ucTipoAulaServices;
@@ -95,7 +100,7 @@ public class UcServices {
         Departamento departamento = departamentoRepository.findById(dto.departamento_id())
                 .orElseThrow(() -> new RuntimeException("Departamento não encontrado"));
 
-        Curso curso = cursoRepository.findById(dto.curso_id()) .orElseThrow(() -> new RuntimeException("Curso não encontrado"));
+        Curso curso = cursoRepository.findById(dto.curso_id()).orElseThrow(() -> new RuntimeException("Curso não encontrado"));
 
         UC uc = ucRepository.findById(Uc_id) .orElseThrow(() -> new RuntimeException("Uc não encontrado"));
 
@@ -112,6 +117,22 @@ public class UcServices {
         // LOG DE AUDITORIA: Alteração de Curso
         auditLogger.info("Utilizador ID: {} ALTEROU a Uc ID: {} para nome {} ; para codigo_uc {} ; para estado {} no Departamento ID: {}.",
                 utilizador_id, Uc_id, uc.getNome(), dto.codigo_uc(), dto.estado(), uc.getDepartamento().getId());
+
+    }
+
+    @Transactional
+    public void DeleteUc(Integer uc_id, Integer utilizador_id) {
+
+        //verifica se a distribuicao e o utilizador têm o mesmo departamento e retorna a distribuicao
+        UC uc = ucRepository.findById(uc_id).orElseThrow(() -> new RuntimeException("Uc não encontrado"));
+
+        ucTipoAulaRepository.deleteAllByUc_Id(uc_id);
+
+        ucRepository.delete(uc);
+
+        // LOG DE AUDITORIA: Delete
+        auditLogger.info("Utilizador ID: {} APAGOU a Uc ID: {}.",
+                utilizador_id, uc_id);
 
     }
 

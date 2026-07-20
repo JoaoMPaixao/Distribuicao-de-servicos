@@ -1,6 +1,8 @@
+import ModalConfirmacao from "../ModalConfirmacao.jsx";
+import {useState} from "react";
 
-function ListarDepartamentosCard({ departamento,  onAlterar }) {
-
+function ListarDepartamentosCard({ departamento,  onAlterar, onApagar }) {
+    const [confirmarDesativar, setConfirmarDesativar] = useState(false)
 
     return (
         <tr>
@@ -14,6 +16,16 @@ function ListarDepartamentosCard({ departamento,  onAlterar }) {
                 <button className="icon-btn" title="Editar" onClick={() => onAlterar(departamento)}>
                     <i className="bi bi-eye icon-icon"></i>
                 </button>
+                <button className="icon-btn" title="Apagar" onClick={() => setConfirmarDesativar(true)}>
+                    <i className="bi bi-trash icon-icon"></i>
+                </button>
+                {confirmarDesativar && (
+                    <ModalConfirmacao
+                        mensagem={`Tem a certeza que deseja apagar "${departamento.nome}"?`}
+                        onConfirmar={() => { onApagar(departamento.id); setConfirmarDesativar(false) }}
+                        onCancelar={() => setConfirmarDesativar(false)}
+                    />
+                )}
             </td>
         </tr>
     )

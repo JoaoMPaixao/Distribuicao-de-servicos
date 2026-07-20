@@ -58,5 +58,18 @@ public class UcTipoAulaController {
 
     }
 
+    @DeleteMapping("/{id}/apagar")
+    public ResponseEntity<Void> ApagarUcTipoAula(@PathVariable Integer id, Authentication authentication) {
+
+        try {
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+            Integer utilizadorID = user.getId();
+            ucTipoAulaServices.DeleteUcTipoAulas(id, utilizadorID);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }
 

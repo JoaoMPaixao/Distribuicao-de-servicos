@@ -1,17 +1,20 @@
 import {useEffect, useState} from 'react'
-import {getUcsTipoAulaByUc} from "../../api/ucsApi.jsx";
+import {apagarUcTipoAula, getUcsTipoAulaByUc} from "../../api/ucsApi.jsx";
 import {getTipoAula} from "../../api/ucsApi.jsx";
 import {getCursos} from "../../api/cursosApi.jsx";
+import ModalConfirmacao from "../ModalConfirmacao.jsx";
 
 function ModalUcsTipoAula({ uc, onClose, onSubmit, tipoAulas }) {
 
     const [modoFormulario, setModoFormulario] = useState(false)
     const [ucTipoAula, setUcTipoAula] = useState(null)
+    const [apagar_id, setApagar] = useState("")
     const [tipo_aula_id, setTipoAula] = useState('')
     const [horas, setHoras] = useState('')
     const [erros, setErros] = useState({})
     const [tiposDoUc, setTiposDoUc] = useState([])
-
+    const [confirmarDesativar, setConfirmarDesativar] = useState(false)
+    const [idParaApagar, setIdParaApagar] = useState(null)
 
     const carregarTipos = async () => {
         const response = await getUcsTipoAulaByUc(uc.id)
@@ -19,6 +22,18 @@ function ModalUcsTipoAula({ uc, onClose, onSubmit, tipoAulas }) {
             setTiposDoUc(response.data)
         } else {
         }
+    }
+
+    const handleApagarucTipoAula = async (id) =>{
+
+        const response = await apagarUcTipoAula(id)
+
+        if(response.success){
+            carregarTipos()
+        } else {
+            setErroModal(response.message)
+        }
+
     }
 
     useEffect(() => {
@@ -73,6 +88,8 @@ function ModalUcsTipoAula({ uc, onClose, onSubmit, tipoAulas }) {
         carregarTipos()
     }
 
+
+
     return (
         <div className="modal-overlay" onClick={handleOverlayClick}>
             <div className="modal" role="dialog" aria-modal="true">
@@ -120,6 +137,16 @@ function ModalUcsTipoAula({ uc, onClose, onSubmit, tipoAulas }) {
                                                 <button className="icon-btn" title="Editar" onClick={() => abrirEdicao(d)}>
                                                     <i className="bi bi-pencil icon-icon"></i>
                                                 </button>
+                                                <button className="icon-btn" title="Apagar" onClick={() => setIdParaApagar(d.id)}>
+                                                    <i className="bi bi-trash icon-icon"></i>
+                                                </button>
+                                                {idParaApagar === d.id && (
+                                                    <ModalConfirmacao
+                                                        mensagem={`Tem a certeza que deseja apagar "${d.tipo_aula_nome}"?`}
+                                                        onConfirmar={() => { handleApagarucTipoAula(d.id); setIdParaApagar(null) }}
+                                                        onCancelar={() => setIdParaApagar(null)}
+                                                    />
+                                                )}
                                             </td>
                                         </tr>
                                     ))}

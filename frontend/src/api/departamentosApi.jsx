@@ -30,3 +30,14 @@ export const alterarDepartamentos = async (id, dados) => {
         return { success: false, status: error.response?.status, message: error.response?.data?.message }
     }
 }
+
+export const apagarDepartamento = async (id) => {
+
+    try {
+        const {data} = await instance.delete(`/v1/departamentos/${id}/apagar`)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+
+}

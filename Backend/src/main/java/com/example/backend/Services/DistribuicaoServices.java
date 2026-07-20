@@ -36,6 +36,9 @@ public class DistribuicaoServices {
     private UcDistribuicaoRepository ucDistribuicaoRepository;
 
     @Autowired
+    private UcDistribuicaoServices ucDistribuicaoServices;
+
+    @Autowired
     private UcJuncaoRepository  ucJuncaoRepository;
 
     @Autowired
@@ -83,6 +86,8 @@ public class DistribuicaoServices {
         distribuicao.setEstado(EstadoDistribuicao.ABERTO);
 
         distribuicaoRepository.save(distribuicao);
+
+        ucDistribuicaoServices.GerarUcDistribuicoes(distribuicao.getId(),departamento_id);
 
         // LOG DE AUDITORIA: Criação
         auditLogger.info("Utilizador ID: {} CRIOU a Distribuição ID: {} ('{}') no Departamento ID: {}.",

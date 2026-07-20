@@ -31,6 +31,17 @@ export const alterarUcs = async (id, dados) => {
     }
 }
 
+export const apagarUc = async (id) => {
+
+    try {
+        const {data} = await instance.delete(`/v1/ucs/${id}/apagar`)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+
+}
+
 export const getUcsTipoAulaByUc = async (id) => {
 
     try{
@@ -71,6 +82,17 @@ export const getTipoAula = async () => {
         return { success: true, data}
     }catch (error){
         return {success: false, status: error.response?.status, message: error.response?.data?.message}
+    }
+
+}
+
+export const apagarUcTipoAula = async (id) => {
+
+    try {
+        const {data} = await instance.delete(`/v1/uctipoaulas/${id}/apagar`)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
     }
 
 }

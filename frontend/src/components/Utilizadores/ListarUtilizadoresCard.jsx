@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ModalConfirmacao from "../ModalConfirmacao.jsx";
 
 
 const badgeClasses = {
@@ -7,7 +8,9 @@ const badgeClasses = {
 
 }
 
-function ListarUtilizadoresCard({ utilizador,  onAlterar }) {
+function ListarUtilizadoresCard({ utilizador,  onAlterar, onApagar }) {
+
+    const [confirmarDesativar, setConfirmarDesativar] = useState(false)
 
     return (
         <tr>
@@ -33,6 +36,16 @@ function ListarUtilizadoresCard({ utilizador,  onAlterar }) {
                 <button className="icon-btn" title="Editar" onClick={() => onAlterar(utilizador)}>
                     <i className="bi bi-eye icon-icon"></i>
                 </button>
+                <button className="icon-btn" title="Apagar" onClick={() => setConfirmarDesativar(true)}>
+                    <i className="bi bi-trash icon-icon"></i>
+                </button>
+                {confirmarDesativar && (
+                    <ModalConfirmacao
+                        mensagem={`Tem a certeza que deseja apagar "${utilizador.nome}"?`}
+                        onConfirmar={() => { onApagar(utilizador.id); setConfirmarDesativar(false) }}
+                        onCancelar={() => setConfirmarDesativar(false)}
+                    />
+                )}
             </td>
         </tr>
     )

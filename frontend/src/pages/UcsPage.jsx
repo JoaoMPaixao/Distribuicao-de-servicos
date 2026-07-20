@@ -6,14 +6,14 @@ import {
     criarUc,
     alterarUcs,
     criarUcTipoAula,
-    alterarUcsTipoAula, getTipoAula
+    alterarUcsTipoAula, getTipoAula, apagarUc, apagarUcTipoAula, getUcsTipoAulaByUc
 } from '../api/ucsApi.jsx'
 import {UserContext} from "../UserContext.jsx";
 
 import TabelaUcs from "../components/Ucs/TabelaUcs.jsx";
 import FilterBarUcs from "../components/Ucs/FilterBarUcs.jsx";
 import {getDepartamentos} from "../api/departamentosApi.jsx";
-import {getCursos} from "../api/cursosApi.jsx";
+import {apagarCurso, getCursos} from "../api/cursosApi.jsx";
 import ModalUcs from "../components/Ucs/ModalUcs.jsx";
 import ModalUcsTipoAula from "../components/Ucs/ModalUcsTipoAula.jsx";
 
@@ -136,6 +136,21 @@ export const UcsPage = () => {
         }
     }
 
+    const handleApagaruc = async (id) =>{
+
+        const response = await apagarUc(id)
+
+        if(response.success){
+
+            const atualizado = await getUcs()
+            if (atualizado.success) setUcs(atualizado.data)
+        } else {
+            setErroModal(response.message)
+        }
+
+    }
+
+
     //atualiza a pagina sem dar reset para os filtros
     useEffect(() => {
         setPagina(1)
@@ -179,6 +194,7 @@ export const UcsPage = () => {
                 }}
                 onAlterar={abrirEditar}
                onUcTipoAula={abrirUcTipoAulaEditar}
+               onApagar={handleApagaruc}
             />
                 {modalAberto && <ModalUcs uc = {ucSelecionado} onClose={() => setModalAberto(false)} onSubmit={handleSubmit} departamentos={departamentos} cursos={cursos}/>}
                 {modalTipoAulaAberto && <ModalUcsTipoAula uc={ucTipoAulaSelecionado}  onClose={() => setModalTipoAulaAberto(false)} onSubmit={handleSubmitUcTipoAula} tipoAulas={tipoAulas} />}

@@ -1,15 +1,11 @@
 package com.example.backend.Services;
 
-import com.example.backend.Dto.Atribuicoes.CargaHorariaDocenteDto;
-import com.example.backend.Dto.Atribuicoes.DepartamentoDocenteDto;
-import com.example.backend.Dto.Atribuicoes.ListarDocentesDistribuicoesDto;
-import com.example.backend.Enums.EstadoDocente;
+import com.example.backend.Dto.Departamentos.ListarDepartamentosDto;
+import com.example.backend.Dto.Docentes.ListarDocentesUcDistribuicaoDto;
 import com.example.backend.Repository.DistribuicaoRepository;
 import com.example.backend.Repository.DocenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,6 +18,17 @@ public class DocenteServices {
     @Autowired
     private DistribuicaoRepository distribuicaoRepository;
 
+    public List<ListarDocentesUcDistribuicaoDto> getDocentesUcDistribuicao (){
 
+        return docenteRepository.findAll()
+                .stream()
+                .map(docente -> new ListarDocentesUcDistribuicaoDto(
+                        docente.getId(),
+                        docente.getNome(),
+                        docente.getDepartamento().getNome()
+
+                ))
+                .toList();
+    }
 
 }

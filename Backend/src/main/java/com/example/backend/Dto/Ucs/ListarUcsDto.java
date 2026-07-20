@@ -1,6 +1,5 @@
 package com.example.backend.Dto.Ucs;
 
-import com.example.backend.Dto.Atribuicoes.ListarUcDto;
 import com.example.backend.Dto.UcTipoAula.ListarUcTipoAulaDto;
 import com.example.backend.Enums.EstadoUc;
 

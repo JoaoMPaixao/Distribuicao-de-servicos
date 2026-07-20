@@ -1,7 +1,54 @@
-2026-07-16 11:33:22 [http-nio-8080-exec-8] - Utilizador ID: 2 CRIOU a Uc ID: 4 ('teste1') no Departamento ID: 3.
-2026-07-16 11:37:22 [http-nio-8080-exec-3] - Utilizador ID: 2 ALTEROU a Uc ID: 2 para nome Informatica Industrial ; para codigo_uc 1530 ; para estado ATIVO no Departamento ID: 1.
-2026-07-16 13:23:14 [http-nio-8080-exec-8] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 1 para horas 35.0 ; para TipoAula ID: 1 ; para Uc ID: 1.
-2026-07-16 13:35:43 [http-nio-8080-exec-1] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 1 para horas 35.0 ; para TipoAula ID: 2 ; para Uc ID: 1.
-2026-07-16 13:35:56 [http-nio-8080-exec-2] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 1 para horas 35.0 ; para TipoAula ID: 1 ; para Uc ID: 1.
-2026-07-16 13:36:05 [http-nio-8080-exec-1] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 3 para horas 50.0 ; para TipoAula ID: 1 ; para Uc ID: 1.
-2026-07-16 13:36:18 [http-nio-8080-exec-5] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 4 no Uc ID: 4.
+2026-07-20 11:52:50 [http-nio-8080-exec-10] - Utilizador ID: 2 APAGOU o Curso ID: 5.
+2026-07-20 11:52:57 [http-nio-8080-exec-8] - Utilizador ID: 2 APAGOU o Curso ID: 6.
+2026-07-20 11:52:59 [http-nio-8080-exec-2] - Utilizador ID: 2 APAGOU o Curso ID: 7.
+2026-07-20 11:53:00 [http-nio-8080-exec-4] - Utilizador ID: 2 APAGOU o Curso ID: 8.
+2026-07-20 11:53:03 [http-nio-8080-exec-5] - Utilizador ID: 2 APAGOU o Curso ID: 15.
+2026-07-20 11:55:54 [http-nio-8080-exec-1] - Utilizador ID: 2 APAGOU o Curso ID: 14.
+2026-07-20 11:56:28 [http-nio-8080-exec-10] - Utilizador ID: 2 APAGOU o Curso ID: 13.
+2026-07-20 11:56:30 [http-nio-8080-exec-8] - Utilizador ID: 2 APAGOU o Curso ID: 12.
+2026-07-20 11:56:31 [http-nio-8080-exec-2] - Utilizador ID: 2 APAGOU o Curso ID: 11.
+2026-07-20 11:56:33 [http-nio-8080-exec-4] - Utilizador ID: 2 APAGOU o Curso ID: 10.
+2026-07-20 11:56:34 [http-nio-8080-exec-5] - Utilizador ID: 2 APAGOU o Curso ID: 9.
+2026-07-20 12:07:00 [http-nio-8080-exec-4] - Utilizador ID: 2 CRIOU o Departamento ID: 4 ('teste').
+2026-07-20 12:07:29 [http-nio-8080-exec-10] - Utilizador ID: 2 APAGOU o Departamento ID: 4.
+2026-07-20 12:10:30 [http-nio-8080-exec-1] - Utilizador ID: 2 CRIOU a Uc ID: 5 ('apagar') no Departamento ID: 2.
+2026-07-20 12:10:33 [http-nio-8080-exec-8] - Utilizador ID: 2 APAGOU a Uc ID: 5.
+2026-07-20 12:12:51 [http-nio-8080-exec-1] - Utilizador ID: 2 CRIOU a Uc ID: 6 ('apagar') no Departamento ID: 1.
+2026-07-20 12:12:57 [http-nio-8080-exec-9] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 5 no Uc ID: 6.
+2026-07-20 12:13:00 [http-nio-8080-exec-3] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 5.
+2026-07-20 12:13:12 [http-nio-8080-exec-5] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 6 no Uc ID: 6.
+2026-07-20 12:13:16 [http-nio-8080-exec-8] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 7 no Uc ID: 6.
+2026-07-20 12:13:23 [http-nio-8080-exec-3] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 7.
+2026-07-20 12:14:02 [http-nio-8080-exec-9] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 6.
+2026-07-20 12:14:31 [http-nio-8080-exec-6] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 8 no Uc ID: 6.
+2026-07-20 12:14:33 [http-nio-8080-exec-10] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 8.
+2026-07-20 12:14:54 [http-nio-8080-exec-6] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 9 no Uc ID: 6.
+2026-07-20 12:15:01 [http-nio-8080-exec-10] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 9.
+2026-07-20 12:16:32 [http-nio-8080-exec-5] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 10 no Uc ID: 6.
+2026-07-20 12:16:34 [http-nio-8080-exec-10] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 10.
+2026-07-20 12:18:25 [http-nio-8080-exec-6] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 11 no Uc ID: 6.
+2026-07-20 12:18:27 [http-nio-8080-exec-3] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 11.
+2026-07-20 12:18:39 [http-nio-8080-exec-3] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 12 no Uc ID: 6.
+2026-07-20 12:18:42 [http-nio-8080-exec-10] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 13 no Uc ID: 6.
+2026-07-20 12:18:44 [http-nio-8080-exec-5] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 13.
+2026-07-20 12:18:50 [http-nio-8080-exec-6] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 14 no Uc ID: 6.
+2026-07-20 12:19:34 [http-nio-8080-exec-7] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 14.
+2026-07-20 12:19:37 [http-nio-8080-exec-1] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 15 no Uc ID: 6.
+2026-07-20 12:19:43 [http-nio-8080-exec-2] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 16 no Uc ID: 6.
+2026-07-20 12:19:44 [http-nio-8080-exec-10] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 16.
+2026-07-20 12:22:32 [http-nio-8080-exec-9] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 12 para horas 40.0 ; para TipoAula ID: 1 ; para Uc ID: 6.
+2026-07-20 12:22:37 [http-nio-8080-exec-2] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 12 para horas 40.0 ; para TipoAula ID: 2 ; para Uc ID: 6.
+2026-07-20 12:22:39 [http-nio-8080-exec-10] - Utilizador ID: 2 ALTEROU o UcTipoAula ID: 12 para horas 40.0 ; para TipoAula ID: 1 ; para Uc ID: 6.
+2026-07-20 12:27:36 [http-nio-8080-exec-2] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 12.
+2026-07-20 12:30:19 [http-nio-8080-exec-4] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 17 no Uc ID: 6.
+2026-07-20 12:31:31 [http-nio-8080-exec-9] - Utilizador ID: 2 CRIOU a Uc ID: 7 ('apagar') no Departamento ID: 1.
+2026-07-20 12:31:55 [http-nio-8080-exec-4] - Utilizador ID: 2 APAGOU a Uc ID: 6.
+2026-07-20 12:41:06 [http-nio-8080-exec-3] - Utilizador ID: 2 APAGOU a Uc ID: 6.
+2026-07-20 12:41:12 [http-nio-8080-exec-5] - Utilizador ID: 2 APAGOU a Uc ID: 7.
+2026-07-20 12:41:40 [http-nio-8080-exec-2] - Utilizador ID: 2 CRIOU a Uc ID: 8 ('apagar') no Departamento ID: 1.
+2026-07-20 12:41:46 [http-nio-8080-exec-8] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 18 no Uc ID: 8.
+2026-07-20 12:41:49 [http-nio-8080-exec-5] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 19 no Uc ID: 8.
+2026-07-20 12:41:52 [http-nio-8080-exec-2] - Utilizador ID: 2 CRIOU o UcTipoAula ID: 20 no Uc ID: 8.
+2026-07-20 12:42:13 [http-nio-8080-exec-7] - Utilizador ID: 2 APAGOU a UcTipoAula ID: 18.
+2026-07-20 12:42:20 [http-nio-8080-exec-9] - Utilizador ID: 2 APAGOU a Uc ID: 8.
+2026-07-20 12:45:26 [http-nio-8080-exec-5] - Utilizador ID: 2 APAGOU o Utilizador ID: 6.

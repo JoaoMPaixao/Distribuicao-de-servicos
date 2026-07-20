@@ -2,7 +2,7 @@ import Pagination from '../Pagination.jsx'
 import ListarDepartamentosCard from "./ListarDepartamentosCard.jsx";
 
 
-function DepartamentosTable({ departamentos, paginacao, porPagina, onMudarPorPagina, onAlterar}) {
+function DepartamentosTable({ departamentos, paginacao, porPagina, onMudarPorPagina, onAlterar, onApagar}) {
 
     return (
         <div className="table-card">
@@ -21,6 +21,7 @@ function DepartamentosTable({ departamentos, paginacao, porPagina, onMudarPorPag
                             key={d.id}
                             departamento={d}
                             onAlterar={onAlterar}
+                            onApagar={onApagar}
                         />
                     ))}
                     </tbody>

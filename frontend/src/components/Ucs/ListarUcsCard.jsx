@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ModalConfirmacao from "../ModalConfirmacao.jsx";
 
 
 const badgeClasses = {
@@ -7,9 +8,9 @@ const badgeClasses = {
 
 }
 
-function ListarUcsCard({ uc,  onAlterar, onUcTipoAula }) {
+function ListarUcsCard({ uc,  onAlterar, onUcTipoAula, onApagar }) {
 
-
+    const [confirmarDesativar, setConfirmarDesativar] = useState(false)
 
     return (
         <tr>
@@ -42,7 +43,16 @@ function ListarUcsCard({ uc,  onAlterar, onUcTipoAula }) {
                 <button className="icon-btn" title="Editar" onClick={() => onAlterar(uc)}>
                     <i className="bi bi-eye icon-icon"></i>
                 </button>
-
+                <button className="icon-btn" title="Apagar" onClick={() => setConfirmarDesativar(true)}>
+                    <i className="bi bi-trash icon-icon"></i>
+                </button>
+                {confirmarDesativar && (
+                    <ModalConfirmacao
+                        mensagem={`Tem a certeza que deseja apagar "${uc.nome}"?`}
+                        onConfirmar={() => { onApagar(uc.id); setConfirmarDesativar(false) }}
+                        onCancelar={() => setConfirmarDesativar(false)}
+                    />
+                )}
                 <button className="icon-btn" title="Tipos Aulas" onClick={() => onUcTipoAula(uc)}>
                     <i className="bi bi-list icon-icon"></i>
                 </button>

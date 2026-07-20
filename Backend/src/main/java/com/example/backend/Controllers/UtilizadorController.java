@@ -58,4 +58,17 @@ public class UtilizadorController {
 
     }
 
+    @DeleteMapping("/{id}/apagar")
+    public ResponseEntity<Void> ApagarUtilizador(@PathVariable Integer id, Authentication authentication) {
+
+        try {
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+            Integer utilizadorID = user.getId();
+            utilizadorServices.DeleteUtilizador(id, utilizadorID);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }

@@ -108,5 +108,18 @@ public class UcTipoAulaServices {
 
     }
 
+    @Transactional
+    public void DeleteUcTipoAulas(Integer ucTipoAula_id, Integer utilizador_id) {
+
+
+        UC_Tipo_Aula uctipoAula = ucTipoAulaRepository.findById(ucTipoAula_id).orElseThrow(() -> new RuntimeException("Uc Tipo aula não encontrado"));
+
+        ucTipoAulaRepository.delete(uctipoAula);
+
+        // LOG DE AUDITORIA: Delete
+        auditLogger.info("Utilizador ID: {} APAGOU a UcTipoAula ID: {}.",
+                utilizador_id, ucTipoAula_id);
+
+    }
 
 }

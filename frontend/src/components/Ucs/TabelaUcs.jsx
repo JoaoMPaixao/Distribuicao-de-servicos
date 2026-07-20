@@ -2,7 +2,7 @@ import Pagination from '../Pagination.jsx'
 import ListarUcsCard from "./ListarUcsCard.jsx";
 
 
-function UcsTable({ ucs, paginacao, porPagina, onMudarPorPagina, onAlterar, onUcTipoAula}) {
+function UcsTable({ ucs, paginacao, porPagina, onMudarPorPagina, onAlterar, onUcTipoAula, onApagar}) {
 
     return (
         <div className="table-card">
@@ -29,6 +29,7 @@ function UcsTable({ ucs, paginacao, porPagina, onMudarPorPagina, onAlterar, onUc
                            uc={d}
                             onAlterar={onAlterar}
                             onUcTipoAula={onUcTipoAula}
+                            onApagar={onApagar}
                         />
                     ))}
                     </tbody>

@@ -4,10 +4,10 @@ public record ListarUcDistribuicoesDto(
 
         Integer id,
         String turno,
-        Integer horasAtribuidas,
+        Float horasAtribuidas,
         Integer docenteId,
-        String docenteNome
-
+        String docenteNome,
+       UcCursoDto ucCursoDto
 
 
 ) {

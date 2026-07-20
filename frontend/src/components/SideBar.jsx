@@ -4,11 +4,11 @@ const itens = [
     { label: 'Distribuições', icon: 'bi-justify', path: '/distribuicoes' },
     { label: 'Comparações', icon: 'bi-arrow-down-up', path: '/comparacoes' },
     { label: 'Docentes', icon: 'bi-person', path: '/docentes' },
-    { label: 'Unidades Curriculares', icon: 'bi-journals', path: '/ucs' },
-    { label: 'Cursos', icon: 'bi-mortarboard', path: '/cursos' },
     { label: 'Departamentos', icon: 'bi-house-door', path: '/departamentos' },
-    { label: 'Auditoria', icon: 'bi-shield', path: '/auditoria' },
+    { label: 'Cursos', icon: 'bi-mortarboard', path: '/cursos' },
+    { label: 'Unidades Curriculares', icon: 'bi-journals', path: '/ucs' },
     { label: 'Utilizadores', icon: 'bi-people', path: '/utilizadores' },
+    { label: 'Auditoria', icon: 'bi-shield', path: '/auditoria' },
     { label: 'Configurações', icon: 'bi-gear', path: '/configuracoes' },
 ]
 

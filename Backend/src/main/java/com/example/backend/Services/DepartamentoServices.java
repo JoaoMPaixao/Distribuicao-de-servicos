@@ -5,6 +5,7 @@ import com.example.backend.Dto.Departamentos.AlterarDepartamentosDto;
 import com.example.backend.Dto.Departamentos.CriarDepartamentoDto;
 import com.example.backend.Dto.Departamentos.ListarDepartamentosDto;
 import com.example.backend.Entity.Departamento;
+import com.example.backend.Entity.UC;
 import com.example.backend.Repository.DepartamentoRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -64,6 +65,19 @@ public class DepartamentoServices {
         // LOG DE AUDITORIA: Alteração de Curso
         auditLogger.info("Utilizador ID: {} ALTEROU o Departamento  ID: {} para nome {} ; para coordenador {}.",
                 utilizador_id, departamento_id, departamento.getNome(), dto.coordenador());
+
+    }
+
+    @Transactional
+    public void DeleteDepartamento(Integer departamento_id, Integer utilizador_id) {
+
+        Departamento departamento = departamentoRepository.findById(departamento_id).orElseThrow(() -> new RuntimeException("Departamento não encontrado"));
+
+       departamentoRepository.delete(departamento);
+
+        // LOG DE AUDITORIA: Delete
+        auditLogger.info("Utilizador ID: {} APAGOU o Departamento ID: {}.",
+                utilizador_id, departamento_id);
 
     }
 

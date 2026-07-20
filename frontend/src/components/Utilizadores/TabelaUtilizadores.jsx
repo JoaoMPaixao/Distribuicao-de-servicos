@@ -2,7 +2,7 @@ import Pagination from '../Pagination.jsx'
 import ListarUtilizadoresCard from "./ListarUtilizadoresCard.jsx";
 
 
-function CursosUtilizadores({ utilizadores, paginacao, porPagina, onMudarPorPagina, onAlterar}) {
+function CursosUtilizadores({ utilizadores, paginacao, porPagina, onMudarPorPagina, onAlterar, onApagar}) {
 
     return (
         <div className="table-card">
@@ -25,6 +25,7 @@ function CursosUtilizadores({ utilizadores, paginacao, porPagina, onMudarPorPagi
                             key={d.id}
                             utilizador={d}
                             onAlterar={onAlterar}
+                            onApagar={onApagar}
                         />
                     ))}
                     </tbody>

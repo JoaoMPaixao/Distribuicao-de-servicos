@@ -1,16 +1,10 @@
 package com.example.backend.Services;
 
-import com.example.backend.Dto.Atribuicoes.ListarCursoDistribuicoesDto;
-import com.example.backend.Dto.Atribuicoes.ListarTipo_Uc_DistribuicoesDto;
-import com.example.backend.Dto.Atribuicoes.ListarUcDistribuicoesDto;
-import com.example.backend.Dto.Atribuicoes.ListarUcDto;
 import com.example.backend.Dto.Cursos.AlterarCursosDto;
 import com.example.backend.Dto.Cursos.CriarCursosDto;
 import com.example.backend.Dto.Cursos.ListarCursosDto;
 import com.example.backend.Entity.Curso;
 import com.example.backend.Entity.Departamento;
-import com.example.backend.Enums.EstadoCurso;
-import com.example.backend.Enums.EstadoUc;
 import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
 import jakarta.transaction.Transactional;
@@ -48,58 +42,6 @@ public class CursoServices {
 
     @Autowired
     private UtilsServices utilsServices;
-
-    public List<ListarCursoDistribuicoesDto> getUcByDepartamento(Integer distribuicao_id, Integer departamento_id){
-
-        //verificar se a distribuicao e utilizador têm o mesmo departamento
-       utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
-
-        //adicionar logica para que quando o uc_tipo_aula_id na UcDistribuicao seja null, é porque temos uma juncao e entao temos de ir buscar à tabela ucJuncao
-        return cursoRepository.findByDepartamento_IdAndEstadoNot(departamento_id, EstadoCurso.INATIVO)
-                .stream()
-                .map(curso -> new ListarCursoDistribuicoesDto(
-                        curso.getId(),
-                        curso.getNome(),
-                        ucRepository.findByCurso_IdAndEstadoNot(curso.getId(), EstadoUc.INATIVO)
-                                .stream()
-                                .map(uc -> new ListarUcDto(
-                                        uc.getId(),
-                                        uc.getNome(),
-                                        uc.getSemestre(),
-                                        uc.getAno_curricular(),
-                                        uc.getHoras(),
-                                        ucTipoAulaRepository.findByUc_IdAndUc_EstadoNot(uc.getId(), EstadoUc.INATIVO)
-                                                .stream()
-                                                .map(uc_tipo_aula -> new ListarTipo_Uc_DistribuicoesDto(
-
-                                                       uc_tipo_aula.getId(),
-                                                        uc_tipo_aula.getHoras(),
-                                                        uc_tipo_aula.getTipo_aula().getId(),
-                                                        uc_tipo_aula.getTipo_aula().getNome(),
-                                                        ucDistribuicaoRepository.findByUcTipoAula_Id(uc_tipo_aula.getId())
-                                                                .stream()
-                                                                .map(ucDistribuicao -> new ListarUcDistribuicoesDto(
-
-                                                                        ucDistribuicao.getId(),
-                                                                        ucDistribuicao.getTurno(),
-                                                                        ucDistribuicao.getHoras_atribuidas(),
-                                                                        ucDistribuicao.getDocente().getId(),
-                                                                        ucDistribuicao.getDocente().getNome()
-
-                                                                ))
-                                                                .toList()
-
-                                                ))
-                                                .toList()
-
-                                ))
-                                .toList()
-
-                ))
-                .toList();
-
-    }
-
 
     public List<ListarCursosDto> getCursos (){
 
@@ -155,4 +97,18 @@ public class CursoServices {
                 utilizador_id, curso_id, curso.getNome(), dto.codigo_uc(), dto.estado(), curso.getDepartamento().getId());
 
     }
+
+    @Transactional
+    public void DeleteCurso(Integer curso_id, Integer utilizador_id) {
+
+        Curso curso = cursoRepository.findById(curso_id).orElseThrow(() -> new RuntimeException("Curso não encontrado"));
+
+       cursoRepository.delete(curso);
+
+        // LOG DE AUDITORIA: Delete
+        auditLogger.info("Utilizador ID: {} APAGOU o Curso ID: {}.",
+                utilizador_id, curso_id);
+
+    }
+
 }
