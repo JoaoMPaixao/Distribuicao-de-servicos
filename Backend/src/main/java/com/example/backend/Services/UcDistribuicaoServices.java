@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -70,26 +71,25 @@ public class UcDistribuicaoServices {
     }
 
     @Transactional
-    public List<ListarUcDistribuicoesDto> getUcDistribuicoes(){
+    public List<ListarUcDistribuicoesDto> getUcDistribuicoes(Integer distribuicao_id){
 
         //Vai buscar os campos das UcDistribuicoes e ainda informacoes pertinentes sobre a uc e curso
-        return ucDistribuicaoRepository.findAll()
+        return ucDistribuicaoRepository.findByDistribuicao_Id(distribuicao_id)
                 .stream()
                 .map(ucDistribuicao -> new ListarUcDistribuicoesDto(
                         ucDistribuicao.getId(),
                         ucDistribuicao.getTurno(),
                         ucDistribuicao.getHoras_atribuidas(),
-                        ucDistribuicao.getDocente().getId(),
-                        ucDistribuicao.getDocente().getNome(),
-                        new UcCursoDto(
-                                ucDistribuicao.getUcTipoAula().getUc().getCurso().getNome(),
-                                ucDistribuicao.getUcTipoAula().getUc().getCurso().getDepartamento().getNome(),
-                                ucDistribuicao.getUcTipoAula().getUc().getNome(),
-                                ucDistribuicao.getUcTipoAula().getUc().getAno_curricular(),
-                                ucDistribuicao.getUcTipoAula().getUc().getSemestre(),
-                                ucDistribuicao.getUcTipoAula().getTipo_aula().getNome()
+                        Optional.ofNullable(ucDistribuicao.getDocente()).map(Docente::getId).orElse(null),
+                        Optional.ofNullable(ucDistribuicao.getDocente()).map(Docente::getNome).orElse(null),
+                        ucDistribuicao.getUcTipoAula().getUc().getCurso().getNome(),
+                        ucDistribuicao.getUcTipoAula().getUc().getCurso().getDepartamento().getNome(),
+                        ucDistribuicao.getUcTipoAula().getUc().getNome(),
+                        ucDistribuicao.getUcTipoAula().getUc().getAno_curricular(),
+                        ucDistribuicao.getUcTipoAula().getUc().getSemestre(),
+                        ucDistribuicao.getUcTipoAula().getTipo_aula().getNome()
 
-                        )
+
 
                 ))
                 .toList();
@@ -142,25 +142,41 @@ public class UcDistribuicaoServices {
     @Transactional
     public void CriarUcJuncao(CriarUcJuncaoDto dto, Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
-        UC_Tipo_Aula ucTipoAula = ucTipoAulaRepository.findById(dto.Uc_tipo_aula_id())
+        // Verificar se existe a distribuição, docente e uc_tipo_aula
+        Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
+
+
+        //obtemos as duas uc que vao ser juntas na junção
+        UC_Tipo_Aula ucTipoAula1 = ucTipoAulaRepository.findById(dto.Uc_tipo_aula_id1())
                 .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
 
-        UC_Distribuicao ucDistribuicao = ucDistribuicaoRepository.findById(dto.UcDistribuicao_id())
+        UC_Tipo_Aula ucTipoAula2 = ucTipoAulaRepository.findById(dto.Uc_tipo_aula_id2())
                 .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
+        //apagamos as ucdistribuicoes atuais que tenham estas uc para depois ter a juncao
+        ucDistribuicaoRepository.deleteByUcTipoAula_IdAndUcTipoAula_Id(dto.Uc_tipo_aula_id1(),dto.Uc_tipo_aula_id2());
 
-        //verifica se a distribuicao e o utilizador têm o mesmo departamento
-        utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
-
+        //é criado uma nova ucdistribuicao e as junçoes
+        UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
+        ucDistribuicao.setTurno("");
+        ucDistribuicao.setHoras_atribuidas(ucTipoAula1.getHoras());
+        ucDistribuicao.setDistribuicao(distribuicao);
+        ucDistribuicao.setEstado(EstadoUcDistribuicao.ATIVO);
 
         UC_Juncao ucJuncao = new UC_Juncao();
         ucJuncao.setUcDistribuicao(ucDistribuicao);
-        ucJuncao.setUcTipoAula(ucTipoAula);
+        ucJuncao.setUcTipoAula(ucTipoAula1);
 
         ucJuncaoRepository.save(ucJuncao);
 
+        UC_Juncao ucJuncao2 = new UC_Juncao();
+        ucJuncao.setUcDistribuicao(ucDistribuicao);
+        ucJuncao.setUcTipoAula(ucTipoAula2);
+
+        ucJuncaoRepository.save(ucJuncao2);
+
         // LOG DE AUDITORIA: Junção
-        auditLogger.info("Utilizador ID: {} CRIOU UC_Juncao ID: {} ligando UC_Distribuicao ID: {} à UC_Tipo_Aula ID: {} na Distribuição ID: {} (Departamento ID: {}).",
-                utilizador_id, ucJuncao.getId(), dto.UcDistribuicao_id(), dto.Uc_tipo_aula_id(), distribuicao_id, departamento_id);
+        auditLogger.info("Utilizador ID: {} CRIOU UC_Juncao ID : {} e UC_Juncao ID : {} ligando UC_Distribuicao ID: {} à UC_Tipo_Aula ID: {} e UC_Tipo_Aula ID: {} na Distribuição ID: {} (Departamento ID: {}).",
+                utilizador_id, ucJuncao.getId(), ucJuncao2.getId(), ucDistribuicao.getId(), dto.Uc_tipo_aula_id1(),dto.Uc_tipo_aula_id2(), distribuicao_id, departamento_id);
 
     }
 

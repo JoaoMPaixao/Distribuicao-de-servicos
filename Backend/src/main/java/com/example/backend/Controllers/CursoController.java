@@ -8,6 +8,7 @@ import com.example.backend.Services.CursoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class CursoController {
     @Autowired
     private CursoServices cursoServices;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ListarCursosDto>> listarCursos() {
 
@@ -28,6 +30,7 @@ public class CursoController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> criarCurso(Authentication authentication, @RequestBody CriarCursosDto dto) {
         try{
@@ -43,6 +46,7 @@ public class CursoController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Void> alterarCurso(@PathVariable Integer id, Authentication authentication, @RequestBody AlterarCursosDto dto) {
 
@@ -59,6 +63,7 @@ public class CursoController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}/apagar")
     public ResponseEntity<Void> ApagarCurso(@PathVariable Integer id, Authentication authentication) {
 

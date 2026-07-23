@@ -1,7 +1,7 @@
 package com.example.backend.Entity;
 
 
-import com.example.backend.Enums.EstadoUcDistribuicao;
+import  com.example.backend.Enums.EstadoUcDistribuicao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

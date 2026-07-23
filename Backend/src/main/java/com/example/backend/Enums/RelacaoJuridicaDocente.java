@@ -1,0 +1,10 @@
+package com.example.backend.Enums;
+
+public enum RelacaoJuridicaDocente {
+
+    TEMPO_INDETERMINADO,
+    TEMPO_INDETERMINADO_PERIODO_EXPERIMENTAL_5_ANOS,
+    TEMPO_INDETERMINADO_REGIME_TENURE,
+    TERMO_RESOLUTIVO_CERTO
+
+}

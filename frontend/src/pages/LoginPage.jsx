@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {login, me} from '../api/loginApi'
 import { UserContext } from '../UserContext'
-import '../styles/estilos.css'
+
 
 function LoginPage() {
     const { setUser } = useContext(UserContext);
@@ -58,7 +58,7 @@ function LoginPage() {
 
     return (
 
-        <div className="right-panel">
+        <div className="login-panel">
             <div className="login-card">
 
                 <div className="card-header">

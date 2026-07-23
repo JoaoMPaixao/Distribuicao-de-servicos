@@ -44,6 +44,23 @@ public class DistribuicaoServices {
     @Autowired
     private UtilsServices utilsServices;
 
+    public List<ListarDistribuicaoDto> getDistribuicoesById(Integer id) {
+
+
+        return distribuicaoRepository.findByIdAndEstadoNot(id,EstadoDistribuicao.INATIVO)
+                .stream()
+                .map(distribuicao -> new ListarDistribuicaoDto(
+                        distribuicao.getId(),
+                        distribuicao.getNome(),
+                        distribuicao.getVersao(),
+                        distribuicao.getDescricao(),
+                        distribuicao.getAno_letivo(),
+                        distribuicao.getData_criacao(),
+                        distribuicao.getEstado().name()
+                ))
+                .toList();
+    }
+
     public List<ListarDistribuicaoDto> getDistribuicoesByDepartamentoId(Integer departamento_id) {
 
 

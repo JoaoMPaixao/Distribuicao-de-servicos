@@ -21,6 +21,8 @@ function Topbar() {
     }, []);
 
     const handleLogout = async () => {
+
+        navigate('/');
         await logout();
         setUser(null);
         setMenuAberto(false);

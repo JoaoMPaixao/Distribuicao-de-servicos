@@ -1,6 +1,6 @@
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
-import '../styles/estilos.css'
+
 
 function DashboardLayout({ children}) {
     return (

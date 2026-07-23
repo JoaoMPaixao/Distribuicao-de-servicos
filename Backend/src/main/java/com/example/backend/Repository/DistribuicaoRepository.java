@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DistribuicaoRepository extends JpaRepository<Distribuicao,Integer> {
 
@@ -13,4 +14,6 @@ public interface DistribuicaoRepository extends JpaRepository<Distribuicao,Integ
 
 
     boolean existsByIdAndDepartamentoId(Integer distribuicao_id, Integer departamento_id);
+
+    Optional<Distribuicao> findByIdAndEstadoNot(Integer id,EstadoDistribuicao estadoDistribuicao);
 }

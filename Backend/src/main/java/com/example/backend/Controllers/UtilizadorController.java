@@ -8,6 +8,7 @@ import com.example.backend.Services.UtilizadorServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ public class UtilizadorController {
     @Autowired
     private UtilizadorServices utilizadorServices;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ListarUtilizadoresDto>> getUtilizadores(){
 
@@ -27,6 +29,7 @@ public class UtilizadorController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> criarUtilizadores(Authentication authentication, @RequestBody CriarUtilizadoresDto dto) {
         try{
@@ -42,6 +45,7 @@ public class UtilizadorController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Void> alterarUtilizador(@PathVariable Integer id, Authentication authentication, @RequestBody AlterarUtilizadoresDto dto) {
 
@@ -58,6 +62,7 @@ public class UtilizadorController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}/apagar")
     public ResponseEntity<Void> ApagarUtilizador(@PathVariable Integer id, Authentication authentication) {
 

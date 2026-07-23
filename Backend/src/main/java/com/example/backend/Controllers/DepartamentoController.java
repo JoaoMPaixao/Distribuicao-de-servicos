@@ -8,6 +8,7 @@ import com.example.backend.Services.DepartamentoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,13 +21,14 @@ public class DepartamentoController {
     @Autowired
     private DepartamentoServices departamentoServices;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ListarDepartamentosDto>> getDepartamentos(){
 
         return ResponseEntity.ok(departamentoServices.getDepartamentos());
-
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> criarDepartamento(Authentication authentication, @RequestBody CriarDepartamentoDto dto) {
         try{
@@ -42,6 +44,7 @@ public class DepartamentoController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Void> alterarDepartamento(@PathVariable Integer id, Authentication authentication, @RequestBody AlterarDepartamentosDto dto) {
 
@@ -58,6 +61,7 @@ public class DepartamentoController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}/apagar")
     public ResponseEntity<Void> ApagarDepartamento(@PathVariable Integer id, Authentication authentication) {
 

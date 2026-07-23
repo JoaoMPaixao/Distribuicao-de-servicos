@@ -31,7 +31,7 @@ public class CustomUserDetails implements UserDetails {
         this.ativo = utilizador.getEstado() == EstadoUtilizador.ATIVO;
         if (utilizador.getCargo() != null) {
             this.authorities = Collections.singletonList(
-                    new SimpleGrantedAuthority(utilizador.getCargo().getTipo())
+                    new SimpleGrantedAuthority("ROLE_" + utilizador.getCargo().getTipo())
             );
         } else {
             this.authorities = Collections.emptyList();

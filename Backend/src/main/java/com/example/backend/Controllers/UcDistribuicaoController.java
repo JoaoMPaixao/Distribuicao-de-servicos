@@ -10,6 +10,7 @@ import com.example.backend.Services.UcDistribuicaoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +27,14 @@ public class UcDistribuicaoController {
         private UcDistribuicaoServices ucDistribuicaoServices;
 
 
+        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+        @GetMapping("/atribuicoes")
+        public ResponseEntity<List<ListarUcDistribuicoesDto>> getUcsByDistribuicao(@PathVariable Integer id) {
 
-        @GetMapping()
-        public ResponseEntity<List<ListarUcDistribuicoesDto>> getUcsByDistribuicao() {
-
-            return ResponseEntity.ok(ucDistribuicaoServices.getUcDistribuicoes());
+            return ResponseEntity.ok(ucDistribuicaoServices.getUcDistribuicoes(id));
         }
 
+        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
         @PostMapping("/atribuicao/{udid}")
         public ResponseEntity<Void> CriarUcDistribuicaoTurno(@PathVariable Integer id, @PathVariable Integer udid, Authentication authentication) {
 
@@ -47,6 +49,7 @@ public class UcDistribuicaoController {
             }
         }
 
+        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
         @PostMapping("/juncao")
         public ResponseEntity<Void> CriarUcJuncao(@PathVariable Integer id, @RequestBody CriarUcJuncaoDto dto, Authentication authentication) {
 
@@ -63,6 +66,7 @@ public class UcDistribuicaoController {
 
         }
 
+        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
         @DeleteMapping("/delete/{UcDistribuicao_id}")
         public ResponseEntity<Void> deleteUcDistribuicao(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id, Authentication authentication) {
 
@@ -74,6 +78,7 @@ public class UcDistribuicaoController {
 
         }
 
+        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
         @PutMapping("/alterar/{UcDistribuicao_id}")
         public ResponseEntity<Void> alterarUcDistribuicao(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id, @RequestBody AlterarUcDistribuicaoDto dto, Authentication authentication) {
 

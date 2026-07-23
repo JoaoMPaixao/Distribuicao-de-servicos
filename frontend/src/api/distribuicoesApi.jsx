@@ -1,5 +1,15 @@
 import { instance } from './config.jsx'
 
+export const getDistribuicaoById = async (id) => {
+    try {
+        const {data} = await instance.get(`v1/distribuicoes/${id}`,id)
+        return {success: true, data}
+    } catch (error) {
+        return {success: false, status: error.response?.status, message: error.response?.data?.message}
+    }
+}
+
+
 export const getDistribuicoes = async () => {
     try {
        const {data} = await instance.get(`v1/distribuicoes`)

@@ -12,6 +12,8 @@ import {
     alterarEstadoDistribuicao
 } from '../api/distribuicoesApi'
 import {UserContext} from "../UserContext.jsx";
+import {useNavigate} from "react-router-dom";
+
 
 export const DistribuicoesPage = () => {
     const {user} = useContext(UserContext)
@@ -24,6 +26,7 @@ export const DistribuicoesPage = () => {
     const [erro, setErro] = useState(null)
     const [modalAberto, setModalAberto] = useState(false)
     const [erroModal, setErroModal] = useState(null)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -78,6 +81,11 @@ export const DistribuicoesPage = () => {
         }
     }
 
+    const handleVer = async(id) =>{
+
+        navigate(`/distribuicoes/${id}/atribuicoes`)
+    }
+
     const handleClonar = async (id) => {
 
         const response = await clonarDistribuicao(id)
@@ -125,6 +133,7 @@ export const DistribuicoesPage = () => {
             <TabelaDistribuicoes
                 distribuicoes={distribuicoesPagina}
                 porPagina={porPagina}
+                onVer={handleVer}
                 onClonar={handleClonar}
                 onMudarPorPagina={setPorPagina}
                 paginacao={{

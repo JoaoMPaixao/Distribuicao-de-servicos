@@ -31,9 +31,4 @@ public class Docente {
     @JoinColumn(name = "departamento_id")
     private Departamento departamento;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_docente_id")
-    private Tipo_Docente tipo_docente;
-
-
 }

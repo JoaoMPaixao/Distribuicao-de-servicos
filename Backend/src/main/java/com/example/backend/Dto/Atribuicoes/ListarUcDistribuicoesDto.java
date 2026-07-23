@@ -7,7 +7,12 @@ public record ListarUcDistribuicoesDto(
         Float horasAtribuidas,
         Integer docenteId,
         String docenteNome,
-       UcCursoDto ucCursoDto
+        String cursoNome,
+        String cursoDepartamentoNome,
+        String ucNome,
+        String ucAno,
+        String ucSemestre,
+        String ucTipoNome
 
 
 ) {

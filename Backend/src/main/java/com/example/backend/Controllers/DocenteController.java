@@ -18,8 +18,8 @@ public class DocenteController {
     @Autowired
     private DocenteServices docenteServices;
 
-    @GetMapping("/distribuicoes")
-    public ResponseEntity<List<ListarDocentesUcDistribuicaoDto>> getDocentesDistribuicao(){
+    @GetMapping("/distribuicao")
+    public ResponseEntity<List<ListarDocentesUcDistribuicaoDto>> getDocentesDistribuicao() {
 
         return ResponseEntity.ok(docenteServices.getDocentesUcDistribuicao());
     }

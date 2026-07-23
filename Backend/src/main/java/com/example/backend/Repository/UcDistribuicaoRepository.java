@@ -15,4 +15,5 @@ public interface UcDistribuicaoRepository extends JpaRepository<UC_Distribuicao,
 
     List<UC_Distribuicao> findByDistribuicao_Id(Integer distribuicao_id);
 
+    void deleteByUcTipoAula_IdAndUcTipoAula_Id(Integer integer, Integer integer1);
 }

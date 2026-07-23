@@ -1,4 +1,4 @@
-import '../styles/estilos.css'
+
 
 function PageHeader({ titulo, subtitulo, onCriar, texto }) {
     return (

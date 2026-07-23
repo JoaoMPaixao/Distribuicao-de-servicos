@@ -8,6 +8,7 @@ import com.example.backend.Services.UcServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ public class UcController {
     @Autowired
     private UcServices ucServices;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ListarUcsDto>> listarUcs() {
 
@@ -27,6 +29,7 @@ public class UcController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> criarUc(Authentication authentication, @RequestBody CriarUcsDto dto) {
         try{
@@ -42,6 +45,7 @@ public class UcController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Void> alterarUc(@PathVariable Integer id, Authentication authentication, @RequestBody AlterarUcsDto dto) {
 
@@ -58,6 +62,7 @@ public class UcController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}/apagar")
     public ResponseEntity<Void> ApagarUc(@PathVariable Integer id, Authentication authentication) {
 
