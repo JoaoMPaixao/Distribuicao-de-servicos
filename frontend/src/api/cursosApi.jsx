@@ -11,6 +11,17 @@ export const getCursos = async () => {
 
 }
 
+export const getCursosByDepartamento = async () => {
+
+    try{
+        const {data} = await instance.get(`v1/cursos/atribuicoes`)
+        return { success: true, data}
+    }catch (error){
+        return {success: false, status: error.response?.status, message: error.response?.data?.message}
+    }
+
+}
+
 export const criarCurso = async (dados) => {
     try {
 

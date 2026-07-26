@@ -1,11 +1,10 @@
 package com.example.backend.Dto.Atribuicoes;
 
+import java.util.List;
+
 public record CriarUcJuncaoDto (
 
-        Integer id,
-        Integer Uc_tipo_aula_id1,
-        Integer Uc_tipo_aula_id2
-
+        List<Integer> ucTipoAulaIds
 
 ){
 }

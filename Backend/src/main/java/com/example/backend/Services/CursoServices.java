@@ -5,6 +5,7 @@ import com.example.backend.Dto.Cursos.CriarCursosDto;
 import com.example.backend.Dto.Cursos.ListarCursosDto;
 import com.example.backend.Entity.Curso;
 import com.example.backend.Entity.Departamento;
+import com.example.backend.Enums.EstadoCurso;
 import com.example.backend.Repository.*;
 import com.example.backend.Utils.UtilsServices;
 import jakarta.transaction.Transactional;
@@ -46,6 +47,22 @@ public class CursoServices {
     public List<ListarCursosDto> getCursos (){
 
         return cursoRepository.findAll()
+                .stream()
+                .map(curso -> new ListarCursosDto(
+                        curso.getId(),
+                        curso.getNome(),
+                        curso.getEstado(),
+                        curso.getCodigo_uc(),
+                        curso.getDepartamento().getId(),
+                        curso.getDepartamento().getNome()
+                ))
+                .toList();
+
+    }
+
+    public List<ListarCursosDto> getCursosByDepartamento (Integer departamento_id){
+
+        return cursoRepository.findByDepartamentoIdAndEstadoNot(departamento_id, EstadoCurso.INATIVO)
                 .stream()
                 .map(curso -> new ListarCursosDto(
                         curso.getId(),

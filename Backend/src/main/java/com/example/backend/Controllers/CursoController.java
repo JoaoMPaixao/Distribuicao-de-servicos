@@ -31,6 +31,17 @@ public class CursoController {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/atribuicoes")
+    public ResponseEntity<List<ListarCursosDto>> listarCursosByDepartamento(Authentication authentication) {
+
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        Integer departamentoId = user.getDepartamentoId();
+
+        return ResponseEntity.ok(cursoServices.getCursosByDepartamento(departamentoId));
+
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> criarCurso(Authentication authentication, @RequestBody CriarCursosDto dto) {
         try{

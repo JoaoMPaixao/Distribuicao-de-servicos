@@ -1,9 +1,6 @@
 package com.example.backend.Controllers;
 
-import com.example.backend.Dto.Atribuicoes.AlterarUcDistribuicaoDto;
-import com.example.backend.Dto.Atribuicoes.CriarUcDistribuicoesDto;
-import com.example.backend.Dto.Atribuicoes.CriarUcJuncaoDto;
-import com.example.backend.Dto.Atribuicoes.ListarUcDistribuicoesDto;
+import com.example.backend.Dto.Atribuicoes.*;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.CursoServices;
 import com.example.backend.Services.UcDistribuicaoServices;
@@ -78,16 +75,40 @@ public class UcDistribuicaoController {
 
         }
 
-        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
-        @PutMapping("/alterar/{UcDistribuicao_id}")
-        public ResponseEntity<Void> alterarUcDistribuicao(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id, @RequestBody AlterarUcDistribuicaoDto dto, Authentication authentication) {
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+    @PatchMapping("/horas/{UcDistribuicao_id}")
+    public ResponseEntity<Void> alterarHoras(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id, @RequestBody AlterarHorasUcDistribuicaoDto dto, Authentication authentication) {
 
-            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-            Integer departamentoId = user.getDepartamentoId();
-            Integer utilizadorID = user.getId();
-            ucDistribuicaoServices.AlterarUcDistribuicao(dto, id, UcDistribuicao_id, departamentoId, utilizadorID );
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        }
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        Integer departamentoId = user.getDepartamentoId();
+        Integer utilizadorID = user.getId();
+        ucDistribuicaoServices.AlterarHoras(dto, id, UcDistribuicao_id, departamentoId, utilizadorID );
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+    @PatchMapping("/docente/{UcDistribuicao_id}/atribuir")
+    public ResponseEntity<Void> atribuirDocente(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id, @RequestBody AtribuirDocenteDto dto, Authentication authentication) {
+
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        Integer departamentoId = user.getDepartamentoId();
+        Integer utilizadorID = user.getId();
+        ucDistribuicaoServices.atribuirDocente(dto, id, UcDistribuicao_id, departamentoId, utilizadorID );
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+    @PatchMapping("/docente/{UcDistribuicao_id}/retirar")
+    public ResponseEntity<Void> retirarDocente(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id,Authentication authentication) {
+
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        Integer departamentoId = user.getDepartamentoId();
+        Integer utilizadorID = user.getId();
+        ucDistribuicaoServices.retirarDocente(id, UcDistribuicao_id, departamentoId, utilizadorID );
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
 
 
 

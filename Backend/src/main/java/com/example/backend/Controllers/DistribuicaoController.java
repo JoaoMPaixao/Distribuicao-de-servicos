@@ -29,8 +29,8 @@ public class DistribuicaoController {
 
     @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
     @GetMapping("/{id}")
-    public ResponseEntity<List<ListarDistribuicaoDto>> getDistribuicoesById(@PathVariable Integer id) {
-        return ResponseEntity.ok(distribuicaoServices.getDistribuicoesById(id));
+    public ResponseEntity<ListarDistribuicaoDto> getDistribuicaoById(@PathVariable Integer id) {
+        return ResponseEntity.ok(distribuicaoServices.getDistribuicaoById(id));
     }
 
     @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")

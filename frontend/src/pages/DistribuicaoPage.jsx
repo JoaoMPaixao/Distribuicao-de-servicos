@@ -4,20 +4,18 @@ import {UserContext} from "../UserContext.jsx";
 import {
     getUcsDistribuicao,
     criarUcDistribuicaoTurno,
-    alterarUcDistribuicao,
     apagarUcDistribuicao,
     criarJuncao,
-    getDocentesUcsDistribuicao}
+    getDocentesUcsDistribuicao, alterarHoras, atribuirDocente, retirarDocente
+}
     from '../api/atribuicoesApi.jsx'
 import TabelaDistribuicao from "../components/Distribuicao/TabelaAtribuicoes.jsx"
 import PainelDocentes from '../components/Distribuicao/PainelDocentes.jsx'
-import BarraInferior from '../components/Distribuicao/BottomBar.jsx'
-import SideBar_TopBar from "../layouts/SideBar_TopBar.jsx";
 import FilterBarAtribuicoes from "../components/Distribuicao/FilterBarAtribuicoes.jsx";
-import TopBar from "../components/TopBar.jsx";
-import {getDistribuicaoById} from "../api/distribuicoesApi.jsx";
 import SideBarCollapsed_TopBar from "../layouts/SideBarCollapsed_TopBar.jsx";
-import {getCursos} from "../api/cursosApi.jsx";
+import {getCursosByDepartamento} from "../api/cursosApi.jsx";
+import {alterarEstadoDistribuicao, getDistribuicaoById, getDistribuicoes} from "../api/distribuicoesApi.jsx";
+import ModalJuncao from "../components/Distribuicao/ModalJuncao.jsx";
 
 
 
@@ -27,26 +25,32 @@ function DistribuicaoPage() {
     const navigate = useNavigate()
     const [distribuicao, setDistribuicao] = useState(null)
     const [atribuicoes, setAtribuicoes] = useState([])
+    const [atribuicaoSelecionada, setAtribuicaoSelecionada] = useState([])
     const [docentes, setDocentes] = useState([])
     const [cursos, setCursos] = useState([])
-    const [alteracoesPorGuardar, setAlteracoesPorGuardar] = useState(false)
     const [anoCurricularFiltro, setAnoCurricularFiltro] = useState("")
     const [cursoFiltro, setCursoFiltro] = useState("")
+    const [docenteFiltro, setDocenteFiltro] = useState("")
     const [semestreFiltro, setSemestreFiltro] = useState("")
     const [erro, setErro] = useState(null)
+    const [modalAberto, setModalAberto] = useState(false)
 
+    const abrirJuncao = (atribuicao) => {
+        setAtribuicaoSelecionada(atribuicao)
+        setModalAberto(true)
+    }
 
     useEffect(() => {
         // if (!user) return
         const carregar = async () => {
             const response = await getUcsDistribuicao(id)
-            console.log("tentar")
+
             if (response.success) {
                 setAtribuicoes(response.data)
-                console.log(response.data)
+
             } else {
                 setErro(response.message)
-                console.log("no")
+
             }
         }
         carregar()
@@ -55,7 +59,23 @@ function DistribuicaoPage() {
     useEffect(() => {
         // if (!user) return
         const carregar = async () => {
-            const response = await getCursos()
+            const response = await getDistribuicaoById(id)
+
+            if (response.success) {
+                setDistribuicao(response.data)
+
+            } else {
+                setErro(response.message)
+
+            }
+        }
+        carregar()
+    }, [user])
+
+    useEffect(() => {
+        // if (!user) return
+        const carregar = async () => {
+            const response = await getCursosByDepartamento()
 
             if (response.success) {
                 setCursos(response.data)
@@ -86,83 +106,107 @@ function DistribuicaoPage() {
     }, [user])
 
 
-    const handleAtribuirDocente = async (linhaId, docente) => {
-        // atualiza localmente primeiro (optimistic update — resposta instantânea)
-        setAtribuicoes(prev => prev.map(l => l.id === linhaId ? { ...l, docente } : l))
 
-        // depois persiste na API
-        const response = await atribuirDocente(id, linhaId, docente.id)
-        if (!response.success) {
-            // se falhar, reverte
-            setLinhas(prev => prev.map(l => l.id === linhaId ? { ...l, docente: null } : l))
-            showToast('Erro ao atribuir docente')
-        }
-    }
+    const handleAlterarHoras = async (atribuicaoid, horas) => {
 
-    const handleRemoverDocente = async (linhaId) => {
-        const docenteAnterior = linhas.find(l => l.id === linhaId)?.docente
-        setLinhas(prev => prev.map(l => l.id === linhaId ? { ...l, docente: null } : l))
+        const dados = { horasAtribuidas: horas }
 
-        const response = await removerDocente(id, linhaId)
-        if (!response.success) {
-            setLinhas(prev => prev.map(l => l.id === linhaId ? { ...l, docente: docenteAnterior } : l))
-            showToast('Erro ao remover docente')
-        }
-    }
-
-    const handleAlterarHoras = async (linhaId, horas) => {
-        const horasAnterior = linhas.find(l => l.id === linhaId)?.horas
-        setLinhas(prev => prev.map(l => l.id === linhaId ? { ...l, horas } : l))
-
-        const response = await atualizarHoras(id, linhaId, horas)
-        if (!response.success) {
-            setLinhas(prev => prev.map(l => l.id === linhaId ? { ...l, horas: horasAnterior } : l))
-            showToast('Erro ao atualizar horas')
-        }
-    }
-
-    const handleClonar = async (id) => {
-
-        const response = await criarUcDistribuicaoTurno(id)
+        const response = await alterarHoras(id,atribuicaoid, dados)
         if (response.success) {
-            const atualizado = await getUcsDistribuicao()
+            const atualizado = await getUcsDistribuicao(id)
+            if (atualizado.success) setAtribuicoes(atualizado.data)
+        } else {
+            alert(`Erro ao alterar: ${response.message || 'Erro desconhecido'}`)
+        }
+    }
+
+    const handleAtribuirDocente = async (atribuicaoid, docente) => {
+
+        const dados = { docenteId: docente.id }
+
+        const response = await atribuirDocente(id,atribuicaoid, dados)
+        if (response.success) {
+          
+            const atualizado = await getUcsDistribuicao(id)
+            if (atualizado.success) setAtribuicoes(atualizado.data)
+        } else {
+            alert(`Erro ao alterar: ${response.message || 'Erro desconhecido'}`)
+        }
+    }
+
+    const handleRetirarDocente = async (atribuicaoid) => {
+
+        const response = await retirarDocente(id,atribuicaoid)
+        if (response.success) {
+            const atualizado = await getUcsDistribuicao(id)
+            if (atualizado.success) setAtribuicoes(atualizado.data)
+        } else {
+            alert(`Erro ao alterar: ${response.message || 'Erro desconhecido'}`)
+        }
+    }
+
+    const handleClonar = async (atribuicaoId) => {
+
+        const response = await criarUcDistribuicaoTurno(atribuicaoId, id)
+        if (response.success) {
+            const atualizado = await getUcsDistribuicao(id)
             if (atualizado.success) setAtribuicoes(atualizado.data)
         }
 
     }
 
+    const handleJuncao = async (ucTipoAulaIds) => {
+        const dados = {
+            ucTipoAulaIds
+        }
+        const response = await criarJuncao(id, dados)
+        console.log(dados)
+        if (response?.success) {
+            const atualizado = await getUcsDistribuicao(id)
+            if (atualizado?.success) {
+                setAtribuicoes(atualizado.data)
+            }
+        }
+    }
 
     const atribuicoesFiltradas = atribuicoes.filter(l => {
-        const matchAnoCurricular = !anoCurricularFiltro || l.ano_curricular === anoCurricularFiltro
-        const matchCurso = !cursoFiltro || String(l.curso_id) === cursoFiltro
-        const matchSemestre = !semestreFiltro || l.semestre === semestreFiltro
-        return matchAnoCurricular && matchCurso && matchSemestre
+        const matchAnoCurricular = !anoCurricularFiltro || l.ucAno === anoCurricularFiltro
+        const matchCurso = !cursoFiltro || String(l.cursoId) === cursoFiltro
+        const matchDocente = !docenteFiltro ||
+            (l.docenteNome && l.docenteNome.toLowerCase().includes(docenteFiltro.toLowerCase()));
+        const matchSemestre = !semestreFiltro || l.ucSemestre === semestreFiltro
+        return matchAnoCurricular && matchCurso && matchSemestre && matchDocente
     })
 
     if (erro) return <p>Erro: {erro}</p>
 
     return (
         <SideBarCollapsed_TopBar
-            breadcrumb={[
-                { label: 'Distribuições', path: '/distribuicoes' },
-
-            ]}
+          distribuicao={distribuicao}
         >
-            <FilterBarAtribuicoes cursos={cursos} anoCurricularFiltro={anoCurricularFiltro} setAnoCurricularFiltro={setAnoCurricularFiltro}
+            <FilterBarAtribuicoes cursos={cursos} anoCurricularFiltro={anoCurricularFiltro}
+                                  setAnoCurricularFiltro={setAnoCurricularFiltro}
                                   semestreFiltro={semestreFiltro} setSemestreFiltro={setSemestreFiltro}
-                                  cursoFiltro={cursoFiltro} setCursoFiltro={setCursoFiltro} onLimpar={() => {
+                                  cursoFiltro={cursoFiltro} setCursoFiltro={setCursoFiltro}
+                                  docenteFiltro={docenteFiltro} setDocenteFiltro={setDocenteFiltro} onLimpar={() => {
+                setAnoCurricularFiltro("");
+                setCursoFiltro("");
+                setSemestreFiltro("")
+
             }}/>
 
 
-                <TabelaDistribuicao
-                    atribuicoes={atribuicoesFiltradas}
-                    onAtribuirDocente={handleAtribuirDocente}
-                    onRemoverDocente={handleRemoverDocente}
-                    onAlterarHoras={handleAlterarHoras}
-                    onClonar={handleClonar}
-                />
+            <TabelaDistribuicao
+                atribuicoes={atribuicoesFiltradas}
+                onAtribuirDocente={handleAtribuirDocente}
+                onRetirarDocente={handleRetirarDocente}
+                onAlterarHoras={handleAlterarHoras}
+                onClonar={handleClonar}
+                onJuncao={abrirJuncao}
+            />
 
-            <PainelDocentes docentes={docentes} />
+            <PainelDocentes docentes={docentes}/>
+            {modalAberto && <ModalJuncao atribuicao = {atribuicaoSelecionada} atribuicoes={atribuicoes} onClose={() => setModalAberto(false)} onSubmit={handleJuncao}/>}
         </SideBarCollapsed_TopBar>
 
 

@@ -5,7 +5,7 @@ import Topbar from '../components/Topbar.jsx'
 import TopBar_Collapsed from "../components/TopBar_Collapsed.jsx";
 import TopBar from "../components/Topbar.jsx";
 
-function SideBarCollapsed_TopBar({ children, breadcrumb }) {
+function SideBarCollapsed_TopBar({ children, distribuicao }) {
     const [collapsed, setCollapsed] = useState(false)
 
     return (
@@ -17,7 +17,7 @@ function SideBarCollapsed_TopBar({ children, breadcrumb }) {
 
             <TopBar_Collapsed
                 collapsed={collapsed}
-                breadcrumb={breadcrumb}
+                distribuicao={distribuicao}
             />
 
             <main className={`main-detalhe ${collapsed ? 'collapsed' : ''}`}>

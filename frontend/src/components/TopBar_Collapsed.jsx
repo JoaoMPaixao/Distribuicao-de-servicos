@@ -3,7 +3,7 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../api/loginApi";
 
-function Topbar({ collapsed, breadcrumb }) {
+function Topbar({ collapsed, distribuicao }) {
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [menuAberto, setMenuAberto] = useState(false);
@@ -33,6 +33,7 @@ function Topbar({ collapsed, breadcrumb }) {
         <div className={`topbar ${collapsed ? 'collapsed' : ''}`}>
             <div className="topbar-left">
                 <h4>Departamento de {user?.departamento ?? 'unknown'}</h4>
+                <h4>/  Distribuição: {distribuicao?.nome ?? 'unknown'}</h4>
             </div>
             <div className="topbar-right">
                 <div className="user-chip" ref={menuRef} >

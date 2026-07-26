@@ -4,7 +4,7 @@ export const getUcsDistribuicao = async (id) => {
 
     try{
         const {data} = await instance.get(`/v1/distribuicoes/${id}/atribuicoes`)
-        console.log(data)
+
         return { success: true, data}
     }catch (error){
         return {success: false, status: error.response?.status, message: error.response?.data?.message}
@@ -12,10 +12,10 @@ export const getUcsDistribuicao = async (id) => {
 
 }
 
-export const criarUcDistribuicaoTurno = async (id,udid) => {
+export const criarUcDistribuicaoTurno = async (udid, id) => {
     try {
 
-        const {data} = await instance.post(`/v1/distribuicoes/${id}/atribuicoes/${udid}`);
+        const {data} = await instance.post(`/v1/distribuicoes/${id}/atribuicao/${udid}`);
 
         return {success: true, data}
     } catch (error) {
@@ -25,7 +25,7 @@ export const criarUcDistribuicaoTurno = async (id,udid) => {
 
 export const criarJuncao = async (id, dados) => {
     try {
-        const {data} = await instance.put(`/v1/distribuicoes/${id}/juncao`, dados)
+        const {data} = await instance.post(`/v1/distribuicoes/${id}/juncao`, dados)
         return { success: true, data }
     } catch (error) {
         return { success: false, status: error.response?.status, message: error.response?.data?.message }
@@ -43,9 +43,27 @@ export const apagarUcDistribuicao = async (id,udid) => {
 
 }
 
-export const alterarUcDistribuicao = async (id,udid, dados) => {
+export const alterarHoras = async (id,udid, dados) => {
     try {
-        const {data} = await instance.put(`/v1/distribuicoes/${id}/alterar/${udid}`, dados)
+        const {data} = await instance.patch(`/v1/distribuicoes/${id}/horas/${udid}`, dados)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+}
+
+export const atribuirDocente = async (id,udid, dados) => {
+    try {
+        const {data} = await instance.patch(`/v1/distribuicoes/${id}/docente/${udid}/atribuir`, dados)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+}
+
+export const retirarDocente = async (id,udid) => {
+    try {
+        const {data} = await instance.patch(`/v1/distribuicoes/${id}/docente/${udid}/retirar`)
         return { success: true, data }
     } catch (error) {
         return { success: false, status: error.response?.status, message: error.response?.data?.message }

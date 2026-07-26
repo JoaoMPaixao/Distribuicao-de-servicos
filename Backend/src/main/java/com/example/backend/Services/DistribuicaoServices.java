@@ -44,11 +44,10 @@ public class DistribuicaoServices {
     @Autowired
     private UtilsServices utilsServices;
 
-    public List<ListarDistribuicaoDto> getDistribuicoesById(Integer id) {
+    public ListarDistribuicaoDto getDistribuicaoById(Integer id) {
 
 
         return distribuicaoRepository.findByIdAndEstadoNot(id,EstadoDistribuicao.INATIVO)
-                .stream()
                 .map(distribuicao -> new ListarDistribuicaoDto(
                         distribuicao.getId(),
                         distribuicao.getNome(),
@@ -57,8 +56,8 @@ public class DistribuicaoServices {
                         distribuicao.getAno_letivo(),
                         distribuicao.getData_criacao(),
                         distribuicao.getEstado().name()
-                ))
-                .toList();
+                )).orElseThrow(() -> new RuntimeException("Distribuição não encontrada "));
+
     }
 
     public List<ListarDistribuicaoDto> getDistribuicoesByDepartamentoId(Integer departamento_id) {

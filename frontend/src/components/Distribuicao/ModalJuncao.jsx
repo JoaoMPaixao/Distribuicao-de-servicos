@@ -1,15 +1,32 @@
-// ModalJuncao.jsx
 import { useState } from 'react'
 
-function ModalJuncao({ label, linhas, onClose, onConfirmar }) {
-    const [selecionado, setSelecionado] = useState(null)
+function ModalJuncao({ atribuicao, atribuicoes, onClose, onSubmit }) {
+    const [selecionados, setSelecionados] = useState([])
 
-    // filtra a própria linha para não aparecer como opção
-    const opcoes = linhas.filter(l => `${l.uc} — ${l.tipo}` !== label)
+    // filtra a própria atribuição e as que não têm ucTipoAulaId (já são junções)
+    const opcoes = atribuicoes.filter(l =>
+        l.id !== atribuicao?.id && l.ucTipoAulaId != null
+    )
+
+    const toggleSelecionado = (a) => {
+        setSelecionados(prev =>
+            prev.find(s => s.id === a.id)
+                ? prev.filter(s => s.id !== a.id)  // remove se já estava
+                : [...prev, a]                      // adiciona se não estava
+        )
+    }
 
     const handleConfirmar = () => {
-        if (!selecionado) return
-        onConfirmar(selecionado)
+        if (selecionados.length === 0) return
+
+        // junta o ucTipoAulaId da atribuição de origem com os das selecionadas
+        const ucTipoAulaIds = [
+            atribuicao.ucTipoAulaId,
+            ...selecionados.map(s => s.ucTipoAulaId)
+        ]
+
+        onSubmit(ucTipoAulaIds)
+        onClose()
     }
 
     const handleOverlayClick = (e) => {
@@ -19,26 +36,30 @@ function ModalJuncao({ label, linhas, onClose, onConfirmar }) {
     return (
         <div className="modal-backdrop open" onClick={handleOverlayClick}>
             <div className="modal-box">
-
-                <div className="modal-title">Juntar "{label}" com…</div>
-                <div className="modal-sub">Seleciona a linha com a qual queres criar uma junção</div>
+                <div className="modal-title">
+                    Juntar "{atribuicao?.ucNome} — {atribuicao?.ucTipoNome}" com…
+                </div>
+                <div className="modal-sub">
+                    Seleciona uma ou mais linhas para criar uma junção
+                </div>
 
                 <div>
                     {opcoes.length === 0 ? (
                         <p style={{ fontSize: '13px', color: 'var(--muted)', padding: '8px 0' }}>
-                            Não existem outras linhas disponíveis para junção.
+                            Não existem outras linhas disponíveis.
                         </p>
                     ) : (
                         opcoes.map((l) => {
-                            const opcaoLabel = `${l.uc} — ${l.tipo}`
+                            const estaSelecionado = selecionados.find(s => s.id === l.id)
                             return (
                                 <div
                                     key={l.id}
-                                    className={`turno-option ${selecionado?.id === l.id ? 'selected' : ''}`}
-                                    onClick={() => setSelecionado(l)}
+                                    className={`turno-option ${estaSelecionado ? 'selected' : ''}`}
+                                    onClick={() => toggleSelecionado(l)}
                                 >
-                                    <i className="bi bi-layout-text-sidebar-reverse"></i>
-                                    {opcaoLabel}
+                                    <i className={`bi ${estaSelecionado ? 'bi-check-square' : 'bi-square'}`}></i>
+                                    {l.ucNome} — {l.ucTipoNome}
+                                    {l.turno && <span style={{ color: 'var(--muted)', fontSize: '11px' }}> (Turno {l.turno})</span>}
                                 </div>
                             )
                         })
@@ -50,12 +71,11 @@ function ModalJuncao({ label, linhas, onClose, onConfirmar }) {
                     <button
                         className="btn-confirm"
                         onClick={handleConfirmar}
-                        disabled={!selecionado}
+                        disabled={selecionados.length === 0}
                     >
-                        Criar junção
+                        Criar junção {selecionados.length > 0 && `(${selecionados.length + 1})`}
                     </button>
                 </div>
-
             </div>
         </div>
     )

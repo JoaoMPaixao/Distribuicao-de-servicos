@@ -2,7 +2,7 @@
 import ListarAtribuicoesCard from './ListarAtribuicoesCard.jsx'
 import { useState } from "react";
 
-function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRemoverDocente, onAlterarHoras, onClonar }) {
+function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRetirarDocente, onAlterarHoras, onClonar, onJuncao }) {
     const [atribuicaoSelecionada, setAtribuicaoSelecionada] = useState(null)
 
     const handleDrop = (e, atribuicaoId) => {
@@ -11,69 +11,62 @@ function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRemoverDocente, 
         onAtribuirDocente(atribuicaoId, docente)
     }
 
-    const headerTextStyle = {
-        display: 'flex',
-        alignItems: 'flex-end',
-        height: '64px',
-        paddingBottom: '6px',
-        fontSize: '10.5px',
-        textTransform: 'uppercase',
-        letterSpacing: '.04em'
-    }
-
     return (
-        <div className="tableArea">
-            <table className="distTable">
+        <div className="table-area">
+            <table className="dist-table">
                 <thead>
                 <tr>
-                    <th rowSpan="2" className="thRot">
-                        <div className="rotWrap"><span>Dep.</span></div>
+                    <th rowSpan="2" >
+                        <div className="th-header"><span>Dep.</span></div>
                     </th>
-                    <th rowSpan="2" style={{ padding: '0 12px', minWidth: '130px', textAlign: 'left' }}>
-                        <div style={headerTextStyle}>Curso</div>
+                    <th rowSpan="5">
+                        <div className="th-header">Curso</div>
                     </th>
-                    <th rowSpan="2" className="thRot">
-                        <div className="rotWrap"><span>Ano</span></div>
+                    <th rowSpan="2" className="th-rot">
+                        <div className="rot-wrap"><span>Ano</span></div>
                     </th>
-                    <th rowSpan="2" className="thRot">
-                        <div className="rotWrap"><span>Sem.</span></div>
+                    <th rowSpan="2" className="th-rot">
+                        <div className="rot-wrap"><span>Sem.</span></div>
                     </th>
-                    <th rowSpan="2" style={{ padding: '0 12px', minWidth: '180px', textAlign: 'left' }}>
-                        <div style={headerTextStyle}>Unidade Curricular</div>
+                    <th rowSpan="2" >
+                        <div className="th-header">Unidade Curricular</div>
                     </th>
-                    <th rowSpan="2" className="thRot">
-                        <div className="rotWrap"><span>Tipologia</span></div>
+                    <th rowSpan="2" className="th-rot">
+                        <div className="rot-wrap"><span>Tipologia</span></div>
                     </th>
-                    <th rowSpan="2" className="thRot">
-                        <div className="rotWrap"><span>Horas</span></div>
+                    <th rowSpan="2" className="th-rot">
+                        <div className="rot-wrap"><span>Turno</span></div>
+                    </th>
+                    <th rowSpan="2" className="th-rot">
+                        <div className="rot-wrap"><span>Horas</span></div>
                     </th>
                     <th rowSpan="2" style={{ padding: '0 12px', minWidth: '170px', textAlign: 'left' }}>
-                        <div style={headerTextStyle}>Docente</div>
+                        <div className="th-header">Docente</div>
                     </th>
 
-                    <th colSpan="3" className="thGroup accent">Horas/Semestre UC</th>
+                    <th colSpan="3" className="th-group accent">Horas/Semestre UC</th>
 
-                    <th rowSpan="2" className="thRot">
-                        <div className="rotWrap"><span>Nº semanas</span></div>
+                    <th rowSpan="2" className="th-rot">
+                        <div className="rot-wrap"><span>Nº semanas</span></div>
                     </th>
 
-                    <th colSpan="2" className="thGroup accent">Horas/Semana UC</th>
+                    <th colSpan="2" className="th-group accent">Horas/Semana UC</th>
 
-                    <th colSpan="3" className="thGroup purple">Horas Totais/Semana Docente</th>
+                    <th colSpan="3" className="th-group purple">Horas Totais/Semana Docente</th>
 
                     <th rowSpan="2" style={{ padding: '0 8px', minWidth: '70px' }}>
-                        <div style={headerTextStyle}>Ações</div>
+                        <div className="th-header">Ações</div>
                     </th>
                 </tr>
                 <tr>
-                    <th className="thLeaf">S1</th>
-                    <th className="thLeaf">S2</th>
-                    <th className="thLeaf">Média</th>
-                    <th className="thLeaf">S1</th>
-                    <th className="thLeaf">S2</th>
-                    <th className="thLeaf" style={{ background: '#f5f3ff' }}>S1</th>
-                    <th className="thLeaf" style={{ background: '#f5f3ff' }}>S2</th>
-                    <th className="thLeaf" style={{ background: '#f5f3ff' }}>Média</th>
+                    <th className="th-leaf">S1</th>
+                    <th className="th-leaf">S2</th>
+                    <th className="th-leaf">Média</th>
+                    <th className="th-leaf">S1</th>
+                    <th className="th-leaf">S2</th>
+                    <th className="th-leaf" style={{ background: '#f5f3ff' }}>S1</th>
+                    <th className="th-leaf" style={{ background: '#f5f3ff' }}>S2</th>
+                    <th className="th-leaf" style={{ background: '#f5f3ff' }}>Média</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -84,9 +77,10 @@ function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRemoverDocente, 
                         selecionada={atribuicaoSelecionada === a.id}
                         onSelecionar={() => setAtribuicaoSelecionada(a.id)}
                         onDrop={(e) => handleDrop(e, a.id)}
-                        onRemoverDocente={() => onRemoverDocente(a.id)}
+                        onRetirarDocente={() => onRetirarDocente(a.id)}
                         onAlterarHoras={(h) => onAlterarHoras(a.id, h)}
                         onClonar={() => onClonar(a.id)}
+                        onJuncao={onJuncao}
                     />
                 ))}
                 </tbody>

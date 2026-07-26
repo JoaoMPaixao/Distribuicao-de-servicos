@@ -4,7 +4,7 @@ public record CriarUcDistribuicoesDto (
 
         Integer id,
         Float horasAtribuidas,
-        String turno,
+        Integer turno,
         Integer docenteId,
         Integer Uc_tipo_aula_id
 

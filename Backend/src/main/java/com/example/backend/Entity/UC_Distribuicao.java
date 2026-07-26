@@ -25,7 +25,7 @@ public class UC_Distribuicao {
     @Enumerated(EnumType.STRING)
     private EstadoUcDistribuicao estado;
 
-    private String turno;
+    private Integer turno;
 
     @ManyToOne
     @JoinColumn(name = "uc_distribuicao_pai_id")

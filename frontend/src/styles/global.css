@@ -1,7 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --sidebar-w: 260px;
+    --sidebar-w: 220px;
     --accent-lt: #dbeafe;
     --muted:     #64748b;
     --accent:    #2563eb;
@@ -124,7 +124,7 @@ body {
     padding: 0 28px;
     z-index: 90;
     transition: left .22s cubic-bezier(.4,0,.2,1);
-    overflow: hidden;
+    overflow: visible;
 }
 .topbar-left { display: flex; align-items: center; gap: 14px; }
 
@@ -140,6 +140,7 @@ body {
 
 .user-chip {
     display: flex; align-items: center; gap: 10px;
+    position: relative;
     cursor: pointer;
     padding: 4px 10px 4px 4px;
     border-radius: 40px;
@@ -440,11 +441,19 @@ td { padding: 14px 16px; vertical-align: middle; }
 
 /* ===================== Login PANEL ===================== */
 .login-panel {
-    flex: 1;
+    position: fixed;   /* Força o painel a soltar-se de qualquer sidebar/main */
+    top: 0;
+    left: 0;
+    width: 100vw;      /* Ocupa 100% da largura da janela */
+    height: 100vh;     /* Ocupa 100% da altura da janela */
+    z-index: 999;      /* Fica por cima de qualquer topo ou sidebar */
+    background: var(--bg); /* Garante a cor de fundo uniforme */
+
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 90px 525px;
+
+    box-sizing: border-box;
 }
 
 .login-card {
@@ -918,6 +927,7 @@ input[type="password"]::-ms-clear {
     display: flex; flex-direction: column;
     transition: left .22s cubic-bezier(.4,0,.2,1);
     overflow: hidden;
+
 }
 .main-detalhe.collapsed { left: var(--sidebar-collapsed-w); }
 
@@ -951,6 +961,8 @@ input[type="password"]::-ms-clear {
 .table-area {
     flex: 1; overflow: auto;
     background: var(--surface); width: 100%;
+    min-height: 0;
+
 }
 
 table.dist-table {
@@ -968,7 +980,9 @@ table.dist-table {
 }
 .dist-table thead tr:first-child th { border-bottom: 1px solid var(--border); }
 
-.th-group { text-align: center; padding: 6px 10px; border-bottom: 1px solid var(--border); font-size: 10.5px; }
+.th-header{ display: flex; justify-content: center; align-items: center; height: 64px; font-size: 11px; text-transform: uppercase; text-align: center;}
+
+.th-group { text-align: center; padding: 6px 10px; border-bottom: 1px solid var(--border); font-size: 11px; }
 .th-group.accent { background: #eff6ff; color: #1e40af; }
 .th-group.purple { background: #f5f3ff; color: #5b21b6; }
 .th-group.green  { background: #f0fdf4; color: #166534; }
@@ -979,13 +993,13 @@ table.dist-table {
 .th-rot { width: 32px; }
 .th-rot .rot-wrap {
     display: flex; align-items: flex-end; justify-content: center;
-    height: 64px; padding-bottom: 4px;
+    height: 80px; padding-bottom: 4px;
 }
 .th-rot span {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    font-size: 10.5px; font-weight: 600; color: var(--muted);
-    text-transform: uppercase; letter-spacing: .04em; white-space: nowrap;
+    font-size: 11px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase;  white-space: nowrap;
 }
 
 .dist-table tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
