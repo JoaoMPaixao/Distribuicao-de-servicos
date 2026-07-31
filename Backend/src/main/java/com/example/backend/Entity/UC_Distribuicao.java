@@ -20,7 +20,7 @@ public class UC_Distribuicao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Float horas_atribuidas;
+    private float horas_atribuidas;
 
     @Enumerated(EnumType.STRING)
     private EstadoUcDistribuicao estado;

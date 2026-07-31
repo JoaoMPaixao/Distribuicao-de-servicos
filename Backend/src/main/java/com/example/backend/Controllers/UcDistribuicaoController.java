@@ -31,15 +31,30 @@ public class UcDistribuicaoController {
             return ResponseEntity.ok(ucDistribuicaoServices.getUcDistribuicoes(id));
         }
 
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+    @PostMapping("/atribuicao/{udid}/duplicar")
+    public ResponseEntity<Void> CriarUcDistribuicao(@PathVariable Integer id, @PathVariable Integer udid, Authentication authentication) {
+
+        try{
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+            Integer departamentoId = user.getDepartamentoId();
+            Integer utilizadorID = user.getId();
+            ucDistribuicaoServices.CriarUcDistribuicao(udid, id, departamentoId, utilizadorID);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch(NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
         @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
-        @PostMapping("/atribuicao/{udid}")
+        @PostMapping("/atribuicao/{udid}/turno")
         public ResponseEntity<Void> CriarUcDistribuicaoTurno(@PathVariable Integer id, @PathVariable Integer udid, Authentication authentication) {
 
             try{
                 CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
                 Integer departamentoId = user.getDepartamentoId();
                 Integer utilizadorID = user.getId();
-                ucDistribuicaoServices.CriarUcDistribuicao(udid, id, departamentoId, utilizadorID);
+                ucDistribuicaoServices.CriarUcDistribuicaoTurno(udid, id, departamentoId, utilizadorID);
                 return ResponseEntity.status(HttpStatus.CREATED).build();
             }catch(NumberFormatException e) {
                 return ResponseEntity.badRequest().build();
@@ -62,6 +77,19 @@ public class UcDistribuicaoController {
 
 
         }
+
+        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+        @DeleteMapping("/deletejuncao/{UcDistribuicao_id}")
+        public ResponseEntity<Void> deleteUcJuncao(@PathVariable Integer id, @PathVariable Integer UcDistribuicao_id, Authentication authentication) {
+
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+            Integer departamentoId = user.getDepartamentoId();
+            Integer utilizadorID = user.getId();
+            ucDistribuicaoServices.DeleteUcJuncao(id, UcDistribuicao_id, departamentoId, utilizadorID);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+        }
+
 
         @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
         @DeleteMapping("/delete/{UcDistribuicao_id}")

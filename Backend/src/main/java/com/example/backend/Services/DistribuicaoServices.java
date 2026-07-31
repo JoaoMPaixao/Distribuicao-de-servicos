@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DistribuicaoServices {
@@ -165,6 +167,8 @@ public class DistribuicaoServices {
 
         List<UC_Distribuicao> ucDistribuicoes = ucDistribuicaoRepository.findByDistribuicao_Id(distribuicao_id);
 
+        Map<Integer, UC_Distribuicao> mapaClones = new HashMap<>();
+
         //array para guardar todas as atribuicoes clonadas para depois dar saveall
         List<UC_Distribuicao> clones = new ArrayList<>();
 
@@ -180,6 +184,7 @@ public class DistribuicaoServices {
             ucDistribuicaoClone.setEstado(ucDistribuicao.getEstado());
             ucDistribuicaoClone.setTurno(ucDistribuicao.getTurno());
             ucDistribuicaoClone.setDocente(ucDistribuicao.getDocente());
+            ucDistribuicaoClone.setUcDistribuicaPai(null);
 
             List<UC_Juncao> ucJuncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao.getId());
 
@@ -204,6 +209,27 @@ public class DistribuicaoServices {
 
             clones.add(ucDistribuicaoClone);
         }
+
+        for (UC_Distribuicao ucDistribuicaoOriginal : ucDistribuicoes) {
+
+            // Se a UC original tinha um pai atribuído...
+            if (ucDistribuicaoOriginal.getUcDistribuicaPai() != null) {
+
+                Integer idPaiOriginal = ucDistribuicaoOriginal.getUcDistribuicaPai().getId();
+
+                // Procura o clone que corresponde ao pai original
+                UC_Distribuicao novoPaiClone = mapaClones.get(idPaiOriginal);
+
+                // Procura o clone atual correspondente
+                UC_Distribuicao novoFilhoClone = mapaClones.get(ucDistribuicaoOriginal.getId());
+
+                if (novoFilhoClone != null && novoPaiClone != null) {
+                    novoFilhoClone.setUcDistribuicaPai(novoPaiClone);
+                }
+            }
+        }
+
+
         ucDistribuicaoRepository.saveAll(clones);
         ucJuncaoRepository.saveAll(Juncaoclones);
 

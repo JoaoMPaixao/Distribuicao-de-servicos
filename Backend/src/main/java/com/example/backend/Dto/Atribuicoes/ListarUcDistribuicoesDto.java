@@ -4,7 +4,10 @@ public record ListarUcDistribuicoesDto(
 
         Integer id,
         Integer turno,
-        Float horasAtribuidas,
+        float horasAtribuidas,
+        Integer ucDistribuicaoPaiId,
+        boolean temFilhos,
+        boolean temDuplicado,
         Integer docenteId,
         String docenteNome,
 
@@ -12,11 +15,12 @@ public record ListarUcDistribuicoesDto(
         String cursoNome,
         String ucDepartamentoNome,
         String ucNome,
-        String ucAno,
-        String ucSemestre,
+        Integer ucAno,
+        Integer ucSemestre,
         Integer ucTipoAulaId,
         String ucTipoNome,
         float ucTipoHoras,
+        Boolean temJuncao,
         Integer nSemanas,
 
         // Horas/Semestre UC

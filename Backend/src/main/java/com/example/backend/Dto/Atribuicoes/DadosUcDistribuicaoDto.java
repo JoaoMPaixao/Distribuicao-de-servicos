@@ -6,11 +6,13 @@ public record DadosUcDistribuicaoDto(
         String cursoNome,
         String ucDepartamentoNome,
         String ucNome,
-        String ucAno,
-        String ucSemestre,
+        Integer ucAno,
+        Integer ucSemestre,
         Integer ucTipoAulaId,
         String ucTipoNome,
-        float ucTipoHoras
+        float ucTipoHoras,
+        Boolean temJuncao
+
 
 
 

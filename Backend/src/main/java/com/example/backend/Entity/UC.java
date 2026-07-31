@@ -24,13 +24,13 @@ public class UC {
 
     private String codigo_uc;
 
-    private String semestre;
+    private Integer semestre;
 
-    private String ano_curricular;
+    private Integer ano_curricular;
 
     private Float etcs;
 
-    private Float horas;
+    private float horas;
 
     @Enumerated(EnumType.STRING)
     private EstadoUc estado;

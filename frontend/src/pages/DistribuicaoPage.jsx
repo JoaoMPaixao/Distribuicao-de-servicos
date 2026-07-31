@@ -6,7 +6,7 @@ import {
     criarUcDistribuicaoTurno,
     apagarUcDistribuicao,
     criarJuncao,
-    getDocentesUcsDistribuicao, alterarHoras, atribuirDocente, retirarDocente
+    getDocentesUcsDistribuicao, alterarHoras, atribuirDocente, retirarDocente, apagarUcJuncao, criarUcDistribuicao
 }
     from '../api/atribuicoesApi.jsx'
 import TabelaDistribuicao from "../components/Distribuicao/TabelaAtribuicoes.jsx"
@@ -86,8 +86,6 @@ function DistribuicaoPage() {
         carregar()
     }, [user])
 
-
-
     useEffect(() => {
         // if (!user) return
         const carregar = async () => {
@@ -145,7 +143,17 @@ function DistribuicaoPage() {
         }
     }
 
-    const handleClonar = async (atribuicaoId) => {
+    const handleDuplicar = async (atribuicaoId) => {
+
+        const response = await criarUcDistribuicao(atribuicaoId, id)
+        if (response.success) {
+            const atualizado = await getUcsDistribuicao(id)
+            if (atualizado.success) setAtribuicoes(atualizado.data)
+        }
+
+    }
+
+    const handleCriarTurno = async (atribuicaoId) => {
 
         const response = await criarUcDistribuicaoTurno(atribuicaoId, id)
         if (response.success) {
@@ -153,6 +161,16 @@ function DistribuicaoPage() {
             if (atualizado.success) setAtribuicoes(atualizado.data)
         }
 
+    }
+
+    const handleApagarTurno = async (ucDistribuicaoId) => {
+        const response = await apagarUcDistribuicao(id, ucDistribuicaoId)
+        if (response.success) {
+            const atualizado = await getUcsDistribuicao(id)
+            if (atualizado.success) setAtribuicoes(atualizado.data)
+        } else {
+            alert(`Erro ao apagar turno: Apague o turno mais recente primeiro`)
+        }
     }
 
     const handleJuncao = async (ucTipoAulaIds) => {
@@ -166,6 +184,18 @@ function DistribuicaoPage() {
             if (atualizado?.success) {
                 setAtribuicoes(atualizado.data)
             }
+        } else {
+            alert(`Erro ao alterar: ${response.message || 'Erro desconhecido'}`)
+        }
+    }
+
+    const handleApagarJuncao = async (ucDistribuicaoId) => {
+        const response = await apagarUcJuncao(id, ucDistribuicaoId)
+        if (response.success) {
+            const atualizado = await getUcsDistribuicao(id)
+            if (atualizado.success) setAtribuicoes(atualizado.data)
+        } else {
+            alert(`Erro ao apagar junção`)
         }
     }
 
@@ -201,8 +231,11 @@ function DistribuicaoPage() {
                 onAtribuirDocente={handleAtribuirDocente}
                 onRetirarDocente={handleRetirarDocente}
                 onAlterarHoras={handleAlterarHoras}
-                onClonar={handleClonar}
+                onCriarTurno={handleCriarTurno}
+                onApagarTurno={handleApagarTurno}
                 onJuncao={abrirJuncao}
+                onApagarJuncao={handleApagarJuncao}
+                onDuplicar={handleDuplicar}
             />
 
             <PainelDocentes docentes={docentes}/>

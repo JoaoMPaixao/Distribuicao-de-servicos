@@ -11,4 +11,6 @@ public interface ContratoDocenteRepository extends JpaRepository<ContratoDocente
 
 
     List<ContratoDocente> findByDocente_Id(Integer docenteId);
+
+    void deleteAllByDocente_Id(Integer docenteId);
 }

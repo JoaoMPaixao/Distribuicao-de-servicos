@@ -59,7 +59,7 @@ public class UcDistribuicaoServices {
 
             UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
 
-            ucDistribuicao.setHoras_atribuidas(null);
+            ucDistribuicao.setHoras_atribuidas(uc_tipo_aula.getHoras());
             ucDistribuicao.setTurno(1);
             ucDistribuicao.setUcTipoAula(uc_tipo_aula);
             ucDistribuicao.setDistribuicao(distribuicao);
@@ -87,10 +87,19 @@ public class UcDistribuicaoServices {
 
 
 
+                    List<UC_Distribuicao> ucDistribuicoes = ucDistribuicaoRepository.findAllByUcDistribuicaPai_Id(ucDistribuicao.getId());
+
+                    boolean temFilhos = !ucDistribuicoes.isEmpty();
+
+                    boolean temDuplicado = utilsServices.temDuplicados(ucDistribuicao, dados);
+
                     return new ListarUcDistribuicoesDto(
                             ucDistribuicao.getId(),
                             ucDistribuicao.getTurno(),
                             ucDistribuicao.getHoras_atribuidas(),
+                            Optional.ofNullable(ucDistribuicao.getUcDistribuicaPai()).map(UC_Distribuicao::getId).orElse(null),
+                            temFilhos,
+                            temDuplicado,
                             Optional.ofNullable(ucDistribuicao.getDocente()).map(Docente::getId).orElse(null),
                             Optional.ofNullable(ucDistribuicao.getDocente()).map(Docente::getNome).orElse(null),
                             dados.cursoId(),
@@ -102,6 +111,7 @@ public class UcDistribuicaoServices {
                             dados.ucTipoAulaId(),
                             dados.ucTipoNome(),
                             dados.ucTipoHoras(),
+                            dados.temJuncao(),
                             calculos.nSemanas(),
                             calculos.horasSemestreS1(),
                             calculos.horasSemestreS2(),
@@ -113,13 +123,20 @@ public class UcDistribuicaoServices {
                             calculos.horasDocenteMedia()
                     );
                 })
-                .sorted(Comparator.comparing(
-                        ListarUcDistribuicoesDto::ucNome,
-                        String.CASE_INSENSITIVE_ORDER
-                ))
+                .sorted(Comparator
+                        // 1. Curso
+                        .comparing(ListarUcDistribuicoesDto::cursoNome, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER))
+                        // 2. Ano
+                        .thenComparing(ListarUcDistribuicoesDto::ucAno, Comparator.nullsLast(Comparator.naturalOrder()))
+                        // 3. Semestre
+                        .thenComparing(ListarUcDistribuicoesDto::ucSemestre, Comparator.nullsLast(Comparator.naturalOrder()))
+                        // 4. UC
+                        .thenComparing(ListarUcDistribuicoesDto::ucNome, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER))
+                        // 5. Tipo de Aula
+                        .thenComparing(ListarUcDistribuicoesDto::ucTipoNome, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER))
+                )
                 .toList();
     }
-
 
     private DadosUcDistribuicaoDto mapearUcDistribuicoes(UC_Distribuicao ucDistribuicao) {
 
@@ -127,7 +144,6 @@ public class UcDistribuicaoServices {
         if (ucDistribuicao.getUcTipoAula() != null) {
 
             return new DadosUcDistribuicaoDto(
-
                     ucDistribuicao.getUcTipoAula().getUc().getCurso().getId(),
                     ucDistribuicao.getUcTipoAula().getUc().getCurso().getNome(),
                     ucDistribuicao.getUcTipoAula().getUc().getDepartamento().getNome(),
@@ -136,30 +152,53 @@ public class UcDistribuicaoServices {
                     ucDistribuicao.getUcTipoAula().getUc().getSemestre(),
                     ucDistribuicao.getUcTipoAula().getId(),
                     ucDistribuicao.getUcTipoAula().getTipo_aula().getNome(),
-                    ucDistribuicao.getUcTipoAula().getHoras()
+                    ucDistribuicao.getUcTipoAula().getHoras(),
+                    false
 
             );
         }
-        else{
-            // linha de junção — vai buscar o primeiro ucTipoAula da junção
-            return ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao.getId())
-                    .stream()
-                    .findFirst()
-                    .map(ucJuncao -> new DadosUcDistribuicaoDto(
-                            ucJuncao.getUcTipoAula().getUc().getCurso().getId(),
-                            ucJuncao.getUcTipoAula().getUc().getCurso().getNome(),
-                            ucJuncao.getUcTipoAula().getUc().getDepartamento().getNome(),
-                            ucJuncao.getUcTipoAula().getUc().getNome(),
-                            ucJuncao.getUcTipoAula().getUc().getAno_curricular(),
-                            ucJuncao.getUcTipoAula().getUc().getSemestre(),
-                            ucJuncao.getUcTipoAula().getId(),
-                            ucJuncao.getUcTipoAula().getTipo_aula().getNome(),
-                            ucJuncao.getUcTipoAula().getHoras()
-                    ))
-                    .orElse(null);
 
-        }
+        // linha de junção
+        List<UC_Juncao> juncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao.getId());
 
+        if (juncoes.isEmpty()) return null;
+
+        var primeira = juncoes.get(0);
+
+        String cursosDisplay = juncoes.stream()
+                .map(j -> j.getUcTipoAula().getUc().getCurso().getNome())
+                .distinct()
+                .collect(Collectors.joining(" / "));
+
+        String ucsDisplay = juncoes.stream()
+                .map(j -> j.getUcTipoAula().getUc().getNome())
+                .distinct()
+                .collect(Collectors.joining(" / "));
+
+        String departamentosDisplay = juncoes.stream()
+                .map(j -> j.getUcTipoAula().getUc().getDepartamento().getNome())
+                .distinct()
+                .collect(Collectors.joining(" / "));
+
+
+        String tipoAulaDisplay = juncoes.stream()
+                .map(j -> j.getUcTipoAula().getTipo_aula().getNome())
+                .distinct()
+                .collect(Collectors.joining(" / "));
+
+        return new DadosUcDistribuicaoDto(
+                primeira.getUcTipoAula().getUc().getCurso().getId(),
+                cursosDisplay,
+                departamentosDisplay,
+                ucsDisplay,
+                primeira.getUcTipoAula().getUc().getAno_curricular(),
+                primeira.getUcTipoAula().getUc().getSemestre(),
+                primeira.getUcTipoAula().getId(),
+                tipoAulaDisplay,
+                primeira.getUcTipoAula().getHoras(),
+                true
+
+        );
     }
 
     private CalculosUcDistribuicaoDto getUcDistribuicoesCalculos(UC_Distribuicao ucDistribuicao, DadosUcDistribuicaoDto dados) {
@@ -184,29 +223,32 @@ public class UcDistribuicaoServices {
         }
 
         // 2. Define as horas do semestre para esta UC específica
-        String semestreUC = dados.ucSemestre();
-        float horasAtribuidas = ucDistribuicao.getHoras_atribuidas() != null ? ucDistribuicao.getHoras_atribuidas() : 0f;
+        Integer semestreUC = dados.ucSemestre();
+        float horasAtribuidas =  ucDistribuicao.getHoras_atribuidas();
 
-        if ("1".equalsIgnoreCase(semestreUC)) {
-            horasSemestreS1 = horasAtribuidas;
-        } else if ("2".equalsIgnoreCase(semestreUC)) {
-            horasSemestreS2 = horasAtribuidas;
+        if(ucDistribuicao.getUcDistribuicaPai() == null){
+            if (semestreUC == 1) {
+                horasSemestreS1 = horasAtribuidas;
+            } else if (semestreUC == 2) {
+                horasSemestreS2 = horasAtribuidas;
+            }
         }
+
 
         // 3. Busca todas as UCs atribuídas ao mesmo docente para calcular totais do docente
         List<UC_Distribuicao> ucDistribuicoes = ucDistribuicaoRepository.findByDocente_IdAndDistribuicao_Id(ucDistribuicao.getDocente().getId(), ucDistribuicao.getDistribuicao().getId());
 
         for (UC_Distribuicao UcD : ucDistribuicoes) {
-            if (UcD.getHoras_atribuidas() != null) {
-                horasSemestreMedia += UcD.getHoras_atribuidas();
 
-                String sem = utilsServices.resolverSemestre(UcD);
-                if ("1".equalsIgnoreCase(sem)) {
-                    horasDocenteS1 += UcD.getHoras_atribuidas();
-                } else if ("2".equalsIgnoreCase(sem)) {
-                    horasDocenteS2 += UcD.getHoras_atribuidas();
-                }
+            horasSemestreMedia += UcD.getHoras_atribuidas();
+
+            Integer sem = utilsServices.resolverSemestre(UcD);
+            if (sem == 1) {
+                horasDocenteS1 += UcD.getHoras_atribuidas();
+            } else if (sem == 2) {
+                horasDocenteS2 += UcD.getHoras_atribuidas();
             }
+
         }
 
         // Cálculos finais
@@ -246,28 +288,143 @@ public class UcDistribuicaoServices {
         }
 
 
-        UC_Tipo_Aula ucTipoAula = null;
-        if (ucDistribuicaoPai.getUcTipoAula() != null) {
-            ucTipoAula = ucTipoAulaRepository.findById(ucDistribuicaoPai.getUcTipoAula().getId())
+        if(ucDistribuicaoPai.getUcTipoAula() != null){
+
+            UC_Tipo_Aula ucTipoAula = ucTipoAulaRepository.findById(ucDistribuicaoPai.getUcTipoAula().getId())
                     .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
+
+            UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
+            ucDistribuicao.setTurno(ucDistribuicaoPai.getTurno());
+            ucDistribuicao.setHoras_atribuidas(0);
+            ucDistribuicao.setDocente(docente);
+            ucDistribuicao.setUcTipoAula(ucTipoAula);
+            ucDistribuicao.setDistribuicao(distribuicao);
+            ucDistribuicao.setEstado(EstadoUcDistribuicao.ATIVO);
+
+            ucDistribuicaoRepository.save(ucDistribuicao);
+
+            // LOG DE AUDITORIA: Criação
+            auditLogger.info("Utilizador ID: {} CRIOU UC_Distribuicao ID {} Copia da UC_DistribuicaoPai: {} (Turno: {}, Horas: {}) na Distribuição ID: {} (Departamento ID: {}). Docente ID: {}, UCTipoAula ID: {}.",
+                    utilizador_id, ucDistribuicao.getId(), ucDistribuicaoPai.getId(), ucDistribuicao.getTurno(), ucDistribuicao.getHoras_atribuidas(), distribuicao_id, departamento_id,
+                    ucDistribuicaoPai.getDocente() != null ? ucDistribuicaoPai.getDocente() : "N/A",
+                    ucDistribuicaoPai.getUcTipoAula() != null ? ucDistribuicaoPai.getUcTipoAula() : "N/A");
+
+
+        }
+        else{
+
+            List<UC_Juncao> juncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao_id);
+
+            UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
+            ucDistribuicao.setTurno(ucDistribuicaoPai.getTurno());
+            ucDistribuicao.setHoras_atribuidas(0);
+            ucDistribuicao.setDocente(docente);
+            ucDistribuicao.setUcTipoAula(null);
+            ucDistribuicao.setDistribuicao(distribuicao);
+            ucDistribuicao.setEstado(EstadoUcDistribuicao.ATIVO);
+
+            ucDistribuicaoRepository.save(ucDistribuicao);
+
+            List<UC_Juncao> novasJuncoes = new ArrayList<>();
+
+            for(UC_Juncao ucJuncao : juncoes){
+
+                UC_Juncao novaucJuncao = new UC_Juncao();
+
+                novaucJuncao.setUcDistribuicao(ucDistribuicao);
+                novaucJuncao.setUcTipoAula(ucJuncao.getUcTipoAula());
+
+                novasJuncoes.add(novaucJuncao);
+
+            }
+
+            ucJuncaoRepository.saveAll(novasJuncoes);
+
+
+
         }
 
-        UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
-        ucDistribuicao.setTurno(ucDistribuicaoPai.getTurno() + 1);
-        ucDistribuicao.setHoras_atribuidas(ucDistribuicaoPai.getHoras_atribuidas());
-        ucDistribuicao.setDocente(docente);
-        ucDistribuicao.setUcTipoAula(ucTipoAula);
-        ucDistribuicao.setDistribuicao(distribuicao);
-        ucDistribuicao.setEstado(EstadoUcDistribuicao.ATIVO);
-        ucDistribuicao.setUcDistribuicaPai(ucDistribuicaoPai);
+    }
 
-        ucDistribuicaoRepository.save(ucDistribuicao);
+    @Transactional
+    public void CriarUcDistribuicaoTurno(Integer ucDistribuicao_id, Integer distribuicao_id, Integer departamento_id, Integer utilizador_id) {
 
-        // LOG DE AUDITORIA: Criação
-        auditLogger.info("Utilizador ID: {} CRIOU UC_Distribuicao ID {} Turno da UC_DistribuicaoPai: {} (Turno: {}, Horas: {}) na Distribuição ID: {} (Departamento ID: {}). Docente ID: {}, UCTipoAula ID: {}.",
-                utilizador_id, ucDistribuicao.getId(), ucDistribuicao.getUcDistribuicaPai().getId(), ucDistribuicao.getTurno(), ucDistribuicao.getHoras_atribuidas(), distribuicao_id, departamento_id,
-                ucDistribuicaoPai.getDocente() != null ? ucDistribuicaoPai.getDocente() : "N/A",
-                ucDistribuicaoPai.getUcTipoAula() != null ? ucDistribuicaoPai.getUcTipoAula() : "N/A");
+        // Verificar se existe a distribuição, docente e uc_tipo_aula
+        Distribuicao distribuicao = utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
+
+       List<UC_Distribuicao> ucDistribuicoes = ucDistribuicaoRepository.findAllByUcDistribuicaPai_Id(ucDistribuicao_id);
+
+       if(!ucDistribuicoes.isEmpty()){
+           throw new IllegalStateException("Esta UC Distribuição já possui um turno registado.");
+       }
+
+        UC_Distribuicao ucDistribuicaoPai = ucDistribuicaoRepository.findById(ucDistribuicao_id)
+                .orElseThrow(() -> new RuntimeException("UcDistribuicao não encontrada"));
+
+        Docente docente = null;
+        if(ucDistribuicaoPai.getDocente() != null){
+            docente = docenteRepository.findById(ucDistribuicaoPai.getDocente().getId())
+                    .orElseThrow(() -> new RuntimeException("Docente não encontrado"));
+        }
+
+
+        if(ucDistribuicaoPai.getUcTipoAula() != null){
+
+           UC_Tipo_Aula ucTipoAula = ucTipoAulaRepository.findById(ucDistribuicaoPai.getUcTipoAula().getId())
+                    .orElseThrow(() -> new RuntimeException("UC tipo aula não encontrada"));
+
+            UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
+            ucDistribuicao.setTurno(ucDistribuicaoPai.getTurno() + 1);
+            ucDistribuicao.setHoras_atribuidas(ucDistribuicaoPai.getHoras_atribuidas());
+            ucDistribuicao.setDocente(docente);
+            ucDistribuicao.setUcTipoAula(ucTipoAula);
+            ucDistribuicao.setDistribuicao(distribuicao);
+            ucDistribuicao.setEstado(EstadoUcDistribuicao.ATIVO);
+            ucDistribuicao.setUcDistribuicaPai(ucDistribuicaoPai);
+
+            ucDistribuicaoRepository.save(ucDistribuicao);
+
+            // LOG DE AUDITORIA: Criação
+            auditLogger.info("Utilizador ID: {} CRIOU UC_Distribuicao ID {} Turno da UC_DistribuicaoPai: {} (Turno: {}, Horas: {}) na Distribuição ID: {} (Departamento ID: {}). Docente ID: {}, UCTipoAula ID: {}.",
+                    utilizador_id, ucDistribuicao.getId(), ucDistribuicao.getUcDistribuicaPai().getId(), ucDistribuicao.getTurno(), ucDistribuicao.getHoras_atribuidas(), distribuicao_id, departamento_id,
+                    ucDistribuicaoPai.getDocente() != null ? ucDistribuicaoPai.getDocente() : "N/A",
+                    ucDistribuicaoPai.getUcTipoAula() != null ? ucDistribuicaoPai.getUcTipoAula() : "N/A");
+
+
+        }
+        else{
+
+            List<UC_Juncao> juncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicaoPai.getId());
+
+            UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
+            ucDistribuicao.setTurno(ucDistribuicaoPai.getTurno() + 1);
+            ucDistribuicao.setHoras_atribuidas(ucDistribuicaoPai.getHoras_atribuidas());
+            ucDistribuicao.setDocente(docente);
+            ucDistribuicao.setUcTipoAula(null);
+            ucDistribuicao.setDistribuicao(distribuicao);
+            ucDistribuicao.setEstado(EstadoUcDistribuicao.ATIVO);
+            ucDistribuicao.setUcDistribuicaPai(ucDistribuicaoPai);
+
+            ucDistribuicaoRepository.save(ucDistribuicao);
+
+            List<UC_Juncao> novasJuncoes = new ArrayList<>();
+
+            for(UC_Juncao ucJuncao : juncoes){
+
+                UC_Juncao novaucJuncao = new UC_Juncao();
+
+                novaucJuncao.setUcDistribuicao(ucDistribuicao);
+                novaucJuncao.setUcTipoAula(ucJuncao.getUcTipoAula());
+
+                novasJuncoes.add(novaucJuncao);
+
+            }
+
+            ucJuncaoRepository.saveAll(novasJuncoes);
+
+
+
+        }
 
     }
 
@@ -283,13 +440,15 @@ public class UcDistribuicaoServices {
             throw new RuntimeException("Uma ou mais UCs não existem.");
         }
 
-        String semestre = ucsTipoAula.get(0).getUc().getSemestre();
+        Integer semestre = ucsTipoAula.get(0).getUc().getSemestre();
 
         boolean mesmoSemestre = ucsTipoAula.stream()
                 .allMatch(uc -> uc.getUc().getSemestre().equals(semestre));
 
         if (!mesmoSemestre) {
-            throw new RuntimeException("Só é possível criar junções entre UCs do mesmo semestre.");
+            throw new IllegalArgumentException(
+                    "Só é possível criar junções entre UCs do mesmo semestre."
+            );
         }
 
         //é criado uma nova ucdistribuicao e as junçoes
@@ -299,7 +458,7 @@ public class UcDistribuicaoServices {
         ucDistribuicao.setEstado(EstadoUcDistribuicao.ATIVO);
 
         ucDistribuicaoRepository.save(ucDistribuicao);
-        System.out.println(dto.ucTipoAulaIds());
+
         List<UC_Juncao> juncoesParaSalvar = new ArrayList<>();
 
         // associa os ucTipoAulas à junção
@@ -329,9 +488,7 @@ public class UcDistribuicaoServices {
         //verifica se a distribuicao e o utilizador têm o mesmo departamento
         Distribuicao distribuicao= utilsServices.getDistribuicaoComAcesso(distribuicao_id, departamento_id);
 
-        ucDistribuicaoRepository.deleteById(ucDistribuicao_id);
-
-        List<UC_Juncao> juncoes = ucJuncaoRepository.findByUcDistribuicao_Id(distribuicao_id);
+        List<UC_Juncao> juncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao_id);
 
         List<UC_Distribuicao> ucDistribuicoes = new ArrayList<>();
 
@@ -339,7 +496,7 @@ public class UcDistribuicaoServices {
 
             UC_Distribuicao ucDistribuicao = new UC_Distribuicao();
 
-            ucDistribuicao.setHoras_atribuidas(null);
+            ucDistribuicao.setHoras_atribuidas(0);
             ucDistribuicao.setTurno(1);
             ucDistribuicao.setUcTipoAula(ucJuncao.getUcTipoAula());
             ucDistribuicao.setDistribuicao(distribuicao);
@@ -349,6 +506,8 @@ public class UcDistribuicaoServices {
 
             ucJuncaoRepository.deleteById(ucJuncao.getId());
         }
+
+        ucDistribuicaoRepository.deleteById(ucDistribuicao_id);
 
         ucDistribuicaoRepository.saveAll(ucDistribuicoes);
 
@@ -360,13 +519,21 @@ public class UcDistribuicaoServices {
         //verifica se a distribuicao e o utilizador têm o mesmo departamento
         utilsServices.validarAcessoDistribuicao(distribuicao_id, departamento_id);
 
-        // valida se a ucDistribuicao existe antes de tentar apagar
-        if (!ucDistribuicaoRepository.existsById(ucDistribuicao_id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Atribuição não encontrada");
+        UC_Distribuicao uc_distribuicao = ucDistribuicaoRepository.findById(ucDistribuicao_id)
+                .orElseThrow(() -> new RuntimeException("Uc Distribuicao não encontrado"));
+
+        if(uc_distribuicao.getUcTipoAula() == null){
+
+            List<UC_Juncao> juncoes = ucJuncaoRepository.findByUcDistribuicao_Id(ucDistribuicao_id);
+
+            for(UC_Juncao ucJuncao : juncoes){
+
+                ucJuncaoRepository.deleteById(ucJuncao.getId());
+
+            }
+
         }
 
-
-        System.out.println(ucDistribuicao_id);
         ucDistribuicaoRepository.deleteById(ucDistribuicao_id);
 
         // LOG DE AUDITORIA: Remoção
@@ -384,14 +551,46 @@ public class UcDistribuicaoServices {
         UC_Distribuicao uc_distribuicao = ucDistribuicaoRepository.findById(ucDistribuicao_id)
                 .orElseThrow(() -> new EntityNotFoundException("UC Distribuicao não encontrada"));
 
-        // 3. Validação dos Limites (Min e Max)
-        if (dto.horasAtribuidas() < 0 || dto.horasAtribuidas() > uc_distribuicao.getUcTipoAula().getHoras()) {
-            throw new IllegalArgumentException(
-                    String.format("Número de horas inválido (%.1f). Deve estar entre 0 e %.1f.", dto.horasAtribuidas(), uc_distribuicao.getUcTipoAula().getHoras())
-            );
+        UC_Juncao juncao = ucJuncaoRepository.findFirstByUcDistribuicao_Id(ucDistribuicao_id);
+
+        //verificação caso seja turno nao poder alterar horas
+        if(uc_distribuicao.getUcDistribuicaPai() != null) return;
+
+        // apenas as ucDistribuicoes sem turnos podem alterar horas por isso o 1 hardcoded
+        List<UC_Distribuicao> ucDistribuicoes = ucDistribuicaoRepository.findAllByUcTipoAula_IdAndTurnoAndDistribuicao_Id(uc_distribuicao.getUcTipoAula().getId(), 1, distribuicao_id);
+
+        float horasTotais=0;
+
+        for(UC_Distribuicao ucDistribuicao : ucDistribuicoes){
+            if (uc_distribuicao.getId() == null || !ucDistribuicao.getId().equals(uc_distribuicao.getId())) {
+                horasTotais += ucDistribuicao.getHoras_atribuidas();
+            }
+        }
+
+        float novoHorasTotais = horasTotais + dto.horasAtribuidas();
+
+        if(juncao != null ){
+
+            // 3. Validação dos Limites (Min e Max)
+            if (dto.horasAtribuidas() < 0 || novoHorasTotais > juncao.getUcTipoAula().getHoras()) {
+                throw new IllegalArgumentException(
+                        String.format("Número de horas inválido (%.1f). Deve estar entre 0 e %.1f.", novoHorasTotais, juncao.getUcTipoAula().getHoras())
+                );
+            }
+
+        }else{
+
+            // 3. Validação dos Limites (Min e Max)
+            if (dto.horasAtribuidas() < 0 || novoHorasTotais > uc_distribuicao.getUcTipoAula().getHoras()) {
+                throw new IllegalArgumentException(
+                        String.format("Número totais de horas da uc inválido (%.1f). Deve estar entre 0 e %.1f.", novoHorasTotais, uc_distribuicao.getUcTipoAula().getHoras())
+                );
+            }
         }
 
         uc_distribuicao.setHoras_atribuidas(dto.horasAtribuidas());
+
+        utilsServices.atualizarHorasTurnos(uc_distribuicao.getId(), dto.horasAtribuidas());
 
         // LOG DE AUDITORIA: Alteração
         auditLogger.info("Utilizador ID: {} ALTEROU UC_Distribuicao ID: {} na Distribuição ID: {} (Departamento ID: {}). Horas: -> {}.",

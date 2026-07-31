@@ -2,8 +2,10 @@ package com.example.backend.Repository;
 
 import com.example.backend.Entity.UC;
 import com.example.backend.Entity.UC_Distribuicao;
+import com.example.backend.Entity.UC_Tipo_Aula;
 import com.example.backend.Enums.EstadoUc;
 import com.example.backend.Enums.EstadoUcDistribuicao;
+import org.springframework.data.domain.Limit;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -18,4 +20,14 @@ public interface UcDistribuicaoRepository extends JpaRepository<UC_Distribuicao,
     List<UC_Distribuicao> findByDocente_IdAndDistribuicao_Id(Integer id, Integer id1);
 
     void deleteByUcTipoAula_IdAndDistribuicao_Id(Integer ucTipoAulaId, Integer distribuicaoId);
+
+    List<UC_Distribuicao> findAllByUcDistribuicaPai_Id(Integer ucDistribuicaPaiId);
+
+    List<UC_Distribuicao> findAllByUcTipoAula_Id(Integer id);
+
+    long countByDistribuicao_IdAndUcTipoAula_Id(Integer id, Integer id1);
+
+    List<UC_Distribuicao> findAllByUcTipoAula_IdAndTurnoAndDistribuicao_Id(Integer id, int i, Integer distribuicaoId);
+
+    UC_Distribuicao findByUcDistribuicaPai_Id(Integer ucDistribucaoId);
 }

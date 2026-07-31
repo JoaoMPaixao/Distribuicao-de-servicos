@@ -19,7 +19,7 @@ public class UC_Tipo_Aula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Float horas;
+    private float horas;
 
     @ManyToOne
     @JoinColumn(name = "tipo_aula_id")

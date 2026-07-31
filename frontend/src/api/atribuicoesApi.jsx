@@ -12,10 +12,21 @@ export const getUcsDistribuicao = async (id) => {
 
 }
 
+export const criarUcDistribuicao = async (udid, id) => {
+    try {
+
+        const {data} = await instance.post(`/v1/distribuicoes/${id}/atribuicao/${udid}/duplicar`);
+
+        return {success: true, data}
+    } catch (error) {
+        return {success: false, status: error.response?.status, message: error.response?.data?.message}
+    }
+}
+
 export const criarUcDistribuicaoTurno = async (udid, id) => {
     try {
 
-        const {data} = await instance.post(`/v1/distribuicoes/${id}/atribuicao/${udid}`);
+        const {data} = await instance.post(`/v1/distribuicoes/${id}/atribuicao/${udid}/turno`);
 
         return {success: true, data}
     } catch (error) {
@@ -30,6 +41,17 @@ export const criarJuncao = async (id, dados) => {
     } catch (error) {
         return { success: false, status: error.response?.status, message: error.response?.data?.message }
     }
+}
+
+export const apagarUcJuncao = async (id,udid) => {
+
+    try {
+        const {data} = await instance.delete(`/v1/distribuicoes/${id}/deletejuncao/${udid}`)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+
 }
 
 export const apagarUcDistribuicao = async (id,udid) => {

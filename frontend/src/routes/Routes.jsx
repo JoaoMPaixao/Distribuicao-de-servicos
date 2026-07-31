@@ -7,6 +7,7 @@ import {UtilizadoresPage} from "../pages/UtilizadoresPage.jsx";
 import {UcsPage} from "../pages/UcsPage.jsx";
 import DistribuicaoPage from "../pages/DistribuicaoPage.jsx";
 import '../styles/global.css'
+import {DocentesPage} from "../pages/DocentesPage.jsx";
 
 export const AppRoutes = () => {
     return (
@@ -25,6 +26,8 @@ export const AppRoutes = () => {
             <Route path="/ucs" element={<UcsPage/>} />
 
             <Route path="/distribuicoes/:id/atribuicoes" element={<DistribuicaoPage/>} />
+
+            <Route path="/docentes" element={<DocentesPage/>} />
 
         </Routes>
     );

@@ -2,7 +2,7 @@
 import ListarAtribuicoesCard from './ListarAtribuicoesCard.jsx'
 import { useState } from "react";
 
-function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRetirarDocente, onAlterarHoras, onClonar, onJuncao }) {
+function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRetirarDocente, onAlterarHoras, onCriarTurno, onApagarTurno, onJuncao, onApagarJuncao, onDuplicar }) {
     const [atribuicaoSelecionada, setAtribuicaoSelecionada] = useState(null)
 
     const handleDrop = (e, atribuicaoId) => {
@@ -35,10 +35,13 @@ function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRetirarDocente, 
                         <div className="rot-wrap"><span>Tipologia</span></div>
                     </th>
                     <th rowSpan="2" className="th-rot">
+                        <div className="rot-wrap"><span>HorasUc</span></div>
+                    </th>
+                    <th rowSpan="2" className="th-rot">
                         <div className="rot-wrap"><span>Turno</span></div>
                     </th>
                     <th rowSpan="2" className="th-rot">
-                        <div className="rot-wrap"><span>Horas</span></div>
+                        <div className="rot-wrap"><span>HorasAtribuidas</span></div>
                     </th>
                     <th rowSpan="2" style={{ padding: '0 12px', minWidth: '170px', textAlign: 'left' }}>
                         <div className="th-header">Docente</div>
@@ -79,8 +82,11 @@ function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRetirarDocente, 
                         onDrop={(e) => handleDrop(e, a.id)}
                         onRetirarDocente={() => onRetirarDocente(a.id)}
                         onAlterarHoras={(h) => onAlterarHoras(a.id, h)}
-                        onClonar={() => onClonar(a.id)}
+                        onCriarTurno={() => onCriarTurno(a.id)}
+                        onApagarTurno={onApagarTurno}
                         onJuncao={onJuncao}
+                        onApagarJuncao={onApagarJuncao}
+                        onDuplicar={() => onDuplicar(a.id)}
                     />
                 ))}
                 </tbody>

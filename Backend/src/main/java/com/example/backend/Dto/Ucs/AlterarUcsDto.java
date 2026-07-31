@@ -6,10 +6,10 @@ public record AlterarUcsDto (
 
         String nome,
         String codigo_uc,
-        String semestre,
-        String ano_curricular,
+        Integer semestre,
+        Integer ano_curricular,
         Float ects,
-        Float horas,
+        float horas,
         EstadoUc estado,
         Integer departamento_id,
         Integer curso_id

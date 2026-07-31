@@ -9,8 +9,7 @@ const itens = [
     { label: 'Cursos', icon: 'bi-mortarboard', path: '/cursos' },
     { label: 'Unidades Curriculares', icon: 'bi-journals', path: '/ucs' },
     { label: 'Utilizadores', icon: 'bi-people', path: '/utilizadores' },
-    { label: 'Auditoria', icon: 'bi-shield', path: '/auditoria' },
-    { label: 'Configurações', icon: 'bi-gear', path: '/configuracoes' },
+
 ]
 
 function Sidebar({ collapsed, onToggle }) {

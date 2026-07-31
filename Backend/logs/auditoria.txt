@@ -1,132 +1,328 @@
-2026-07-26 16:11:40 [http-nio-8080-exec-5] - Utilizador ID: 1 APAGOU a Distribuição ID: 2 no Departamento ID: 1.
-2026-07-26 16:26:00 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU a Distribuição ID: 12 ('teste juncao') no Departamento ID: 1.
-2026-07-26 16:26:32 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 139 na Distribuição ID: 12 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 16:26:34 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 138 na Distribuição ID: 12 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 16:26:38 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 135 na Distribuição ID: 12 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 16:26:40 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 139 na Distribuição ID: 12 (Departamento ID: 1). Horas: -> 2.0.
-2026-07-26 16:26:40 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 139 na Distribuição ID: 12 (Departamento ID: 1). Horas: -> 20.0.
-2026-07-26 16:26:42 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 138 na Distribuição ID: 12 (Departamento ID: 1). Horas: -> 3.0.
-2026-07-26 16:26:42 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 138 na Distribuição ID: 12 (Departamento ID: 1). Horas: -> 30.0.
-2026-07-26 16:26:43 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 135 na Distribuição ID: 12 (Departamento ID: 1). Horas: -> 2.0.
-2026-07-26 16:26:43 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 135 na Distribuição ID: 12 (Departamento ID: 1). Horas: -> 25.0.
-2026-07-26 16:27:33 [http-nio-8080-exec-4] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 143 à UC_Tipo_Aula ID: 11 na Distribuição ID: 12 (Departamento ID: 1).
-2026-07-26 16:27:33 [http-nio-8080-exec-4] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 143 à UC_Tipo_Aula ID: 7 na Distribuição ID: 12 (Departamento ID: 1).
-2026-07-26 16:27:33 [http-nio-8080-exec-4] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 143 à UC_Tipo_Aula ID: 10 na Distribuição ID: 12 (Departamento ID: 1).
-2026-07-26 16:30:29 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 144 à UC_Tipo_Aula ID: 3 na Distribuição ID: 12 (Departamento ID: 1).
-2026-07-26 16:30:29 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 144 à UC_Tipo_Aula ID: 1 na Distribuição ID: 12 (Departamento ID: 1).
-2026-07-26 16:31:47 [http-nio-8080-exec-2] - Utilizador ID: 1 APAGOU a Distribuição ID: 3 no Departamento ID: 1.
-2026-07-26 16:31:50 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU a Distribuição ID: 4 no Departamento ID: 1.
-2026-07-26 16:31:54 [http-nio-8080-exec-5] - Utilizador ID: 1 APAGOU a Distribuição ID: 5 no Departamento ID: 1.
-2026-07-26 16:31:59 [http-nio-8080-exec-2] - Utilizador ID: 1 APAGOU a Distribuição ID: 6 no Departamento ID: 1.
-2026-07-26 16:32:02 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU a Distribuição ID: 8 no Departamento ID: 1.
-2026-07-26 16:32:05 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU a Distribuição ID: 9 no Departamento ID: 1.
-2026-07-26 16:44:28 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU a Distribuição ID: 13 ('gr') no Departamento ID: 1.
-2026-07-26 16:44:28 [http-nio-8080-exec-4] - Utilizador ID: 1 CRIOU a Distribuição ID: 14 ('gr') no Departamento ID: 1.
-2026-07-26 16:44:36 [http-nio-8080-exec-8] - Utilizador ID: 1 CRIOU a Distribuição ID: 15 ('daw') no Departamento ID: 1.
-2026-07-26 16:45:24 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 181 à UC_Tipo_Aula ID: 6 na Distribuição ID: 15 (Departamento ID: 1).
-2026-07-26 16:45:24 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 181 à UC_Tipo_Aula ID: 7 na Distribuição ID: 15 (Departamento ID: 1).
-2026-07-26 16:47:34 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 181 na Distribuição ID: 15 (Departamento ID: 1). Horas: -> 3.0.
-2026-07-26 16:47:35 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 181 na Distribuição ID: 15 (Departamento ID: 1). Horas: -> 30.0.
-2026-07-26 16:47:36 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 181 na Distribuição ID: 15 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 16:47:39 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 181 na Distribuição ID: 15 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 16:47:41 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 181 na Distribuição ID: 15 (Departamento ID: 1). Docente: -> 2.
-2026-07-26 16:47:42 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 177 na Distribuição ID: 15 (Departamento ID: 1). Docente: -> 3.
-2026-07-26 16:47:44 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 178 na Distribuição ID: 15 (Departamento ID: 1). Docente: -> 4.
-2026-07-26 16:48:03 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 179 na Distribuição ID: 15 (Departamento ID: 1). Docente: -> 5.
-2026-07-26 16:56:05 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU a Distribuição ID: 10 no Departamento ID: 1.
-2026-07-26 16:56:06 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU a Distribuição ID: 11 no Departamento ID: 1.
-2026-07-26 16:56:07 [http-nio-8080-exec-10] - Utilizador ID: 1 APAGOU a Distribuição ID: 12 no Departamento ID: 1.
-2026-07-26 16:56:08 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU a Distribuição ID: 13 no Departamento ID: 1.
-2026-07-26 16:56:09 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU a Distribuição ID: 14 no Departamento ID: 1.
-2026-07-26 16:56:10 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU a Distribuição ID: 15 no Departamento ID: 1.
-2026-07-26 16:58:58 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU a Distribuição ID: 16 ('Distribuição Inicial') no Departamento ID: 1.
-2026-07-26 16:59:06 [http-nio-8080-exec-8] - Utilizador ID: 1 CRIOU a Distribuição ID: 17 ('Distribuição Inicial') no Departamento ID: 1.
-2026-07-26 16:59:14 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 206 à UC_Tipo_Aula ID: 6 na Distribuição ID: 16 (Departamento ID: 1).
-2026-07-26 16:59:14 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 206 à UC_Tipo_Aula ID: 7 na Distribuição ID: 16 (Departamento ID: 1).
-2026-07-26 17:00:41 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 184 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 17:00:43 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 206 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 3.
-2026-07-26 17:00:48 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 184 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 5.0.
-2026-07-26 17:00:48 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 184 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 50.0.
-2026-07-26 17:00:49 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 206 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 3.0.
-2026-07-26 17:00:50 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 206 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 30.0.
-2026-07-26 17:00:51 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 188 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 2.0.
-2026-07-26 17:00:51 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 188 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 20.0.
-2026-07-26 17:00:52 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 188 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 4.
-2026-07-26 17:00:54 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 188 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 4.
-2026-07-26 17:00:55 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 188 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 4.
-2026-07-26 17:00:56 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 191 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 3.
-2026-07-26 17:00:58 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 206 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 17:00:59 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 184 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 17:00:59 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 188 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 17:01:00 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 191 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 3.
-2026-07-26 17:07:13 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 206 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 5.0.
-2026-07-26 17:07:13 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 206 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 50.0.
-2026-07-26 17:07:16 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 190 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 17:07:17 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 190 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> null.
-2026-07-26 17:07:17 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 191 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> null.
-2026-07-26 17:07:19 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 184 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 17:07:19 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 184 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 10.0.
-2026-07-26 17:07:25 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 187 na Distribuição ID: 16 (Departamento ID: 1). Docente: -> 3.
-2026-07-26 17:07:27 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 187 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 4.0.
-2026-07-26 17:07:28 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 187 na Distribuição ID: 16 (Departamento ID: 1). Horas: -> 40.0.
-2026-07-26 17:43:12 [http-nio-8080-exec-8] - Utilizador ID: 1 CRIOU a Distribuição ID: 18 ('teste') no Departamento ID: 1.
-2026-07-26 17:43:28 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 219 à UC_Tipo_Aula ID: 6 na Distribuição ID: 18 (Departamento ID: 1).
-2026-07-26 17:43:28 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 219 à UC_Tipo_Aula ID: 7 na Distribuição ID: 18 (Departamento ID: 1).
-2026-07-26 17:44:35 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 220 à UC_Tipo_Aula ID: 10 na Distribuição ID: 18 (Departamento ID: 1).
-2026-07-26 17:44:35 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 220 à UC_Tipo_Aula ID: 4 na Distribuição ID: 18 (Departamento ID: 1).
-2026-07-26 18:13:08 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> -1.0.
-2026-07-26 18:13:13 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Docente: -> 1.
-2026-07-26 18:13:25 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 6.0.
-2026-07-26 18:13:25 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 60.0.
-2026-07-26 18:25:53 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:54 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:55 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:56 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:56 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:56 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:56 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:56 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:56 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:57 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:58 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:25:59 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 2.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 2.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 2.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 2.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:26:00 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 3.0.
-2026-07-26 18:26:08 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 6.0.
-2026-07-26 18:26:12 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 0.0.
-2026-07-26 18:26:13 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 196 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 9.0.
-2026-07-26 18:26:15 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 197 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 1.0.
-2026-07-26 18:26:15 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 197 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 12.0.
-2026-07-26 18:26:16 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 202 na Distribuição ID: 17 (Departamento ID: 1). Horas: -> 6.0.
+2026-07-31 11:35:48 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 601 da Distribuição ID: 40 (Departamento ID: 1).
+2026-07-31 11:35:49 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 599 da Distribuição ID: 40 (Departamento ID: 1).
+2026-07-31 11:35:49 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 587 da Distribuição ID: 40 (Departamento ID: 1).
+2026-07-31 11:35:51 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 586 da Distribuição ID: 40 (Departamento ID: 1).
+2026-07-31 11:35:54 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 595 da Distribuição ID: 40 (Departamento ID: 1).
+2026-07-31 11:35:56 [http-nio-8080-exec-1] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 604 da Distribuição ID: 40 (Departamento ID: 1).
+2026-07-31 11:35:56 [http-nio-8080-exec-5] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 602 da Distribuição ID: 40 (Departamento ID: 1).
+2026-07-31 11:36:59 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU a Distribuição ID: 41 ('teste3') no Departamento ID: 1.
+2026-07-31 11:54:15 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU a Uc ID: 8 ('Anatomia') no Departamento ID: 4.
+2026-07-31 11:55:07 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU a Uc ID: 8 para nome Anatomia ; para codigo_uc 7312 ; para estado ATIVO no Departamento ID: 4.
+2026-07-31 11:55:21 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU o UcTipoAula ID: 16 no Uc ID: 8.
+2026-07-31 11:55:25 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU o UcTipoAula ID: 17 no Uc ID: 8.
+2026-07-31 11:55:42 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU a Distribuição ID: 42 ('t1') no Departamento ID: 1.
+2026-07-31 11:55:45 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU a Distribuição ID: 31 no Departamento ID: 1.
+2026-07-31 11:55:46 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU a Distribuição ID: 32 no Departamento ID: 1.
+2026-07-31 11:55:47 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU a Distribuição ID: 33 no Departamento ID: 1.
+2026-07-31 11:55:49 [http-nio-8080-exec-10] - Utilizador ID: 1 APAGOU a Distribuição ID: 34 no Departamento ID: 1.
+2026-07-31 11:55:50 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU a Distribuição ID: 37 no Departamento ID: 1.
+2026-07-31 11:55:51 [http-nio-8080-exec-2] - Utilizador ID: 1 APAGOU a Distribuição ID: 38 no Departamento ID: 1.
+2026-07-31 11:55:53 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU a Distribuição ID: 39 no Departamento ID: 1.
+2026-07-31 11:57:25 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 641 à UC_Tipo_Aula ID: 4 na Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 11:57:25 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 641 à UC_Tipo_Aula ID: 11 na Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:01:45 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 645 Turno da UC_DistribuicaoPai: 636 (Turno: 2, Horas: 40.0) na Distribuição ID: 42 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@1171c1a2.
+2026-07-31 12:01:45 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 645 da Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:01:56 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 646 à UC_Tipo_Aula ID: 5 na Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:01:56 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 646 à UC_Tipo_Aula ID: 16 na Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:05:35 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 647 da Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:05:59 [http-nio-8080-exec-2] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 644 da Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:06:05 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 650 à UC_Tipo_Aula ID: 6 na Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:06:05 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 650 à UC_Tipo_Aula ID: 17 na Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:06:13 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 653 da Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:06:14 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 652 da Distribuição ID: 42 (Departamento ID: 1).
+2026-07-31 12:17:48 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 655 Copia da UC_DistribuicaoPai: 632 (Turno: 1, Horas: null) na Distribuição ID: 42 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@3beb6005.
+2026-07-31 12:17:56 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU a Distribuição ID: 42 no Departamento ID: 1.
+2026-07-31 12:18:30 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU a Distribuição ID: 43 ('t4') no Departamento ID: 1.
+2026-07-31 12:18:38 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 671 Copia da UC_DistribuicaoPai: 670 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@1026f3f1.
+2026-07-31 12:19:19 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 671 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:19:22 [http-nio-8080-exec-8] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 672 Copia da UC_DistribuicaoPai: 662 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@7e31015.
+2026-07-31 12:19:22 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 672 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:19:28 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 673 à UC_Tipo_Aula ID: 8 na Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:19:28 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 673 à UC_Tipo_Aula ID: 16 na Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:19:33 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 674 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:19:36 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 676 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:19:37 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 675 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:10 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 677 Turno da UC_DistribuicaoPai: 666 (Turno: 2, Horas: 40.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@27f695d9.
+2026-07-31 12:21:12 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 677 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:15 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 678 Turno da UC_DistribuicaoPai: 665 (Turno: 2, Horas: 20.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@77b0156.
+2026-07-31 12:21:16 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 678 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:18 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 679 Turno da UC_DistribuicaoPai: 665 (Turno: 2, Horas: 20.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@50049d2f.
+2026-07-31 12:21:19 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 679 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:22 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 680 Turno da UC_DistribuicaoPai: 660 (Turno: 2, Horas: 30.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@78893c77.
+2026-07-31 12:21:23 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 680 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:26 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 681 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:35 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 682 Copia da UC_DistribuicaoPai: 661 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@6da92138.
+2026-07-31 12:21:36 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 682 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:41 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 683 Copia da UC_DistribuicaoPai: 669 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@3c13540e.
+2026-07-31 12:21:43 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 683 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:44 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 684 Turno da UC_DistribuicaoPai: 669 (Turno: 2, Horas: 30.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@347c792b.
+2026-07-31 12:21:45 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 684 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:49 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 685 Copia da UC_DistribuicaoPai: 669 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@66b2bdea.
+2026-07-31 12:21:51 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 685 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:52 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 686 Turno da UC_DistribuicaoPai: 669 (Turno: 2, Horas: 30.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@35dcfcdd.
+2026-07-31 12:21:52 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 686 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:53 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 687 Copia da UC_DistribuicaoPai: 669 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@6d8c1563.
+2026-07-31 12:21:54 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 688 Turno da UC_DistribuicaoPai: 687 (Turno: 2, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@2b4093d.
+2026-07-31 12:21:55 [http-nio-8080-exec-5] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 688 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:56 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 687 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:56 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 689 Turno da UC_DistribuicaoPai: 670 (Turno: 2, Horas: 30.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@1458f950.
+2026-07-31 12:21:57 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 689 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:21:58 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 690 Copia da UC_DistribuicaoPai: 670 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@69d300fb.
+2026-07-31 12:21:59 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 691 Turno da UC_DistribuicaoPai: 690 (Turno: 2, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@d233c6c.
+2026-07-31 12:22:00 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 691 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:02 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 692 Turno da UC_DistribuicaoPai: 690 (Turno: 2, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@59b0c79e.
+2026-07-31 12:22:02 [http-nio-8080-exec-5] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 670 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:03 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 692 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:06 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 693 Turno da UC_DistribuicaoPai: 690 (Turno: 2, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@10d6d8c7.
+2026-07-31 12:22:06 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 693 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:07 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 694 Turno da UC_DistribuicaoPai: 690 (Turno: 2, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@506a7efc.
+2026-07-31 12:22:07 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 695 Turno da UC_DistribuicaoPai: 694 (Turno: 3, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@dd4becc.
+2026-07-31 12:22:08 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 695 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:09 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 694 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:13 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 696 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:15 [http-nio-8080-exec-5] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 698 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:16 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 697 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:17 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 699 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:19 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 701 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:22:20 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 700 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:49:32 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 702 Copia da UC_DistribuicaoPai: 690 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@74c697ab.
+2026-07-31 12:49:32 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 703 Copia da UC_DistribuicaoPai: 690 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@1ce783f2.
+2026-07-31 12:49:33 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 703 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:49:34 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 702 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:49:34 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 704 Turno da UC_DistribuicaoPai: 690 (Turno: 2, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@2b1d897c.
+2026-07-31 12:49:35 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 704 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:49:35 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 705 Copia da UC_DistribuicaoPai: 690 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@69fa930a.
+2026-07-31 12:49:36 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 705 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 12:56:26 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 690 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:26 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 690 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:34 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 12:56:35 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:37 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:37 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:37 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:38 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:38 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:38 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:38 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:39 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:39 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:39 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:39 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:39 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:40 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:40 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:40 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 12:56:40 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:41 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 12:56:41 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:41 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:56:42 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 673 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 12:58:58 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 690 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 13:00:41 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 706 Turno da UC_DistribuicaoPai: 660 (Turno: 2, Horas: 30.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@619f8292.
+2026-07-31 13:00:48 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 706 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 13:00:48 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 706 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 13:00:49 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 706 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 13:00:51 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 706 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 13:01:33 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 706 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 13:01:35 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 707 Turno da UC_DistribuicaoPai: 660 (Turno: 2, Horas: 30.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@56eefc9a.
+2026-07-31 13:01:46 [http-nio-8080-exec-1] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 707 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 13:02:30 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 708 Copia da UC_DistribuicaoPai: 660 (Turno: 1, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@4e05171.
+2026-07-31 13:02:33 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 708 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 13:02:34 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 709 Turno da UC_DistribuicaoPai: 660 (Turno: 2, Horas: 30.0) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@11630f23.
+2026-07-31 13:04:02 [http-nio-8080-exec-1] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 709 da Distribuição ID: 43 (Departamento ID: 1).
+2026-07-31 13:04:03 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 710 Turno da UC_DistribuicaoPai: 660 (Turno: 2, Horas: null) na Distribuição ID: 43 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@4427c97e.
+2026-07-31 13:07:31 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 690 na Distribuição ID: 43 (Departamento ID: 1). Horas: -> 5.0.
+2026-07-31 13:25:00 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU a Distribuição ID: 44 ('teste') no Departamento ID: 1.
+2026-07-31 13:25:26 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 728 à UC_Tipo_Aula ID: 1 na Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:25:26 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 728 à UC_Tipo_Aula ID: 4 na Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:25:55 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 728 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 13:25:57 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 729 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 5.0.
+2026-07-31 13:26:00 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 730 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:26:22 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 714 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 13:26:26 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 714 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 15.0.
+2026-07-31 13:29:51 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 5.
+2026-07-31 13:29:53 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 13:30:53 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU o ContratoDocente ID: 6 para o Docente ID: 5.
+2026-07-31 13:31:04 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 5.
+2026-07-31 13:31:06 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 13:31:08 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 719 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 13:31:08 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 719 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 13:39:49 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 5.
+2026-07-31 13:39:54 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 13:39:55 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 13:39:58 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 726 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 13:40:01 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 729 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:40:09 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 733 Turno da UC_DistribuicaoPai: 722 (Turno: 2, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@223fbfeb.
+2026-07-31 13:40:13 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 722 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 13:40:15 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 733 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 13:40:20 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 733 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 13:40:22 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 733 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 13:42:20 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 734 Turno da UC_DistribuicaoPai: 733 (Turno: 3, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: com.example.backend.Entity.Docente@5a648749, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@7aa950a6.
+2026-07-31 13:46:14 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 734 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:46:15 [http-nio-8080-exec-10] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 733 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:48:12 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 735 Turno da UC_DistribuicaoPai: 718 (Turno: 2, Horas: 30.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@6990194e.
+2026-07-31 13:48:14 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 735 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:48:15 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 736 Turno da UC_DistribuicaoPai: 718 (Turno: 2, Horas: 30.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@4383fadd.
+2026-07-31 13:48:17 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 718 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 13:48:18 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 736 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 13:48:22 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 722 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 13:51:46 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 737 Turno da UC_DistribuicaoPai: 736 (Turno: 3, Horas: 30.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: com.example.backend.Entity.Docente@37253868, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@3ca1d7e1.
+2026-07-31 13:52:02 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 738 Copia da UC_DistribuicaoPai: 737 (Turno: 3, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: com.example.backend.Entity.Docente@2b6ef4c5, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@71acd580.
+2026-07-31 13:52:04 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 738 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:52:08 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 739 Copia da UC_DistribuicaoPai: 737 (Turno: 3, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: com.example.backend.Entity.Docente@4ca7eb50, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@59039e94.
+2026-07-31 13:52:09 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 739 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:52:50 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 740 Copia da UC_DistribuicaoPai: 736 (Turno: 2, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: com.example.backend.Entity.Docente@3db45020, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@6befb810.
+2026-07-31 13:53:02 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 740 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:53:39 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 741 Turno da UC_DistribuicaoPai: 732 (Turno: 2, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@2604e63d.
+2026-07-31 13:53:41 [http-nio-8080-exec-4] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 742 Copia da UC_DistribuicaoPai: 732 (Turno: 1, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@7b5f3086.
+2026-07-31 13:53:57 [http-nio-8080-exec-8] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 743 Copia da UC_DistribuicaoPai: 741 (Turno: 2, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@239e0662.
+2026-07-31 13:54:12 [http-nio-8080-exec-6] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 743 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:54:13 [http-nio-8080-exec-3] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 742 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:54:13 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 744 Turno da UC_DistribuicaoPai: 741 (Turno: 3, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@7c4a8c43.
+2026-07-31 13:54:14 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 744 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:54:15 [http-nio-8080-exec-10] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 741 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:54:17 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 745 Copia da UC_DistribuicaoPai: 732 (Turno: 1, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@47938c07.
+2026-07-31 13:54:20 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 746 Turno da UC_DistribuicaoPai: 732 (Turno: 2, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@412d825f.
+2026-07-31 13:54:23 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 747 Turno da UC_DistribuicaoPai: 745 (Turno: 2, Horas: 0.0) na Distribuição ID: 44 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@7ac65d34.
+2026-07-31 13:55:22 [http-nio-8080-exec-10] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 747 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:55:23 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 746 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 13:55:23 [http-nio-8080-exec-2] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 745 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 14:09:44 [http-nio-8080-exec-1] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 737 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 14:09:45 [http-nio-8080-exec-7] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 736 da Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 14:09:52 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 748 à UC_Tipo_Aula ID: 5 na Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 14:09:52 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Juncao ID : null ligando UC_Distribuicao ID: 748 à UC_Tipo_Aula ID: 7 na Distribuição ID: 44 (Departamento ID: 1).
+2026-07-31 14:09:55 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 748 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 14:09:57 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 748 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:09:58 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 748 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:09:59 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 748 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 20.0.
+2026-07-31 14:10:08 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 720 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 14:10:19 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 720 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:10:19 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 720 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:10:22 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 720 na Distribuição ID: 44 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:10:25 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 720 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> null.
+2026-07-31 14:10:28 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 721 na Distribuição ID: 44 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 14:16:05 [http-nio-8080-exec-2] - Utilizador ID: 1 APAGOU a Distribuição ID: 44 no Departamento ID: 1.
+2026-07-31 14:16:06 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU a Distribuição ID: 43 no Departamento ID: 1.
+2026-07-31 14:16:11 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU a Distribuição ID: 45 ('teste2') no Departamento ID: 1.
+2026-07-31 14:16:16 [http-nio-8080-exec-5] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 766 Copia da UC_DistribuicaoPai: 765 (Turno: 1, Horas: 0.0) na Distribuição ID: 45 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@251c39b8.
+2026-07-31 14:23:23 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 765 na Distribuição ID: 45 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:23:24 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 765 na Distribuição ID: 45 (Departamento ID: 1). Horas: -> 37.0.
+2026-07-31 14:23:57 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU a Distribuição ID: 45 no Departamento ID: 1.
+2026-07-31 14:24:00 [http-nio-8080-exec-2] - Utilizador ID: 1 CRIOU a Distribuição ID: 46 ('t') no Departamento ID: 1.
+2026-07-31 14:24:04 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 773 na Distribuição ID: 46 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:24:04 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 773 na Distribuição ID: 46 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:24:06 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 773 na Distribuição ID: 46 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:24:07 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 773 na Distribuição ID: 46 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:24:11 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 773 na Distribuição ID: 46 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:24:12 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 773 na Distribuição ID: 46 (Departamento ID: 1). Horas: -> 4.0.
+2026-07-31 14:24:13 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 773 na Distribuição ID: 46 (Departamento ID: 1). Horas: -> 40.0.
+2026-07-31 14:25:01 [http-nio-8080-exec-7] - Utilizador ID: 1 CRIOU a Distribuição ID: 47 ('teste') no Departamento ID: 1.
+2026-07-31 14:25:04 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 788 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:25:05 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 788 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:25:06 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 788 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 14:25:06 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 788 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 70.0.
+2026-07-31 14:25:09 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 787 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:25:09 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 787 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:25:10 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 787 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 14:25:10 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 787 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 70.0.
+2026-07-31 14:25:11 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 792 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 4.0.
+2026-07-31 14:25:11 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 792 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:25:12 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 792 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 14:25:13 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 792 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 70.0.
+2026-07-31 14:28:53 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 796 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:28:56 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 796 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:28:57 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 796 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 14:28:57 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 796 na Distribuição ID: 47 (Departamento ID: 1). Horas: -> 70.0.
+2026-07-31 14:29:45 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU a Distribuição ID: 47 no Departamento ID: 1.
+2026-07-31 14:29:48 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU a Distribuição ID: 48 ('teste') no Departamento ID: 1.
+2026-07-31 14:29:54 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 811 na Distribuição ID: 48 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:29:55 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 811 na Distribuição ID: 48 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 14:29:55 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 811 na Distribuição ID: 48 (Departamento ID: 1). Horas: -> 70.0.
+2026-07-31 14:31:01 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU a Distribuição ID: 49 ('das') no Departamento ID: 1.
+2026-07-31 14:31:06 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 14:31:08 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:31:08 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:31:09 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 14:31:09 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 70.0.
+2026-07-31 14:32:58 [http-nio-8080-exec-9] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 827 Turno da UC_DistribuicaoPai: 823 (Turno: 2, Horas: 30.0) na Distribuição ID: 49 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@61575908.
+2026-07-31 14:32:59 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 823 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:32:59 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 823 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:33:00 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 823 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:33:00 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 823 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 20.0.
+2026-07-31 14:35:20 [http-nio-8080-exec-5] - Utilizador ID: 1 APAGOU a Distribuição ID: 48 no Departamento ID: 1.
+2026-07-31 14:35:23 [http-nio-8080-exec-1] - Utilizador ID: 1 CRIOU a Distribuição ID: 50 ('teste') no Departamento ID: 1.
+2026-07-31 14:35:30 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:35:30 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:35:31 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 14:39:43 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:39:48 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:39:48 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:39:48 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 30.0.
+2026-07-31 14:39:50 [http-nio-8080-exec-3] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 843 Copia da UC_DistribuicaoPai: 842 (Turno: 1, Horas: 0.0) na Distribuição ID: 50 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@4162ef01.
+2026-07-31 14:39:52 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:39:56 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:39:57 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:39:57 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:39:57 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:40:07 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:40:07 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:40:08 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:40:08 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 28.0.
+2026-07-31 14:40:09 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:40:11 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:40:42 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:40:42 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:40:43 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:40:54 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:41:00 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 843 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:42:02 [http-nio-8080-exec-8] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 843 da Distribuição ID: 50 (Departamento ID: 1).
+2026-07-31 14:42:04 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:42:04 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:42:05 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 4.0.
+2026-07-31 14:42:08 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:42:08 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:42:08 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 842 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 30.0.
+2026-07-31 14:43:52 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 844 Turno da UC_DistribuicaoPai: 834 (Turno: 2, Horas: 30.0) na Distribuição ID: 50 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@5edffa6a.
+2026-07-31 14:43:57 [http-nio-8080-exec-4] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 844 da Distribuição ID: 50 (Departamento ID: 1).
+2026-07-31 14:44:06 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 845 Turno da UC_DistribuicaoPai: 833 (Turno: 2, Horas: 30.0) na Distribuição ID: 50 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@1a1322c2.
+2026-07-31 14:44:09 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:44:09 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:44:11 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 4.0.
+2026-07-31 14:44:14 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 14:44:14 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 14:44:14 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 30.0.
+2026-07-31 14:44:16 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 14:44:18 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 845 na Distribuição ID: 50 (Departamento ID: 1). Docente: -> 1.
+2026-07-31 14:44:23 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 14:44:23 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 20.0.
+2026-07-31 14:44:27 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 845 da Distribuição ID: 50 (Departamento ID: 1).
+2026-07-31 15:05:46 [http-nio-8080-exec-10] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 846 Turno da UC_DistribuicaoPai: 833 (Turno: 2, Horas: 20.0) na Distribuição ID: 50 (Departamento ID: 1). Docente ID: com.example.backend.Entity.Docente@39e1dda2, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@3556e111.
+2026-07-31 15:07:26 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 15:07:26 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 15:07:28 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 15:07:28 [http-nio-8080-exec-9] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 30.0.
+2026-07-31 15:07:29 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 15:07:29 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 15:07:29 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 15:07:29 [http-nio-8080-exec-6] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 10.0.
+2026-07-31 15:07:32 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 15:07:33 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 15:07:34 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 15:07:34 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 30.0.
+2026-07-31 15:07:40 [http-nio-8080-exec-9] - Utilizador ID: 1 APAGOU UC_Distribuicao ID: 846 da Distribuição ID: 50 (Departamento ID: 1).
+2026-07-31 15:07:44 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 15:07:44 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 15:07:45 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 15:07:45 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 15:07:45 [http-nio-8080-exec-8] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 10.0.
+2026-07-31 15:07:46 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 1.0.
+2026-07-31 15:07:46 [http-nio-8080-exec-2] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 15:07:46 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 2.0.
+2026-07-31 15:07:47 [http-nio-8080-exec-1] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 833 na Distribuição ID: 50 (Departamento ID: 1). Horas: -> 20.0.
+2026-07-31 15:15:40 [http-nio-8080-exec-6] - Utilizador ID: 1 CRIOU UC_Distribuicao ID 847 Copia da UC_DistribuicaoPai: 818 (Turno: 1, Horas: 0.0) na Distribuição ID: 49 (Departamento ID: 1). Docente ID: N/A, UCTipoAula ID: com.example.backend.Entity.UC_Tipo_Aula@3f6a4db0.
+2026-07-31 15:15:43 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 847 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 15:15:50 [http-nio-8080-exec-4] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 7.0.
+2026-07-31 15:15:51 [http-nio-8080-exec-5] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 0.0.
+2026-07-31 15:15:52 [http-nio-8080-exec-7] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 3.0.
+2026-07-31 15:15:53 [http-nio-8080-exec-10] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 825 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 30.0.
+2026-07-31 15:15:56 [http-nio-8080-exec-3] - Utilizador ID: 1 ALTEROU UC_Distribuicao ID: 814 na Distribuição ID: 49 (Departamento ID: 1). Horas: -> 1.0.

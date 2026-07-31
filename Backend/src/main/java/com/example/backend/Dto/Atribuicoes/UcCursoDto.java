@@ -6,8 +6,8 @@ public record UcCursoDto(
         String cursoNome,
         String cursoDepartamentoNome,
         String ucNome,
-        String ucAno,
-        String ucSemestre,
+        Integer ucAno,
+        Integer ucSemestre,
         String ucTipoNome
 
 ) {

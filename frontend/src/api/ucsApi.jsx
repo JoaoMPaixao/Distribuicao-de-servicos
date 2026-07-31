@@ -1,6 +1,6 @@
 import { instance } from './config.jsx'
 
-export const getUcs = async (id) => {
+export const getUcs = async () => {
 
     try{
         const {data} = await instance.get(`v1/ucs`)
