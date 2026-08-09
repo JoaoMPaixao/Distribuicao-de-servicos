@@ -5,11 +5,9 @@ import com.example.backend.Entity.ContratoDocente;
 import com.example.backend.Entity.Distribuicao;
 import com.example.backend.Entity.Docente;
 import com.example.backend.Entity.UC_Distribuicao;
+import com.example.backend.Enums.DedicacaoDocente;
 import com.example.backend.Enums.EstadoContrato;
-import com.example.backend.Repository.ContratoDocenteRepository;
-import com.example.backend.Repository.DistribuicaoRepository;
-import com.example.backend.Repository.UcDistribuicaoRepository;
-import com.example.backend.Repository.UcJuncaoRepository;
+import com.example.backend.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UtilsServices {
@@ -34,6 +33,8 @@ public class UtilsServices {
 
     @Autowired
     private UcDistribuicaoRepository ucDistribuicaoRepository;
+    @Autowired
+    private DocenteRepository docenteRepository;
 
     //serviço para verificar se a distribuicao e o utilizador estao no mesmo departamento
     public void validarAcessoDistribuicao(Integer distribuicaoId, Integer departamentoId) {
@@ -148,6 +149,42 @@ public class UtilsServices {
         // Chamada recursiva: vai procurar os filhos deste filho
         atualizarHorasTurnos(ucDistribuicao.getId(), novasHoras);
 
+    }
+
+    public float getDocenteHoras(Integer docente_id, Integer distribuicao_id) {
+
+        List<UC_Distribuicao> ucDistribuicoes = ucDistribuicaoRepository.findByDocente_IdAndDistribuicao_Id(docente_id, distribuicao_id);
+
+        ContratoDocente contrato = getContratoAtual(docente_id);
+
+        float horasTotais = 0;
+
+        for(UC_Distribuicao ucDistribuicao : ucDistribuicoes){
+
+            horasTotais+=ucDistribuicao.getHoras_atribuidas();
+
+        }
+
+        float horasSemestre = 16;
+
+        if(contrato != null && contrato.getDedicacao().equals(DedicacaoDocente.TEMPO_PARCIAL)){
+            horasSemestre=20;
+        }
+
+
+        //numero de horas totais do semestre 1 e 2 / horas por semestre * 2 pois estamos a fazer ano total
+        return Math.round(horasTotais/(horasSemestre*2) * 10f)/10f;
+
+    }
+
+   public String resolverNomeUc(UC_Distribuicao uc) {
+        if (uc.getUcTipoAula() != null) {
+            return uc.getUcTipoAula().getUc().getNome() + " — " + uc.getUcTipoAula().getTipo_aula().getNome();
+        }
+        return ucJuncaoRepository.findByUcDistribuicao_Id(uc.getId())
+                .stream().findFirst()
+                .map(j -> j.getUcTipoAula().getUc().getNome() + " (junção)")
+                .orElse("UC desconhecida");
     }
 
 

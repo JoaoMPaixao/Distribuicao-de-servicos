@@ -1,30 +1,30 @@
 import { Navigate } from "react-router-dom";
-
-import { UserContext } from "./UserContext.jsx";
+import { UserContext } from "../UserContext.jsx";
 import { useContext } from "react";
 
-
-
 export function PrivateRoutes({ children, roles }) {
-
     const { user } = useContext(UserContext);
 
-    // não está logado --> redireciona para login
+    // Não carregou o user ainda
+    if (user === undefined) {
+        return null;
+    }
+
+    // Não está logado --> redireciona para o login
     if (user === null) {
         return <Navigate to="/" replace />;
     }
-    else if (user === undefined){
-        return null
+
+    // Validação corrigida:
+    // user.role é um Array (ex: ['ADMIN']). Verificamos se alguma role do user está no array de roles da rota.
+    const hasPermission = !roles || (
+        Array.isArray(user.role) && user.role.some(r => roles.includes(r))
+    );
+
+    if (!hasPermission) {
+        return <Navigate to="/semAcesso" replace />;
     }
 
-
-    // está logado, mas não tem permissão
-    if (roles && (!user.roles || !user.roles.some(role => roles.includes(role)))) {
-        return <p>Não tem acesso a esta página.</p>;
-    }
-
-
-
-    // tem permissão --> mostra a página
-    return <div>{children}</div>;
+    // Tem permissão --> mostra a página
+    return children;
 }

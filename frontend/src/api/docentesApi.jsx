@@ -11,17 +11,6 @@ export const getDocentes = async () => {
 
 }
 
-export const getDocentesDistribuicao = async () => {
-
-    try{
-        const {data} = await instance.get(`v1/docentes/distribuicao`)
-        return { success: true, data}
-    }catch (error){
-        return {success: false, status: error.response?.status, message: error.response?.data?.message}
-    }
-
-}
-
 export const criarDocente = async (dados) => {
     try {
 

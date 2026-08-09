@@ -12,6 +12,7 @@ import com.example.backend.Entity.Curso;
 import com.example.backend.Entity.Departamento;
 import com.example.backend.Entity.Docente;
 import com.example.backend.Enums.EstadoContrato;
+import com.example.backend.Enums.EstadoDocente;
 import com.example.backend.Repository.ContratoDocenteRepository;
 import com.example.backend.Repository.DepartamentoRepository;
 import com.example.backend.Repository.DistribuicaoRepository;
@@ -38,9 +39,6 @@ public class DocenteServices {
     private DocenteRepository docenteRepository;
 
     @Autowired
-    private DistribuicaoRepository distribuicaoRepository;
-
-    @Autowired
     private UtilsServices utilsServices;
 
     @Autowired
@@ -49,14 +47,15 @@ public class DocenteServices {
     @Autowired
     private ContratoDocenteRepository contratoDocenteRepository;
 
-    public List<ListarDocentesUcDistribuicaoDto> getDocentesUcDistribuicao (){
+    public List<ListarDocentesUcDistribuicaoDto> getDocentesUcDistribuicao (Integer distribuicao_id){
 
-        return docenteRepository.findAll()
+        return docenteRepository.findByEstadoNot(EstadoDocente.INATIVO)
                 .stream()
                 .map(docente -> new ListarDocentesUcDistribuicaoDto(
                         docente.getId(),
                         docente.getNome(),
-                        docente.getDepartamento().getNome()
+                        docente.getDepartamento().getNome(),
+                        utilsServices.getDocenteHoras(docente.getId(), distribuicao_id)
 
                 ))
                 .toList();

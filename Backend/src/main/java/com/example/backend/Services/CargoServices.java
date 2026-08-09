@@ -1,7 +1,6 @@
 package com.example.backend.Services;
 
 import com.example.backend.Dto.Cargos.ListarCargosDto;
-import com.example.backend.Dto.Departamentos.ListarDepartamentosDto;
 import com.example.backend.Repository.CargoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

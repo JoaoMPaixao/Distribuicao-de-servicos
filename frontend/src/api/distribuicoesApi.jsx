@@ -57,3 +57,14 @@ export const clonarDistribuicao = async (id) => {
         return {success: false, status: error.response?.status, message: error.response?.data?.message}
     }
 }
+
+export const compararDistribuicoes = async (dist1Id, dist2Id) => {
+    try {
+        const { data } = await instance.get('v1/distribuicoes/comparar', {
+            params: { distribuicao1Id: dist1Id, distribuicao2Id: dist2Id }
+        })
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
+}

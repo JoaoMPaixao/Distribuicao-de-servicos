@@ -3,7 +3,6 @@ package com.example.backend.Dto.Docentes;
 import com.example.backend.Enums.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public record ListarDocentesDto(
 

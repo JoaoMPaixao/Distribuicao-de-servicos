@@ -35,13 +35,13 @@ function TabelaDistribuicao({ atribuicoes, onAtribuirDocente, onRetirarDocente, 
                         <div className="rot-wrap"><span>Tipologia</span></div>
                     </th>
                     <th rowSpan="2" className="th-rot">
-                        <div className="rot-wrap"><span>HorasUc</span></div>
+                        <div className="rot-wrap"><span>UcHoras</span></div>
                     </th>
                     <th rowSpan="2" className="th-rot">
                         <div className="rot-wrap"><span>Turno</span></div>
                     </th>
                     <th rowSpan="2" className="th-rot">
-                        <div className="rot-wrap"><span>HorasAtribuidas</span></div>
+                        <div className="rot-wrap"><span>Horas</span></div>
                     </th>
                     <th rowSpan="2" style={{ padding: '0 12px', minWidth: '170px', textAlign: 'left' }}>
                         <div className="th-header">Docente</div>

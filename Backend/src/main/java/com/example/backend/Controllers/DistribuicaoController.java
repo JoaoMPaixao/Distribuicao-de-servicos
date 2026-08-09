@@ -1,9 +1,9 @@
 package com.example.backend.Controllers;
 
 import com.example.backend.Dto.Distribuicoes.AlterarEstadoDistribuicaoDto;
+import com.example.backend.Dto.Distribuicoes.ComparacaoDistribuicoesDto;
 import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
 import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
-import com.example.backend.Dto.Docentes.ListarDocentesUcDistribuicaoDto;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.DistribuicaoServices;
 import com.example.backend.Services.DocenteServices;
@@ -23,9 +23,6 @@ public class DistribuicaoController {
 
     @Autowired
     private DistribuicaoServices distribuicaoServices;
-
-    @Autowired
-    private DocenteServices docenteServices;
 
     @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
     @GetMapping("/{id}")
@@ -107,10 +104,16 @@ public class DistribuicaoController {
         }
     }
 
-    @GetMapping("/docentes")
-    public ResponseEntity<List<ListarDocentesUcDistribuicaoDto>> getDocentesDistribuicao(){
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+    @GetMapping("/comparar")
+    public ResponseEntity<ComparacaoDistribuicoesDto> CompararDistribuicoes(
+            @RequestParam Integer distribuicao1Id,
+            @RequestParam Integer distribuicao2Id,
+            Authentication authentication) {
 
-        return ResponseEntity.ok(docenteServices.getDocentesUcDistribuicao());
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        return ResponseEntity.ok(distribuicaoServices.CompararDistribuicoes(distribuicao1Id, distribuicao2Id, user.getDepartamentoId()));
     }
+
 
 }

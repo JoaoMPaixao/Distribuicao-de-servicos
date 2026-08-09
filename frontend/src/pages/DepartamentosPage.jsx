@@ -10,7 +10,7 @@ import {UserContext} from "../UserContext.jsx";
 import TabelaDepartamentos from "../components/Departamentos/TabelaDepartamentos.jsx";
 import FilterBarDepartamentos from "../components/Departamentos/FilterBarDepartamentos.jsx";
 import ModalDepartamentos from "../components/Departamentos/ModalDepartamentos.jsx";
-import {apagarCurso, getCursos} from "../api/cursosApi.jsx";
+
 
 
 export const DepartamentosPage = () => {

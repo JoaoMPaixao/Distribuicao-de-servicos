@@ -2,7 +2,7 @@ import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 
 
-function DashboardLayout({ children}) {
+function SideBar_TopBar({ children}) {
     return (
         <>
             <Sidebar />
@@ -16,4 +16,4 @@ function DashboardLayout({ children}) {
     )
 }
 
-export default DashboardLayout
+export default SideBar_TopBar

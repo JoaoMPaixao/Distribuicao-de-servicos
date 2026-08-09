@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {login, me} from '../api/loginApi'
 import { UserContext } from '../UserContext'
+import {ROLES} from "../utils/roles.jsx";
 
 
 function LoginPage() {
@@ -47,10 +48,22 @@ function LoginPage() {
             try {
                 const userData = await me();
                 setUser(userData);
+                const rolesDoUtilizador = userData?.role || [];
+
+                if (rolesDoUtilizador.includes(ROLES.ADMIN)) {
+                    navigate('/departamentos');
+                } else if (
+                    rolesDoUtilizador.includes(ROLES.COORDENADOR) ||
+                    rolesDoUtilizador.includes(ROLES.DIRETOR_COORDENADOR)
+                ) {
+                    navigate('/distribuicoes');
+                } else {
+                    navigate('/semAcesso');
+                }
             } catch (e) {
                 setUser(null);
             }
-            navigate('/distribuicoes')
+
         }else {
             setErroGeral('Credenciais inválidas. Por favor verifique o seu e-mail e palavra-passe.')
         }

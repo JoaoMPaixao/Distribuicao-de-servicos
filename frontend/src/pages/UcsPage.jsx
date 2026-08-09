@@ -13,7 +13,7 @@ import {UserContext} from "../UserContext.jsx";
 import TabelaUcs from "../components/Ucs/TabelaUcs.jsx";
 import FilterBarUcs from "../components/Ucs/FilterBarUcs.jsx";
 import {getDepartamentos} from "../api/departamentosApi.jsx";
-import {apagarCurso, getCursos} from "../api/cursosApi.jsx";
+import {getCursos} from "../api/cursosApi.jsx";
 import ModalUcs from "../components/Ucs/ModalUcs.jsx";
 import ModalUcsTipoAula from "../components/Ucs/ModalUcsTipoAula.jsx";
 

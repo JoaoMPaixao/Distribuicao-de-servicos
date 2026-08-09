@@ -17,7 +17,6 @@ function ModalDocente({ docente = null, onClose, onSubmit, departamentos }) {
     const handleSubmit = () => {
         const novosErros = {}
         if (!nome.trim()) novosErros.nome = 'O nome é obrigatório.'
-        if (!email.trim()) novosErros.email = 'O email é obrigatório.'
         if (!estado.trim()) novosErros.estado = 'O estado é obrigatório.'
         if (!departamentoId) novosErros.departamento = 'O departamento é obrigatório.'
 
@@ -77,7 +76,7 @@ function ModalDocente({ docente = null, onClose, onSubmit, departamentos }) {
                         </div>
 
                         <div className="modal-field">
-                            <label className="modal-label" htmlFor="mEmail">Email <span className="required">*</span></label>
+                            <label className="modal-label" htmlFor="mEmail">Email <span className="modal-label-optional">Opcional</span></label>
                             <div className="modal-input-wrap">
                                 <input
                                     className="modal-input modal-mono"

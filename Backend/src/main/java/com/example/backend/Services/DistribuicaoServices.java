@@ -1,8 +1,6 @@
 package com.example.backend.Services;
 
-import com.example.backend.Dto.Distribuicoes.AlterarEstadoDistribuicaoDto;
-import com.example.backend.Dto.Distribuicoes.CriarDistribuicaoDto;
-import com.example.backend.Dto.Distribuicoes.ListarDistribuicaoDto;
+import com.example.backend.Dto.Distribuicoes.*;
 import com.example.backend.Entity.*;
 import com.example.backend.Enums.EstadoDistribuicao;
 import com.example.backend.Repository.*;
@@ -14,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class DistribuicaoServices {
@@ -237,6 +233,58 @@ public class DistribuicaoServices {
         auditLogger.info("Utilizador ID: {} CLONOU a Distribuição ID: {} para a nova Distribuição ID: {}.",
                 utilizador_id, distribuicao_id, distribuicaoClone.getId());
 
+    }
+
+    public ComparacaoDistribuicoesDto CompararDistribuicoes(Integer dist1Id, Integer dist2Id, Integer departamentoId) {
+
+        Distribuicao dist1 = utilsServices.getDistribuicaoComAcesso(dist1Id, departamentoId);
+        Distribuicao dist2 = utilsServices.getDistribuicaoComAcesso(dist2Id, departamentoId);
+
+        List<UC_Distribuicao> linhas1 = ucDistribuicaoRepository.findByDistribuicao_Id(dist1Id);
+        List<UC_Distribuicao> linhas2 = ucDistribuicaoRepository.findByDistribuicao_Id(dist2Id);
+
+        // indexa as linhas da distribuição 2 por ucTipoAulaId + turno para comparação rápida
+        Map<String, UC_Distribuicao> indexDist2 = linhas2.stream()
+                .filter(uc -> uc.getUcTipoAula() != null)
+                .collect(Collectors.toMap(
+                        uc -> uc.getUcTipoAula().getId() + "_" + uc.getTurno(),
+                        uc -> uc,
+                        (a, b) -> a // em caso de duplicado, fica o primeiro
+                ));
+
+        List<ComparacaoLinhaDto> linhasComparacao = linhas1.stream()
+                .filter(uc -> uc.getUcTipoAula() != null) // ignora junções por agora
+                .map(uc1 -> {
+                    String chave = uc1.getUcTipoAula().getId() + "_" + uc1.getTurno();
+                    UC_Distribuicao uc2 = indexDist2.get(chave);
+
+                    String docente1 = uc1.getDocente() != null ? uc1.getDocente().getNome() : null;
+                    String docente2 = uc2 != null && uc2.getDocente() != null ? uc2.getDocente().getNome() : null;
+                    float horas1 = uc1.getHoras_atribuidas();
+                    float horas2 = uc2.getHoras_atribuidas();
+
+                    boolean docenteIgual = Objects.equals(docente1, docente2);
+                    boolean horasIguais = Objects.equals(horas1, horas2);
+
+                    return new ComparacaoLinhaDto(
+                            uc1.getUcTipoAula().getUc().getNome(),
+                            uc1.getUcTipoAula().getTipo_aula().getNome(),
+                            String.valueOf(uc1.getTurno()),
+                            docente1, horas1,
+                            docente2, horas2,
+                            docenteIgual, horasIguais,
+                            !docenteIgual || !horasIguais
+                    );
+                })
+                .sorted(Comparator.comparing(ComparacaoLinhaDto::ucNome, String.CASE_INSENSITIVE_ORDER))
+                .toList();
+
+        long totalDiferencas = linhasComparacao.stream().filter(ComparacaoLinhaDto::temDiferenca).count();
+
+        return new ComparacaoDistribuicoesDto(
+                dist1.getNome(), dist2.getNome(),
+                linhasComparacao, (int) totalDiferencas
+        );
     }
 
 }

@@ -1,18 +1,27 @@
 // components/Sidebar.jsx
 import { NavLink } from 'react-router-dom'
+import {useContext} from "react";
+import {UserContext} from "../UserContext.jsx";
+import {ROLES} from "../utils/roles.jsx";
 
 const itens = [
-    { label: 'Distribuições', icon: 'bi-justify', path: '/distribuicoes' },
-    { label: 'Comparações', icon: 'bi-arrow-down-up', path: '/comparacoes' },
-    { label: 'Docentes', icon: 'bi-person', path: '/docentes' },
-    { label: 'Departamentos', icon: 'bi-house-door', path: '/departamentos' },
-    { label: 'Cursos', icon: 'bi-mortarboard', path: '/cursos' },
-    { label: 'Unidades Curriculares', icon: 'bi-journals', path: '/ucs' },
-    { label: 'Utilizadores', icon: 'bi-people', path: '/utilizadores' },
+    { label: 'Distribuições', icon: 'bi-justify', path: '/distribuicoes', roles: [ROLES.COORDENADOR, ROLES.DIRETOR_COORDENADOR] },
+    { label: 'Comparações', icon: 'bi-arrow-down-up', path: '/comparacoes', roles: [ROLES.COORDENADOR, ROLES.DIRETOR_COORDENADOR]},
+    { label: 'Docentes', icon: 'bi-person', path: '/docentes', roles: [ROLES.ADMIN] },
+    { label: 'Departamentos', icon: 'bi-house-door', path: '/departamentos', roles: [ROLES.ADMIN] },
+    { label: 'Cursos', icon: 'bi-mortarboard', path: '/cursos', roles: [ROLES.ADMIN] },
+    { label: 'Unidades Curriculares', icon: 'bi-journals', path: '/ucs', roles: [ROLES.ADMIN] },
+    { label: 'Utilizadores', icon: 'bi-people', path: '/utilizadores', roles: [ROLES.ADMIN] },
 
 ]
 
 function Sidebar({ collapsed, onToggle }) {
+    const { user } = useContext(UserContext)
+
+    const itensVisiveis = itens.filter(item =>
+        !item.roles || item.roles.some(r => user?.role?.includes(r))
+    );
+
     return (
         <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
 
@@ -24,7 +33,7 @@ function Sidebar({ collapsed, onToggle }) {
             </div>
 
             <nav className="sidebar-nav">
-                {itens.map((item) => (
+                {itensVisiveis.map((item) => (
                     <NavLink
                         key={item.path}
                         to={item.path}

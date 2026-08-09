@@ -1,8 +1,10 @@
 package com.example.backend.Controllers;
 
 import com.example.backend.Dto.Atribuicoes.*;
+import com.example.backend.Dto.Docentes.ListarDocentesUcDistribuicaoDto;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.CursoServices;
+import com.example.backend.Services.DocenteServices;
 import com.example.backend.Services.UcDistribuicaoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +20,10 @@ import java.util.List;
 public class UcDistribuicaoController {
 
         @Autowired
-        private CursoServices cursoServices;
+        private UcDistribuicaoServices ucDistribuicaoServices;
 
         @Autowired
-        private UcDistribuicaoServices ucDistribuicaoServices;
+        private DocenteServices docenteServices;
 
 
         @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
@@ -31,20 +33,20 @@ public class UcDistribuicaoController {
             return ResponseEntity.ok(ucDistribuicaoServices.getUcDistribuicoes(id));
         }
 
-    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
-    @PostMapping("/atribuicao/{udid}/duplicar")
-    public ResponseEntity<Void> CriarUcDistribuicao(@PathVariable Integer id, @PathVariable Integer udid, Authentication authentication) {
+        @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+        @PostMapping("/atribuicao/{udid}/duplicar")
+        public ResponseEntity<Void> CriarUcDistribuicao(@PathVariable Integer id, @PathVariable Integer udid, Authentication authentication) {
 
-        try{
-            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-            Integer departamentoId = user.getDepartamentoId();
-            Integer utilizadorID = user.getId();
-            ucDistribuicaoServices.CriarUcDistribuicao(udid, id, departamentoId, utilizadorID);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        }catch(NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
+            try{
+                CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+                Integer departamentoId = user.getDepartamentoId();
+                Integer utilizadorID = user.getId();
+                ucDistribuicaoServices.CriarUcDistribuicao(udid, id, departamentoId, utilizadorID);
+                return ResponseEntity.status(HttpStatus.CREATED).build();
+            }catch(NumberFormatException e) {
+                return ResponseEntity.badRequest().build();
+            }
         }
-    }
 
         @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
         @PostMapping("/atribuicao/{udid}/turno")
@@ -136,9 +138,22 @@ public class UcDistribuicaoController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+    @GetMapping("/docentes")
+    public ResponseEntity<List<ListarDocentesUcDistribuicaoDto>> getDocentesDistribuicao(@PathVariable Integer id){
 
+        return ResponseEntity.ok(docenteServices.getDocentesUcDistribuicao(id));
+    }
 
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
+    @GetMapping("/verificar")
+    public ResponseEntity<VerificacaoUcDistribuicaoDto> verificar(
+            @PathVariable Integer id,
+            Authentication authentication) {
 
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        return ResponseEntity.ok(ucDistribuicaoServices.verificarDistribuicao(id, user.getId()));
+    }
 
 
 }

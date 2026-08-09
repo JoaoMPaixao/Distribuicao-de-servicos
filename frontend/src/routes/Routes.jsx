@@ -8,6 +8,10 @@ import {UcsPage} from "../pages/UcsPage.jsx";
 import DistribuicaoPage from "../pages/DistribuicaoPage.jsx";
 import '../styles/global.css'
 import {DocentesPage} from "../pages/DocentesPage.jsx";
+import ComparacaoPage from "../pages/ComparacaoPage.jsx";
+import SemAcessoPage from "../pages/SemAcessoPage.jsx";
+import {PrivateRoutes} from "./PrivateRoutes.jsx";
+import {ROLES} from "../utils/roles.jsx";
 
 export const AppRoutes = () => {
     return (
@@ -15,19 +19,55 @@ export const AppRoutes = () => {
 
             <Route path="/" element={<LoginPage/>} />
 
-            <Route path="/distribuicoes" element={<DistribuicoesPage />} />
+            <Route path="/semAcesso" element={<SemAcessoPage/>} />
 
-            <Route path="/cursos" element={<CursosPage/>} />
+            <Route path="/distribuicoes" element=
+                {<PrivateRoutes roles={[ROLES.COORDENADOR, ROLES.DIRETOR_COORDENADOR]}>
+                    <DistribuicoesPage />
+                </PrivateRoutes>
+            } />
 
-            <Route path="/departamentos" element={<DepartamentosPage/>} />
+            <Route path="/cursos" element={
+                <PrivateRoutes roles={[ROLES.ADMIN]}>
+                    <CursosPage />
+                </PrivateRoutes>
+            } />
 
-            <Route path="/utilizadores" element={<UtilizadoresPage/>} />
+            <Route path="/departamentos" element={
+                <PrivateRoutes roles={[ROLES.ADMIN]}>
+                    <DepartamentosPage />
+                </PrivateRoutes>
+            } />
 
-            <Route path="/ucs" element={<UcsPage/>} />
+            <Route path="/utilizadores" element={
+                <PrivateRoutes roles={[ROLES.ADMIN]}>
+                    <UtilizadoresPage />
+                </PrivateRoutes>
+            } />
 
-            <Route path="/distribuicoes/:id/atribuicoes" element={<DistribuicaoPage/>} />
+            <Route path="/ucs" element={
+                <PrivateRoutes roles={[ROLES.ADMIN]}>
+                    <UcsPage />
+                </PrivateRoutes>
+            } />
 
-            <Route path="/docentes" element={<DocentesPage/>} />
+            <Route path="/distribuicoes/:id/atribuicoes" element={
+                <PrivateRoutes roles={[ROLES.COORDENADOR, ROLES.DIRETOR_COORDENADOR]}>
+                    <DistribuicaoPage />
+                </PrivateRoutes>
+            } />
+
+            <Route path="/docentes" element={
+                <PrivateRoutes roles={[ROLES.ADMIN]}>
+                    <DocentesPage />
+                </PrivateRoutes>
+            } />
+
+            <Route path="/comparacoes" element={
+                <PrivateRoutes roles={[ROLES.COORDENADOR, ROLES.DIRETOR_COORDENADOR]}>
+                    <ComparacaoPage />
+                </PrivateRoutes>
+            } />
 
         </Routes>
     );

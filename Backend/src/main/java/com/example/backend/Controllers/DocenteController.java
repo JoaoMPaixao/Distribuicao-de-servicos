@@ -1,8 +1,5 @@
 package com.example.backend.Controllers;
 
-import com.example.backend.Dto.Cursos.AlterarCursosDto;
-import com.example.backend.Dto.Cursos.CriarCursosDto;
-import com.example.backend.Dto.Departamentos.ListarDepartamentosDto;
 import com.example.backend.Dto.Docentes.*;
 import com.example.backend.Security.CustomUserDetails;
 import com.example.backend.Services.DocenteServices;
@@ -22,11 +19,6 @@ public class DocenteController {
     @Autowired
     private DocenteServices docenteServices;
 
-    @GetMapping("/distribuicao")
-    public ResponseEntity<List<ListarDocentesUcDistribuicaoDto>> getDocentesDistribuicao() {
-
-        return ResponseEntity.ok(docenteServices.getDocentesUcDistribuicao());
-    }
 
     @GetMapping
     public ResponseEntity<List<ListarDocentesDto>> getDocentes() {

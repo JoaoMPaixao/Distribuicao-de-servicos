@@ -98,7 +98,7 @@ function ModalContratoDocente({ docente, isEdicao, onClose, onSubmit}) {
                             id="mDesc"
                             rows="3"
                             maxLength={300}
-                            placeholder="Adicione uma breve descrição sobre esta distribuição…"
+                            placeholder="Adicione uma breve descrição sobre este contrato…"
                             value={contratoDescricao}
                             onChange={(e) => setDescricao(e.target.value)}
                         />

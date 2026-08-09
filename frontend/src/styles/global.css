@@ -895,9 +895,10 @@ input[type="password"]::-ms-clear {
 .sidebar.collapsed { width: var(--sidebar-collapsed-w); }
 
 .sidebar-logo .logo-text {
-    white-space: nowrap;
+    white-space: normal;
     opacity: 1;
     transition: opacity .15s;
+
 }
 .sidebar.collapsed .logo-text { opacity: 0; pointer-events: none; }
 
@@ -1146,6 +1147,7 @@ input[type="number"] {
 .carga-fill     { height: 3px; border-radius: 2px; }
 .fill-ok   { background: #22c55e; }
 .fill-warn { background: #f59e0b; }
+.fill-danger { background: #f50b0b; }
 
 .horas-badge {
     font-size: 10.5px; font-weight: 600; font-family: 'DM Mono', monospace;
@@ -1153,6 +1155,7 @@ input[type="number"] {
 }
 .horas-badge.ok   { color: #166534; background: #dcfce7; }
 .horas-badge.warn { color: #854d0e; background: #fef9c3; }
+.horas-badge.danger { color: #850e0e; background: #fec3c3; }
 
 .juncao-entry       { background: #ede9fe; border: 1px solid #c4b5fd; border-radius: 8px; padding: 7px 10px; margin-bottom: 5px; }
 .juncao-entry-title { font-size: 12px; font-weight: 600; color: #5b21b6; }
@@ -1171,9 +1174,8 @@ input[type="number"] {
     padding: 0 20px; z-index: 80;
     transition: left .22s cubic-bezier(.4,0,.2,1);
 }
-.bottom-bar.collapsed { left: var(--sidebar-collapsed-w); }
 .bottom-bar-left  { display: flex; align-items: center; gap: 8px; }
-.bottom-bar-right { display: flex; align-items: center; gap: 8px; }
+.bottom-bar-right { display: flex; align-items: center; gap: 8px; margin-left: auto;}
 
 .btn-save {
     display: inline-flex; align-items: center; gap: 6px;
@@ -1232,3 +1234,183 @@ input[type="number"] {
     pointer-events: none; white-space: nowrap;
 }
 .toast.show { opacity: 1; }
+
+
+/* Layout Geral do Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding-bottom: 50px;
+    padding-top: 100px;
+}
+
+.modal {
+    background: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-icon .bi {
+    font-size: 18px;
+}
+
+.modal-icon .bi-check-circle {
+    color: #166534;
+}
+
+.modal-icon .bi-exclamation-triangle {
+    color: #854d0e;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.modal-subtitle {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.modal-close:hover {
+    color: #374151;
+    background-color: #f3f4f6;
+}
+
+/* Corpo */
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+}
+
+/* Grelha de Resumo / Métricas */
+.modal-summary-grid {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 25px;
+}
+
+.modal-summary-card {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #dcfce7; /* Estado OK (Verde) */
+}
+
+.modal-summary-card.has-error {
+    background-color: #fee2e2; /* Estado Erro (Vermelho) */
+}
+
+.modal-summary-value {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.modal-summary-label {
+    font-size: 12px;
+    color: var(--muted, #6b7280);
+    margin-top: 4px;
+}
+
+/* Lista de Problemas */
+.modal-problems-list {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+}
+
+.modal-problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background-color: #fef9c3;
+    font-size: 13px;
+    color: #713f12;
+}
+
+.modal-problem-icon {
+    color: #854d0e;
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+
+/* Rodapé */
+.modal-footer {
+    padding: 12px 20px;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-btn-cancel {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.modal-btn-cancel:hover {
+    background-color: #f3f4f6;
+}

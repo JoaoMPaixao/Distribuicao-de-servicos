@@ -14,8 +14,6 @@ import FilterBarUtilizadores from "../components/Utilizadores/FilterBarUtilizado
 import {getDepartamentos} from "../api/departamentosApi.jsx";
 import {getCargos} from "../api/cargosApi.jsx";
 import ModalUtilizadores from "../components/Utilizadores/ModalUtilizadores.jsx";
-import {apagarCurso, getCursos} from "../api/cursosApi.jsx";
-
 
 export const UtilizadoresPage = () => {
     const {user} = useContext(UserContext)

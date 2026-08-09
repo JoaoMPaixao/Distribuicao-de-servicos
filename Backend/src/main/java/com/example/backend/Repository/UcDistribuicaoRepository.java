@@ -30,4 +30,12 @@ public interface UcDistribuicaoRepository extends JpaRepository<UC_Distribuicao,
     List<UC_Distribuicao> findAllByUcTipoAula_IdAndTurnoAndDistribuicao_Id(Integer id, int i, Integer distribuicaoId);
 
     UC_Distribuicao findByUcDistribuicaPai_Id(Integer ucDistribucaoId);
+
+    List<UC_Distribuicao> findByDistribuicao_IdAndDocenteIsNull(Integer distribuicaoId);
+
+    List<UC_Distribuicao> findByDistribuicao_IdAndUcDistribuicaPaiIsNull(Integer distribuicaoId);
+
+    List<UC_Distribuicao> findAllByUcTipoAulaIsNullAndTurnoAndDistribuicao_Id(Integer i, Integer distribuicaoId);
+
+    List<UC_Distribuicao> findAllByUcDistribuicaPai_IdIn(List<Integer> ids);
 }

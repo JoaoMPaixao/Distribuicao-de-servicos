@@ -6,7 +6,7 @@ import ModalJuncao from './ModalJuncao'
     const [dragOver, setDragOver] = useState(false)
     const temJuncao = atribuicao.temJuncao;
     const temFilhos = atribuicao.temFilhos
-    console.log(atribuicao)
+
     return (
         <>
             <tr

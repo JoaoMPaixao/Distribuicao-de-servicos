@@ -24,25 +24,10 @@ public class CursoServices {
     private static final Logger auditLogger = LoggerFactory.getLogger("auditoria");
 
     @Autowired
-    private UcRepository ucRepository;
-
-    @Autowired
     private CursoRepository cursoRepository;
 
     @Autowired
-    private DistribuicaoRepository distribuicaoRepository;
-
-    @Autowired
     private DepartamentoRepository departamentoRepository;
-
-    @Autowired
-    private UcTipoAulaRepository ucTipoAulaRepository;
-
-    @Autowired
-    private UcDistribuicaoRepository ucDistribuicaoRepository;
-
-    @Autowired
-    private UtilsServices utilsServices;
 
     public List<ListarCursosDto> getCursos (){
 

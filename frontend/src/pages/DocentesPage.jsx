@@ -132,7 +132,7 @@ export const DocentesPage = () => {
 
     const docentesFiltrados = docentes.filter((d) => {
         const matchPesquisa = d.nome.toLowerCase().includes(pesquisa.toLowerCase())
-        const matchDepartamento = !departamentoFiltro || String(d.departamento_id) === departamentoFiltro
+        const matchDepartamento = !departamentoFiltro || String(d.departamentoId) === departamentoFiltro
         return matchPesquisa && matchDepartamento
     })
 

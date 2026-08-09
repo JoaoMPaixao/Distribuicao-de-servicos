@@ -14,4 +14,6 @@ public interface UcJuncaoRepository extends JpaRepository<UC_Juncao,Integer> {
     UC_Juncao findFirstByUcDistribuicao_Id(Integer id);
 
     long countByUcTipoAula_IdAndUcDistribuicao_Distribuicao_Id(Integer integer, Integer id);
+
+    List<UC_Juncao> findByUcDistribuicao_IdIn(List<Integer> ids);
 }

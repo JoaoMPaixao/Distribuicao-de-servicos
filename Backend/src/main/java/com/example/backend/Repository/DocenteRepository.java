@@ -13,4 +13,6 @@ public interface DocenteRepository extends JpaRepository<Docente,Integer> {
 
     List<Docente> findByEstadoNot( EstadoDocente estado);
 
+
+
 }

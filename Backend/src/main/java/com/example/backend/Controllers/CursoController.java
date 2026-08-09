@@ -30,7 +30,7 @@ public class CursoController {
 
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('COORDENADOR', 'DIRETOR_COORDENADOR')")
     @GetMapping("/atribuicoes")
     public ResponseEntity<List<ListarCursosDto>> listarCursosByDepartamento(Authentication authentication) {
 

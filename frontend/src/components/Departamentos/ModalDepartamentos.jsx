@@ -72,7 +72,7 @@ function ModalDepartamento({ departamento = null, onClose, onSubmit}) {
                         </div>
 
                         <div className="modal-field">
-                            <label className="modal-label" htmlFor="mCoordenador">Coordenador <span className="required">*</span></label>
+                            <label className="modal-label" htmlFor="mCoordenador">Coordenador <span className="modal-label-optional">Opcional</span></label>
                             <div className="modal-input-wrap">
                                 <input
                                     className="modal-input modal-mono"

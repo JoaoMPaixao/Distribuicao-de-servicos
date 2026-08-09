@@ -92,14 +92,23 @@ export const retirarDocente = async (id,udid) => {
     }
 }
 
-export const getDocentesUcsDistribuicao = async () => {
+export const getDocentesUcsDistribuicao = async (id) => {
 
     try{
-        const {data} = await instance.get(`/v1/docentes/distribuicao`)
+        const {data} = await instance.get(`/v1/distribuicoes/${id}/docentes`)
         return { success: true, data}
     }catch (error){
         return {success: false, status: error.response?.status, message: error.response?.data?.message}
     }
 
+}
+
+export const getVerificarDistribuicao = async (id) => {
+    try {
+        const { data } = await instance.get(`v1/distribuicoes/${id}/verificar`)
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, status: error.response?.status, message: error.response?.data?.message }
+    }
 }
 

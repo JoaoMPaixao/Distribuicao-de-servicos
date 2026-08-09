@@ -100,7 +100,7 @@ public class JwtAuthenticationController {
                 "departamento", user.getDepartamentoNome(),
                 "role", user.getAuthorities()
                         .stream()
-                        .map(a -> a.getAuthority())
+                        .map(a -> a.getAuthority().replace("ROLE_", ""))
                         .toList()
         ));
     }
